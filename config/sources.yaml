@@ -1,0 +1,260 @@
+# Every source AWS Radar collects from. Collectors read this file; no URLs live in code.
+#
+# Fields
+#   id           stable slug; also the folder name under data/raw/
+#   name         display name
+#   group        aws-official | aws-code | aws-media | community | social
+#   type         collector to use: rss | aws-blog-api | hn-algolia | bluesky-author |
+#                github-changelog | x-following
+#   url          endpoint (type-specific; may contain {page} / {size})
+#   cadence      how often it is worth polling (the scheduler runs on the shortest)
+#   services     default service ids for every item (empty = classifier decides)
+#   service_tags where the source carries its own service tags, and how to read them
+#   auth_env     environment variable holding a token, if one is needed
+#   stale_after_days  validator warns when the newest item is older (default 14)
+#   enabled      false = documented but not collected yet
+#   notes        anything a maintainer needs to know
+#
+# Verified with scripts/validate_sources.py on 2026-10-31.
+
+defaults:
+  user_agent: "aws-radar/0.1 (+https://github.com/pfeilbr/aws-radar)"
+  timeout_seconds: 30
+  stale_after_days: 14
+  min_interval_seconds:   # per-host politeness delay between requests
+    www.reddit.com: 10
+    api.github.com: 1
+
+sources:
+
+  # ── AWS official ───────────────────────────────────────────────────────────
+
+  - id: aws-whats-new
+    name: AWS What's New
+    group: aws-official
+    type: rss
+    url: https://aws.amazon.com/about-aws/whats-new/recent/feed/
+    cadence: 6h
+    service_tags: "rss <category>: comma list of general:products/<slug>"
+    enabled: true
+    notes: >
+      The canonical launch feed. Holds only ~100 items (about 10 days), so it must be polled at
+      least daily or launches are lost. The old directory JSON API for whats-new stopped
+      updating in 2024-05; do not use it.
+
+  - id: aws-blogs
+    name: AWS Blogs (all ~45 blogs, one API)
+    group: aws-official
+    type: aws-blog-api
+    url: https://aws.amazon.com/api/dirs/items/search?item.directoryId=blog-posts&sort_by=item.additionalFields.createdDate&sort_order=desc&item.locale=en_US&size={size}&page={page}
+    page_size: 100
+    max_pages: 5
+    cadence: 6h
+    service_tags: "tags[].name where tagNamespaceId starts with blog-posts#category-"
+    enabled: true
+    notes: >
+      One endpoint covers every blog under aws.amazon.com/blogs/ with service tags and
+      authors, so per-blog RSS feeds are not needed. ~20 posts/day; 100/page ≈ 5 days.
+      Fallback if this API breaks: https://aws.amazon.com/blogs/<slug>/feed/ for the slugs in
+      docs/sources.md.
+
+  - id: aws-news-blog
+    name: AWS News Blog
+    group: aws-official
+    type: rss
+    url: https://aws.amazon.com/blogs/aws/feed/
+    cadence: 6h
+    enabled: true
+    notes: >
+      Also in aws-blogs, but kept separately because its posts (Jeff Barr, Channy Yun, weekly
+      roundups) carry full content and are the headline launches. Items dedupe by URL.
+
+  - id: aws-security-bulletins
+    name: AWS Security Bulletins
+    group: aws-official
+    type: rss
+    url: https://aws.amazon.com/security/security-bulletins/rss/feed/
+    cadence: 6h
+    enabled: true
+
+  - id: aws-service-health
+    name: AWS Service Health Dashboard
+    group: aws-official
+    type: rss
+    url: https://status.aws.amazon.com/rss/all.rss
+    cadence: 1h
+    stale_after_days: 365          # quiet is good news here
+    enabled: true
+    notes: Operational events. Shown separately in the UI, not mixed into launches.
+
+  # ── AWS code (API-level truth) ─────────────────────────────────────────────
+
+  - id: botocore-changelog
+    name: botocore CHANGELOG (API changes for every service)
+    group: aws-code
+    type: github-changelog
+    url: https://raw.githubusercontent.com/boto/botocore/develop/CHANGELOG.rst
+    format: botocore-rst
+    cadence: 24h
+    service_tags: "api-change:``<service>``: lines; <service> is the SDK service name"
+    enabled: true
+    notes: >
+      Every new API, parameter and enum lands here, often before the blog post. Large file
+      (~1.6 MB): fetch with If-None-Match and parse only versions newer than the cursor.
+
+  - id: aws-cdk-releases
+    name: AWS CDK releases
+    group: aws-code
+    type: rss
+    url: https://github.com/aws/aws-cdk/releases.atom
+    cadence: 24h
+    services: [cdk]
+    enabled: true
+
+  - id: aws-cli-releases
+    name: AWS CLI releases
+    group: aws-code
+    type: rss
+    url: https://github.com/aws/aws-cli/releases.atom
+    cadence: 24h
+    services: [cli]
+    enabled: false
+    notes: Tags only, no notes; botocore-changelog already covers the API changes.
+
+  - id: aws-sam-cli-releases
+    name: AWS SAM CLI releases
+    group: aws-code
+    type: rss
+    url: https://github.com/aws/aws-sam-cli/releases.atom
+    cadence: 24h
+    services: [sam]
+    enabled: true
+
+  - id: awslabs-mcp-releases
+    name: AWS MCP Servers releases
+    group: aws-code
+    type: rss
+    url: https://github.com/awslabs/mcp/releases.atom
+    cadence: 24h
+    enabled: true
+
+  # ── AWS media ──────────────────────────────────────────────────────────────
+
+  - id: aws-podcast
+    name: AWS Podcast
+    group: aws-media
+    type: rss
+    url: https://d3gih7jbfe3jlq.cloudfront.net/aws-podcast.rss
+    cadence: 24h
+    stale_after_days: 365
+    enabled: true
+    notes: >
+      Still the feed linked from aws.amazon.com/podcasts/aws-podcast/, but the newest episode
+      is 2026-04-07. Kept for the back catalogue and in case it resumes.
+
+  - id: youtube-aws
+    name: YouTube · Amazon Web Services
+    group: aws-media
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCd6MoB9NC6uYN2grvUNT-Zg
+    cadence: 24h
+    enabled: true
+
+  - id: youtube-aws-events
+    name: YouTube · AWS Events (re:Invent, Summits)
+    group: aws-media
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCdoadna9HFHsxXWhafhNvKw
+    cadence: 24h
+    enabled: true
+
+  - id: youtube-aws-developers
+    name: YouTube · AWS Developers
+    group: aws-media
+    type: rss
+    url: https://www.youtube.com/feeds/videos.xml?channel_id=UCT-nPlVzJI-ccQXlxjSvJmw
+    cadence: 24h
+    enabled: true
+
+  # ── Community ──────────────────────────────────────────────────────────────
+
+  - id: reddit-aws
+    name: Reddit · r/aws + r/aws_cdk + r/serverless + r/amazonbedrock
+    group: community
+    type: rss
+    url: https://www.reddit.com/r/aws+aws_cdk+serverless+amazonbedrock/new/.rss?limit=100
+    cadence: 6h
+    enabled: true
+    notes: >
+      One multireddit request instead of one per subreddit: Reddit returns 429 after a couple
+      of quick unauthenticated requests. The .json endpoints return 403; RSS works.
+
+  - id: hacker-news
+    name: Hacker News (AWS stories, 20+ points)
+    group: community
+    type: hn-algolia
+    url: https://hn.algolia.com/api/v1/search_by_date?query=aws&tags=story&numericFilters=points%3E20&hitsPerPage=100
+    cadence: 6h
+    enabled: true
+
+  - id: last-week-in-aws
+    name: Last Week in AWS (Corey Quinn)
+    group: community
+    type: rss
+    url: https://www.lastweekinaws.com/newsletter/feed/
+    cadence: 24h
+    stale_after_days: 45
+    enabled: true
+    notes: The newsletter archive feed; /feed/ is the blog, which updates less often.
+
+  - id: aws-community-builders
+    name: dev.to · AWS Community Builders
+    group: community
+    type: rss
+    url: https://dev.to/feed/aws-builders
+    cadence: 24h
+    enabled: true
+    notes: High volume and uneven quality; tagged community so the UI can filter it out.
+
+  # ── Social ─────────────────────────────────────────────────────────────────
+
+  - id: bluesky-aws-people
+    name: Bluesky · AWS people
+    group: social
+    type: bluesky-author
+    url: https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor={actor}&limit=50&filter=posts_no_replies
+    actors:
+      - jeffbarr.bsky.social        # Jeff Barr, AWS
+      - edjgeek.bsky.social         # Eric Johnson, AWS serverless
+      - quinnypig.com               # Corey Quinn
+      - lastweekinaws.com
+      - jeremydaly.bsky.social      # Jeremy Daly
+      - theburningmonk.com          # Yan Cui
+      - donkersgoed.bsky.social     # Luc van Donkersgoed
+      - mhausenblas.info            # Michael Hausenblas
+    cadence: 6h
+    enabled: true
+    notes: Public AppView API, no auth. Add handles here; resolve-check them with the validator.
+
+  - id: x-following
+    name: X · accounts I follow
+    group: social
+    type: x-following
+    url: https://api.x.com/2/users/{user_id}/following
+    handle: null                    # set to the X handle whose follows to read
+    auth_env: X_BEARER_TOKEN
+    cadence: 24h
+    enabled: false
+    notes: >
+      X has no free read API and blocks unauthenticated scraping, so this needs a paid API
+      token. Plan: read the follow list once (or a curated X List), keep only accounts that
+      post about AWS, then pull their recent posts. Without a token, map the follow list to
+      Bluesky handles and add them to bluesky-aws-people instead. See docs/sources.md.
+
+  # ── Candidates (not yet verified or not yet worth it) ──────────────────────
+  #   - aws/containers-roadmap shipped issues (GitHub API, label filter)
+  #   - aws-cloudformation/cloudformation-coverage-roadmap shipped issues
+  #   - AWS re:Post (no public feed found)
+  #   - re:Invent / Summit session catalogs (seasonal)
+  #   - AWS documentation "Document history" pages per service
+  #   - Screaming in the Cloud podcast (feeds.transistor.fm/screaming-in-the-cloud): broad cloud, not AWS-only

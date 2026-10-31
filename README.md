@@ -74,10 +74,10 @@ explained in [`docs/sources.md`](docs/sources.md). In short:
 
 | Group | Examples | Auth |
 | --- | --- | --- |
-| AWS official | What's New, AWS News Blog, ~80 category blogs, Security Bulletins, service health | none |
-| AWS code | SDK / CLI / CDK / botocore changelogs and GitHub releases | none (optional `GITHUB_TOKEN` for rate limits) |
-| AWS media | AWS Podcast, AWS YouTube channels | none |
-| Community | r/aws and related subreddits, Hacker News, Last Week in AWS, community newsletters | none |
+| AWS official | What's New, all ~45 AWS blogs (one JSON API), News Blog, Security Bulletins, service health | none |
+| AWS code | botocore changelog (every API change), CDK / SAM CLI / AWS MCP releases | none |
+| AWS media | AWS Podcast, three AWS YouTube channels | none |
+| Community | r/aws and related subreddits, Hacker News, Last Week in AWS, AWS Community Builders | none |
 | Social | Bluesky accounts and lists, X accounts I follow | Bluesky: none. X: paid API token |
 
 ## Running it
@@ -94,7 +94,7 @@ status section below.
 ## Status
 
 - [x] Repo, README, CLAUDE.md
-- [ ] Source registry (`config/sources.yaml`) and validator
+- [x] Source registry (`config/sources.yaml`) and validator (18 sources live, X pending a token)
 - [ ] Collectors and append-only raw store
 - [ ] Service catalog with icons
 - [ ] Classifier and per-service digests
