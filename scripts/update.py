@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import subprocess
 import sys
@@ -27,6 +28,17 @@ def git(*args: str) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], cwd=ROOT, check=True, text=True, capture_output=True)
 
 
+def failing_sources() -> set[str]:
+    """Sources whose latest outcome is an error (shown on the site's #/sources page)."""
+    out = set()
+    for f in (ROOT / "data" / "state").glob("*.json"):
+        st = json.loads(f.read_text())
+        err = st.get("last_error") or {}
+        if err and err.get("at", "") >= (st.get("last_success") or ""):
+            out.add(f.stem)
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--only", nargs="*")
@@ -38,6 +50,7 @@ def main() -> int:
     args = ap.parse_args()
 
     added, report = [], []
+    failing_before = failing_sources()
     if not args.build_only:
         print("collecting", file=sys.stderr)
         added, report = run(args.only, force=args.force, backfill=args.backfill)
@@ -47,14 +60,24 @@ def main() -> int:
 
     if args.commit:
         git("add", "data")
-        # State (ETags, last-run times) changes every run; only commit when items arrived.
-        if subprocess.run(["git", "diff", "--cached", "--quiet", "--", "data/raw"], cwd=ROOT).returncode == 0:
+        # State (ETags, last-run times) changes every run. Commit only when items arrived or
+        # a source started or stopped failing, so the site's health page stays truthful.
+        failing_after = failing_sources()
+        new_items = subprocess.run(["git", "diff", "--cached", "--quiet", "--", "data/raw"], cwd=ROOT).returncode != 0
+        health_changed = failing_after != failing_before
+        if not new_items and not health_changed:
             git("reset", "-q")
             print("no new items, nothing committed", file=sys.stderr)
         else:
             per_source = ", ".join(f"{r['id']} +{r['added']}" for r in report if r.get("added"))
-            msg = f"data: update {utcnow():%Y-%m-%d %H:%M}Z (+{len(added)} items)"
-            body = per_source or "state only"
+            if new_items:
+                msg = f"data: update {utcnow():%Y-%m-%d %H:%M}Z (+{len(added)} items)"
+            else:
+                msg = f"data: source health {utcnow():%Y-%m-%d %H:%M}Z"
+            body = per_source or "no new items"
+            if health_changed:
+                body += ("\n\nnow failing: " + (", ".join(sorted(failing_after)) or "none")
+                         + "\nrecovered: " + (", ".join(sorted(failing_before - failing_after)) or "none"))
             if errors:
                 body += "\n\nerrors: " + ", ".join(r["id"] for r in errors)
             git("commit", "-m", msg, "-m", body)

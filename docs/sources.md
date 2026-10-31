@@ -70,16 +70,22 @@ security smb social-impact storage supply-chain training-and-certification web3
 ## X (Twitter): the people I follow
 
 X offers no free read access and blocks unauthenticated scraping (Nitter-style mirrors are
-gone). Options, in order of preference:
+gone). The collector is written (`radar/collectors/x.py`) but **untested and disabled**.
 
-1. **Bluesky first.** Many AWS people post there too, and its public API needs no auth.
-   Export the X follow list once, look up each person's Bluesky handle, add them to
-   `bluesky-aws-people.actors`.
-2. **X API with a token.** Set `X_BEARER_TOKEN` and `x-following.handle`, then enable the
-   source. The collector would read the follow list once, keep accounts that post about AWS,
-   and pull their recent posts within the plan's read quota. This costs money.
-3. **A curated X List** instead of the full follow list: fewer accounts, less quota, better
-   signal. Same token requirement.
+To turn it on:
+
+1. Get an X API bearer token on a plan that allows reading posts.
+2. Add it as a repository secret named `X_BEARER_TOKEN`
+   (Settings → Secrets and variables → Actions). The update workflow already passes it in.
+3. In `config/sources.yaml`, under `x-following`, set either `handle` (your X handle; the
+   follow list is read weekly and filtered to AWS-related bios, capped by `max_accounts`) or
+   `list_id` (an X List you curate; one request per run, the cheapest option). Set
+   `enabled: true`.
+4. Run `uv run scripts/update.py --only x-following --force` locally with the token exported
+   to check it before the scheduled job picks it up.
+
+Free alternative: many of the same people are on Bluesky; add their handles to
+`bluesky-aws-people.actors` (no auth needed).
 
 ## Adding a source
 

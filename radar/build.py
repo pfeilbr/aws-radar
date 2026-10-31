@@ -14,15 +14,17 @@ from __future__ import annotations
 import json
 import re
 import shutil
+from xml.sax.saxutils import escape
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 import yaml
 
-from radar import CONFIG_DIR, DATA_DIR, SITE_DIR
+from radar import CONFIG_DIR, DATA_DIR, SITE_DIR, SITE_URL
 from radar.catalog import Catalog
 from radar.classify import regions_for, services_for, tags_for
-from radar.store import RawStore, iso, utcnow
+from radar.store import RawStore, iso, load_state, utcnow
 from radar.text import first_sentences
 
 SERVICE_ITEM_CAP = 600
@@ -58,6 +60,8 @@ def digest_item(item: dict, src: dict, cat: Catalog) -> dict:
     if src["type"] == "github-changelog":
         api = (item.get("extra") or {}).get("sdk_service")
         summary, title = "", first_sentences(item["summary"] or title, 300)
+    if src["type"] == "github-issues":
+        summary = ""  # issue bodies are the roadmap template ("Community Note ... vote")
     if src["type"] == "bluesky-author":
         title, summary = first_sentences(item["summary"] or title, 300), ""
     primary, mentioned = services_for(item, src, cat)
@@ -126,6 +130,53 @@ def _md_line(d: dict, sources: dict) -> str:
     tags = " ".join(f"`{t}`" for t in d["tags"])
     text = (f"`{d['api']}` " if d.get("api") else "") + d["t"] + (f" — {d['s']}" if d.get("s") else "")
     return f"- {d['d'][:10]} {tags} [{text}]({d['u']}) · {sources[d['src']]['name']}"
+
+
+FEED_CAP = 60
+LAUNCH_KINDS = {"aws-whats-new", "aws-news-blog", "botocore-changelog", "containers-roadmap-shipped",
+                "cloudformation-roadmap-shipped"}
+
+
+def _atom(path: Path, title: str, page: str, items: list[dict], sources: dict, cat: Catalog) -> None:
+    """One Atom feed. Entry ids are the stable item ids, so readers never see repeats."""
+    updated = items[0]["d"] if items else iso(utcnow())
+    out = ['<?xml version="1.0" encoding="utf-8"?>',
+           '<feed xmlns="http://www.w3.org/2005/Atom">',
+           f"<title>{escape(title)}</title>",
+           f'<link rel="alternate" href="{escape(SITE_URL + page)}"/>',
+           f'<link rel="self" href="{escape(SITE_URL + str(path.relative_to(SITE_DIR)))}"/>',
+           f"<id>{escape(SITE_URL + str(path.relative_to(SITE_DIR)))}</id>",
+           f"<updated>{updated}</updated>",
+           "<author><name>AWS Radar</name></author>"]
+    for d in items[:FEED_CAP]:
+        tags = " ".join(f"[{t}]" for t in d["tags"])
+        svcs = ", ".join(cat.services[s].short for s in d["svc"] if s in cat.services)
+        body = " · ".join(filter(None, [tags, svcs, sources[d["src"]]["name"], d.get("s")]))
+        title_text = (f"{d['api']}: " if d.get("api") else "") + d["t"]
+        out += ["<entry>",
+                f"<title>{escape(title_text)}</title>",
+                f'<link href="{escape(d["u"])}"/>',
+                f"<id>urn:aws-radar:{escape(d['id'])}</id>",
+                f"<updated>{d['d']}</updated>",
+                f"<summary>{escape(body)}</summary>",
+                "</entry>"]
+    out.append("</feed>")
+    path.write_text("\n".join(out) + "\n")
+
+
+def write_feeds(digests: list[dict], per_service: dict, cat: Catalog, sources: dict) -> None:
+    feeds = SITE_DIR / "feeds"
+    if feeds.exists():
+        shutil.rmtree(feeds)
+    (feeds / "s").mkdir(parents=True)
+    _atom(feeds / "launches.xml", "AWS Radar · launches and API changes", "",
+          [d for d in digests if d["src"] in LAUNCH_KINDS], sources, cat)
+    _atom(feeds / "all.xml", "AWS Radar · everything", "", digests, sources, cat)
+    for sid, items in per_service.items():
+        main = [d for d in items if sid in d["svc"]]
+        if main and sid in cat.services:
+            _atom(feeds / "s" / f"{sid}.xml", f"AWS Radar · {cat.services[sid].name}",
+                  f"#/s/{sid}", main, sources, cat)
 
 
 def write_catalog_gaps(cat: Catalog, sources: dict) -> int:
@@ -218,16 +269,42 @@ def build(now: datetime | None = None) -> dict:
             (md_dir / f"{s.id}.md").write_text("\n".join(lines) + "\n")
 
     latest = [d for d in digests if d["d"] >= since(LATEST_DAYS)][:LATEST_CAP]
+
+    # Compact full-history index for site search: [date, title, url, services, source, api, tags]
+    search = [[d["d"][:10], d["t"], d["u"], " ".join(d["svc"]), d["src"], d.get("api", ""),
+               " ".join(d["tags"])] for d in digests]
+    (data_dir / "search.js").write_text(
+        "window.RADAR_SEARCH=" + json.dumps(search, ensure_ascii=False, separators=(",", ":")) + ";\n")
+
+    # Source health for the #/sources page.
+    per_src: dict[str, list[str]] = defaultdict(list)
+    for d in digests:
+        for sid in [d["src"], *d.get("also", [])]:  # merged duplicates count for both sources
+            per_src[sid].append(d["d"])
+    health = {}
+    for sid, src in sources.items():
+        st = load_state(sid)
+        err = st.get("last_error") or {}
+        health[sid] = {
+            "name": src["name"], "group": src["group"], "type": src["type"],
+            "enabled": bool(src.get("enabled")), "cadence": src.get("cadence"),
+            "items": len(per_src.get(sid, [])), "newest": max(per_src.get(sid, []), default=None),
+            "last_success": st.get("last_success"), "last_run": st.get("last_run"),
+            "error": err.get("error") if err and err.get("at", "") >= (st.get("last_success") or "") else None,
+            "url": src.get("url", "").split("?")[0] if "{" not in src.get("url", "") else None,
+        }
     index = {
         "generated": iso(now),
         "categories": cat.categories,
         "services": services_out,
-        "sources": {k: {"name": v["name"], "group": v["group"]} for k, v in sources.items()},
+        "sources": health,
+        "site_url": SITE_URL,
         "latest": latest,
         "counts": {"items": len(digests), "unmatched": sum(1 for d in digests if not d["svc"])},
     }
     (data_dir / "index.js").write_text(
         "window.RADAR_INDEX=" + json.dumps(index, ensure_ascii=False, separators=(",", ":")) + ";\n")
+    write_feeds(digests, per_service, cat, sources)
     gaps = write_catalog_gaps(cat, sources)
     return index["counts"] | {"services_with_items": len(per_service), "catalog_gaps": gaps}
 

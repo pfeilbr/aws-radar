@@ -291,16 +291,18 @@ sources:
     name: X · accounts I follow
     group: social
     type: x-following
-    url: https://api.x.com/2/users/{user_id}/following
-    handle: null                    # set to the X handle whose follows to read
-    auth_env: X_BEARER_TOKEN
+    handle: null                    # TODO(Brian): your X handle, e.g. "pfeilbr" ...
+    list_id: null                   # ... or an X List id (cheaper: one request per run)
+    aws_only: true                  # keep only follows whose bio mentions AWS/cloud
+    max_accounts: 50                # cap API spend: one request per account per run
+    auth_env: X_BEARER_TOKEN        # TODO(Brian): add as a GitHub Actions secret
     cadence: 24h
-    enabled: false
+    enabled: false                  # TODO(Brian): flip to true once the two above are set
     notes: >
-      X has no free read API and blocks unauthenticated scraping, so this needs a paid API
-      token. Plan: read the follow list once (or a curated X List), keep only accounts that
-      post about AWS, then pull their recent posts. Without a token, map the follow list to
-      Bluesky handles and add them to bluesky-aws-people instead. See docs/sources.md.
+      UNTESTED collector (radar/collectors/x.py), written against the X API v2 docs. X has
+      no free read access, so this needs a paid plan. With `handle`, the follow list is read
+      once a week and cached in data/state; each account's timeline is read with since_id
+      cursors. With `list_id`, one request per run. See docs/sources.md.
 
   # ── Candidates (not yet verified or not yet worth it) ──────────────────────
   #   - AWS re:Post (no public feed found)

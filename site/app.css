@@ -172,3 +172,37 @@ label.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 1
   .grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
   .day { top: 96px; }
 }
+
+/* ── watchlist, feeds, activity, regions ── */
+.star { border: 0; background: none; cursor: pointer; font-size: 20px; line-height: 1; color: var(--faint); vertical-align: 2px; padding: 0 2px; }
+.star.on { color: var(--accent); }
+.watch-block { border-bottom: 1px solid var(--line); }
+.feedlink { font-size: 12px; color: var(--accent-ink); font-weight: 600; }
+.feedlink::before { content: "◉ "; font-size: 10px; }
+.regions { font: 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); background: var(--chip); padding: 1px 5px; border-radius: 4px; }
+.activity-slot { margin-left: auto; }
+.activity { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.activity svg { display: block; }
+.bar-a { fill: var(--accent); }
+.bar-b { fill: var(--line); }
+.legend { font-size: 10px; color: var(--faint); display: flex; align-items: center; gap: 4px; }
+.sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+.sw.a { background: var(--accent); }
+.sw.b { background: var(--line); margin-left: 6px; }
+.svc-head .activity-slot ~ .stats { margin-left: 16px; }
+
+/* ── sources page ── */
+.table-wrap { overflow-x: auto; }
+table.sources { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.sources th, table.sources td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; white-space: nowrap; }
+table.sources th { color: var(--muted); font-weight: 600; font-size: 12px; }
+table.sources td .sub { color: var(--faint); font-size: 11px; }
+table.sources .num { text-align: right; }
+.pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--t-plain-bg); color: var(--t-plain); }
+.pill.ok { background: var(--t-ga-bg); color: var(--t-ga); }
+.pill.bad { background: var(--t-bad-bg); color: var(--t-bad); }
+.pill.warn { background: var(--t-feature-bg); color: var(--t-feature); }
+.note { color: var(--muted); font-size: 12px; padding: 0 16px 12px; }
+.tag.shipped { background: var(--t-ga-bg); color: var(--t-ga); }
+.tag.coming-soon { background: var(--t-preview-bg); color: var(--t-preview); }
+@media (max-width: 1000px) { .activity-slot { display: none; } }
