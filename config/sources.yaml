@@ -186,13 +186,13 @@ sources:
     group: community
     type: rss
     url: https://www.reddit.com/r/aws+aws_cdk+serverless+amazonbedrock/new/.rss?limit=100
-    cadence: 1h                     # polled hourly by .github/workflows/reddit.yml
+    cadence: 6h
     enabled: true
     notes: >
       One multireddit request instead of one per subreddit: Reddit returns 429 after a couple
       of quick unauthenticated requests. The .json endpoints return 403; RSS works.
-      Reddit blocks some GitHub runner IPs (403) but not others; each run gets a fresh
-      runner, so .github/workflows/reddit.yml retries hourly.
+      Reddit answers 403 to httpx from GitHub runners; radar/http.py uses urllib, which works.
+      One request per run: a second request within ~10s from the same IP gets 429.
 
   - id: hacker-news
     name: Hacker News (AWS stories, 20+ points)

@@ -17,7 +17,7 @@ permissions:
   actions: write    # to start the pages workflow
 
 concurrency:
-  group: update
+  group: update     # never two data pushes at once
   cancel-in-progress: false
 
 jobs:
