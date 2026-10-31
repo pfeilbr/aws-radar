@@ -14,17 +14,17 @@ import json
 import os
 import re
 import sys
-import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse
 
 import feedparser
-import httpx
 import yaml
 
-ROOT = Path(__file__).resolve().parent.parent
-CONFIG = ROOT / "config" / "sources.yaml"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from radar import CONFIG_DIR  # noqa: E402
+from radar.http import Fetcher  # noqa: E402
+
+CONFIG = CONFIG_DIR / "sources.yaml"
 
 
 def parse_date(value: str | None) -> datetime | None:
@@ -34,35 +34,6 @@ def parse_date(value: str | None) -> datetime | None:
         return datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:
         return None
-
-
-class Fetcher:
-    """httpx client that waits between requests to hosts that rate-limit."""
-
-    def __init__(self, defaults: dict):
-        self.client = httpx.Client(
-            headers={"User-Agent": defaults["user_agent"]},
-            timeout=defaults.get("timeout_seconds", 30),
-            follow_redirects=True,
-        )
-        self.intervals = defaults.get("min_interval_seconds") or {}
-        self.last_hit: dict[str, float] = {}
-
-    def get(self, url: str, retries: int = 3, **kwargs) -> httpx.Response:
-        host = urlparse(url).hostname or ""
-        for attempt in range(1, retries + 1):
-            wait = self.intervals.get(host, 0) - (time.monotonic() - self.last_hit.get(host, 0))
-            if wait > 0:
-                time.sleep(wait)
-            self.last_hit[host] = time.monotonic()
-            r = self.client.get(url, **kwargs)
-            if r.status_code not in (429, 503) or attempt == retries:
-                return r
-            retry_after = r.headers.get("retry-after", "")
-            delay = int(retry_after) if retry_after.isdigit() else 20 * attempt
-            print(f"    {host}: HTTP {r.status_code}, retrying in {delay}s", file=sys.stderr)
-            time.sleep(min(delay, 120))
-        return r
 
 
 def check_rss(f: Fetcher, src: dict) -> tuple[int, int, datetime | None]:

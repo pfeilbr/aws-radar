@@ -19,11 +19,13 @@ The audience is Brian, an AWS expert who knows every service. Write accordingly.
    source's own title/summary, truncate, and tag with rules.
 2. **Never throw away collected data.** `data/raw/` is append-only. Never rewrite or delete
    existing lines; dedupe on write by item id. Before fetching, check state so already-seen
-   items are not re-fetched. Re-derive generated files (`data/services/`, `data/changes/`,
-   `site/data/`) from raw, never the other way round.
+   items are not re-fetched. Re-derive generated files (`data/services/`, `site/data/`,
+   `config/services.yaml`) from their inputs, never the other way round. Raw items hold only
+   what the source said; services and tags are computed at build time so rule changes apply
+   to history.
 3. **Every source lives in `config/sources.yaml`.** No URLs hardcoded in collectors. A new
    source is a YAML entry plus, only if its format is new, a collector module.
-4. **The site stays static.** Plain HTML, CSS, vanilla JS, pre-built JSON. No framework, no
+4. **The site stays static.** Plain HTML, CSS, vanilla JS, pre-built data as `.js` files. No framework, no
    bundler, no server. It must work from GitHub Pages and from `file://`.
 5. **Public repo.** Commit nothing secret. Tokens (X, optional GitHub) come from environment
    variables named in `sources.yaml` (`auth_env`). Never commit `.env`.
@@ -42,11 +44,17 @@ The audience is Brian, an AWS expert who knows every service. Write accordingly.
 - Python 3.12+, managed with `uv`. Dependencies in `pyproject.toml`. Prefer the standard
   library; current deps are `httpx`, `feedparser`, `pyyaml`.
 - Item schema (one JSON object per line in `data/raw/<source_id>/<YYYY-MM>.jsonl`):
-  `id` (stable: source id + guid/url hash), `source`, `url`, `title`, `summary`,
-  `published` (ISO 8601 UTC), `fetched`, `authors`, `tags_raw` (whatever the source gave us),
-  `services` and `tags` (filled by the classifier).
-- Service ids are lowercase slugs matching `config/services.yaml` (`s3`, `lambda`, `bedrock`,
-  `ec2`, ...). Icons live in `site/assets/icons/<service-id>.svg`.
+  `id` (`<source>:<sha1 of guid>`), `source`, `url`, `title`, `summary` (plain text),
+  `published` and `fetched` (ISO 8601 UTC), `authors`, `tags_raw` (whatever the source
+  gave us), `extra` (source-specific: points, sdk_service, video_id, ...).
+- Service ids are short slugs (`s3`, `lambda`, `bedrock`, `ecs`). `config/services.yaml` is
+  generated: change ids, aliases and keywords in `config/service_overrides.yaml`, then run
+  `scripts/build_catalog.py --report` and check the unmatched list. Icons live in
+  `site/assets/icons/services/<id>.svg`.
+- Classification (`radar/classify.py`) returns primary services (the item is about them)
+  and mentions (tagged or named in passing). Service pages show primary by default.
+- A source failing must never stop a run: collectors raise, `radar/collect.py` records the
+  error in `data/state/<source>.json` and moves on.
 - Be polite to sources: send a descriptive User-Agent, honour ETag/Last-Modified, keep request
   rates low, and never scrape anything that needs a login.
 - Samples go in `samples/<service-id>/<language>/<short-name>/`, each with its own README
@@ -55,9 +63,16 @@ The audience is Brian, an AWS expert who knows every service. Write accordingly.
 ## Commands
 
 ```bash
+uv run scripts/update.py                      # collect due sources + rebuild
+uv run scripts/update.py --force --only aws-blogs
+uv run scripts/update.py --build-only         # after changing rules, catalog or the site
+uv run scripts/update.py --commit --push      # what the scheduled workflow runs
 uv run scripts/validate_sources.py            # hit every source, report status
-uv run scripts/validate_sources.py --only aws-whats-new
+uv run scripts/build_catalog.py --report      # icons + catalog, list unmatched names
+python3 -m http.server -d site 8765           # preview the site
 ```
+
+Reddit rate-limits hard (429). When testing, use `--only` and avoid re-polling Reddit.
 
 When adding commands, list them here and in the README.
 

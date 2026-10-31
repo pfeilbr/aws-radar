@@ -49,6 +49,7 @@ sources:
     url: https://aws.amazon.com/api/dirs/items/search?item.directoryId=blog-posts&sort_by=item.additionalFields.createdDate&sort_order=desc&item.locale=en_US&size={size}&page={page}
     page_size: 100
     max_pages: 5
+    backfill_pages: 20              # first run: ~2,000 posts, about 3 months
     cadence: 6h
     service_tags: "tags[].name where tagNamespaceId starts with blog-posts#category-"
     enabled: true
@@ -96,6 +97,7 @@ sources:
     url: https://raw.githubusercontent.com/boto/botocore/develop/CHANGELOG.rst
     format: botocore-rst
     cadence: 24h
+    backfill_days: 90
     service_tags: "api-change:``<service>``: lines; <service> is the SDK service name"
     enabled: true
     notes: >
@@ -136,6 +138,7 @@ sources:
     type: rss
     url: https://github.com/awslabs/mcp/releases.atom
     cadence: 24h
+    services: [mcp]
     enabled: true
 
   # ── AWS media ──────────────────────────────────────────────────────────────
@@ -195,6 +198,7 @@ sources:
     type: hn-algolia
     url: https://hn.algolia.com/api/v1/search_by_date?query=aws&tags=story&numericFilters=points%3E20&hitsPerPage=100
     cadence: 6h
+    backfill_pages: 5
     enabled: true
 
   - id: last-week-in-aws

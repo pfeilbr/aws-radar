@@ -1,0 +1,381 @@
+# Hand-curated edits applied on top of the AWS icon package by scripts/build_catalog.py.
+#
+# services: keyed by the id the builder derives from the icon name (slug of the name without
+#   "Amazon"/"AWS"). Fields:
+#   id        short, stable id used in URLs and file names
+#   short     label for tiles
+#   aliases   extra names that map here: What's New slugs, blog tags, botocore service names
+#   keywords  case-sensitive regexes for spotting the service in free text (titles, posts).
+#             Only add words that are unambiguous on their own ("DynamoDB", "EKS"), never
+#             ordinary words ("Config", "Backup", "Connect"); those match via the full name.
+#   parent    roll this service up under another in the UI
+# drop: icon ids to skip.  extra: services with no icon in the package.
+
+drop: [marketplace-dark, express-workflows, workdocs-sdk, pinpoint-apis, elemental-appliances-and-software,
+       thinkbox-frost, thinkbox-krakatoa, thinkbox-stoke, thinkbox-xmesh, elemental-delta,
+       elemental-server, elemental-conductor, apache-mxnet-on-aws, backint-agent]
+
+services:
+  # ── compute ──
+  ec2:
+    keywords: ['EC2', 'Amazon Linux(?: 2023| 2)?', 'Graviton\d?']
+    aliases: [amazon-ec2, ec2-instance-connect, amazon-linux-2023, amazon-linux, rbin, Recycle Bin, aws-inferentia,
+              aws-graviton, graviton, dlm, Amazon Data Lifecycle Manager, ebs-snapshots-archive]
+  ec2-auto-scaling: {id: ec2-auto-scaling, aliases: [autoscaling, amazon-ec2-auto-scaling]}
+  lambda:
+    keywords: ['Lambda(?! (?:calculus|expression|function in Python))', 'Lambda@Edge']
+    aliases: [aws-lambda, lambda-core, lambda-microvms, lambda-web]
+  fargate: {keywords: ['Fargate']}
+  lightsail: {keywords: ['Lightsail']}
+  elastic-beanstalk: {short: Beanstalk, keywords: ['Elastic Beanstalk', 'Beanstalk']}
+  batch: {aliases: [aws-batch]}
+  outposts-family: {id: outposts, short: Outposts, aliases: [aws-outposts, outposts], keywords: ['Outposts?']}
+  outposts-rack: {parent: outposts}
+  outposts-servers: {parent: outposts}
+  local-zones: {keywords: ['Local Zones?']}
+  wavelength: {keywords: ['Wavelength Zones?']}
+  nitro-enclaves: {keywords: ['Nitro Enclaves']}
+  parallel-cluster: {id: parallelcluster, short: ParallelCluster, keywords: ['ParallelCluster']}
+  parallel-computing-service: {id: pcs, short: PCS}
+  serverless-application-repository: {id: serverlessrepo, aliases: [serverlessrepo]}
+
+  # ── containers ──
+  elastic-container-service:
+    id: ecs
+    short: ECS
+    keywords: ['ECS']
+    aliases: [amazon-ecs, Amazon EC2 Container Service]
+  ecs-anywhere: {parent: ecs, keywords: ['ECS Anywhere']}
+  elastic-kubernetes-service:
+    id: eks
+    short: EKS
+    keywords: ['EKS']
+    aliases: [amazon-eks, eks-auth]
+  eks-anywhere: {parent: eks, keywords: ['EKS Anywhere']}
+  eks-distro: {parent: eks}
+  elastic-container-registry: {id: ecr, short: ECR, keywords: ['ECR'], aliases: [amazon-ecr, ecr-public]}
+  red-hat-openshift-service-on-aws: {id: rosa, short: ROSA, keywords: ['ROSA'], aliases: [rosa]}
+  app-runner: {keywords: ['App Runner']}
+  bottlerocket: {keywords: ['Bottlerocket']}
+
+  # ── storage ──
+  simple-storage-service:
+    id: s3
+    short: S3
+    keywords: ['S3']
+    aliases: [amazon-s3, s3control, s3tables, s3vectors, s3files, s3outposts, S3 Tables, S3 Vectors,
+              S3 Express One Zone]
+  simple-storage-service-glacier: {id: glacier, short: Glacier, keywords: ['Glacier'], aliases: [amazon-glacier, glacier]}
+  s3-on-outposts: {parent: s3}
+  elastic-block-store: {id: ebs, short: EBS, keywords: ['EBS'], aliases: [ebs]}
+  efs: {keywords: ['EFS']}
+  fsx: {keywords: ['FSx']}
+  fsx-for-netapp-ontap: {parent: fsx, aliases: [amazon-fsx-netapp-ontap]}
+  fsx-for-lustre: {parent: fsx}
+  fsx-for-openzfs: {parent: fsx}
+  fsx-for-wfs: {parent: fsx, short: FSx for Windows, aliases: [amazon-fsx-for-windows-file-server]}
+  backup: {aliases: [aws-backup, backup-gateway, backupsearch]}
+  storage-gateway: {keywords: ['Storage Gateway']}
+  snowball: {aliases: [aws-snowcone, aws-snowmobile, snow-device-management, Snow Family]}
+  snowball-edge: {parent: snowball}
+  datasync: {keywords: ['DataSync']}
+  transfer-family: {keywords: ['Transfer Family']}
+  elastic-disaster-recovery: {id: drs, short: Elastic Disaster Recovery, aliases: [drs]}
+
+  # ── databases ──
+  rds:
+    keywords: ['RDS']
+    aliases: [amazon-rds, pi, Performance Insights]
+  aurora:
+    keywords: ['Aurora']
+    aliases: [dsql, Aurora DSQL]
+  dynamodb: {keywords: ['DynamoDB', 'DAX'], aliases: [dynamodbstreams, dax]}
+  elasticache: {keywords: ['ElastiCache', 'Valkey']}
+  memorydb: {keywords: ['MemoryDB']}
+  documentdb: {keywords: ['DocumentDB'], aliases: [docdb, docdb-elastic, aws-mongodb]}
+  neptune: {keywords: ['Neptune(?! Analytics)?'], aliases: [neptunedata, neptune-graph]}
+  keyspaces: {keywords: ['Keyspaces']}
+  timestream: {keywords: ['Timestream']}
+  redshift: {keywords: ['Redshift'], aliases: [redshift-data, redshift-serverless]}
+  oracle-database-at-aws: {id: oracle-db-at-aws, aliases: [odb, Oracle Database@AWS]}
+  database-migration-service: {id: dms, short: DMS, keywords: ['AWS DMS'], aliases: [dms]}
+
+  # ── analytics ──
+  athena: {keywords: ['Athena']}
+  emr: {keywords: ['EMR'], aliases: [emr-containers, emr-serverless]}
+  glue: {keywords: ['AWS Glue'], aliases: [aws-glue]}
+  glue-databrew: {short: DataBrew, keywords: ['DataBrew'], aliases: [databrew]}
+  opensearch-service:
+    id: opensearch
+    short: OpenSearch
+    keywords: ['OpenSearch']
+    aliases: [es, opensearchserverless, osis, amazon-elasticsearch-service, Amazon Elasticsearch Service]
+  kinesis-data-streams: {parent: kinesis, keywords: ['Kinesis Data Streams']}
+  kinesis-video-streams: {keywords: ['Kinesis Video Streams']}
+  data-firehose: {id: firehose, short: Data Firehose, keywords: ['Firehose'], aliases: [firehose, Kinesis Data Firehose]}
+  managed-streaming-for-apache-kafka:
+    id: msk
+    short: MSK
+    keywords: ['MSK']
+    aliases: [amazon-msk, kafka, kafkaconnect]
+  managed-service-for-apache-flink:
+    id: flink
+    short: Managed Flink
+    aliases: [kinesisanalytics, kinesisanalyticsv2, Amazon Kinesis Data Analytics]
+  managed-workflows-for-apache-airflow:
+    id: mwaa
+    short: MWAA
+    keywords: ['MWAA']
+    aliases: [amazon-mwaa, mwaa, mwaa-serverless]
+  lake-formation: {keywords: ['Lake Formation']}
+  datazone: {keywords: ['DataZone']}
+  quick: {id: quick, short: Quick Suite, keywords: ['QuickSight', 'Quick Suite'], aliases: [amazon-quicksight, quicksight, Amazon Quick Suite, Amazon QuickSight]}
+  clean-rooms: {keywords: ['Clean Rooms'], aliases: [cleanrooms, cleanroomsml]}
+  data-exchange: {aliases: [dataexchange]}
+  entity-resolution: {aliases: [entityresolution]}
+  finspace: {keywords: ['FinSpace']}
+  security-lake: {keywords: ['Security Lake']}
+
+  # ── AI ──
+  bedrock:
+    keywords: ['Bedrock(?! AgentCore)']
+    aliases: [amazon-bedrock, bedrock-agent, bedrock-agent-runtime, bedrock-runtime, bedrock-data-automation,
+              bedrock-data-automation-runtime, Agents for Amazon Bedrock, Knowledge Bases for Amazon Bedrock,
+              Guardrails for Amazon Bedrock]
+  bedrock-agentcore: {short: AgentCore, keywords: ['AgentCore'], aliases: [bedrock-agentcore-control, agent-registry, agent-registry-control]}
+  nova: {keywords: ['Amazon Nova', 'Nova (?:Pro|Lite|Micro|Premier|Canvas|Reel|Sonic|Act|Forge|2)']}
+  q: {short: Amazon Q, keywords: ['Amazon Q(?: Developer| Business)?', 'Q Developer', 'Q Business'],
+      aliases: [qbusiness, qapps, qconnect, Amazon Q Developer, Amazon Q Business, amazon-q]}
+  codewhisperer: {parent: q}
+  sagemaker:
+    keywords: ['SageMaker']
+    aliases: [amazon-sagemaker, amazon-machine-learning, machinelearning, geospatial-ml-with-amazon-sagemaker,
+              sagemaker-runtime, sagemaker-featurestore-runtime, sagemaker-geospatial, sagemaker-metrics,
+              sagemaker-a2i-runtime, sagemaker-edge]
+  sagemaker-ai: {parent: sagemaker, short: SageMaker AI, keywords: ['SageMaker AI']}
+  sagemaker-ground-truth: {parent: sagemaker}
+  sagemaker-studio-lab: {parent: sagemaker}
+  augmented-ai-a2i: {id: a2i, parent: sagemaker, short: A2I}
+  comprehend: {keywords: ['Comprehend']}
+  comprehend-medical: {parent: comprehend, aliases: [comprehendmedical]}
+  rekognition: {keywords: ['Rekognition']}
+  textract: {keywords: ['Textract']}
+  transcribe: {keywords: ['Transcribe']}
+  translate: {keywords: ['Amazon Translate']}
+  polly: {keywords: ['Amazon Polly']}
+  lex: {keywords: ['Amazon Lex'], aliases: [lex-models, lex-runtime, lexv2-models, lexv2-runtime]}
+  kendra: {keywords: ['Kendra'], aliases: [kendra-ranking]}
+  personalize: {keywords: ['Amazon Personalize'], aliases: [personalize-events, personalize-runtime]}
+  forecast: {aliases: [forecastquery]}
+  neuron: {keywords: ['Neuron SDK', 'Trainium', 'Inferentia'], aliases: [aws-inferentia, AWS Trainium]}
+  healthomics: {aliases: [omics, amazon-omics, amazon-genomics]}
+  transform: {keywords: ['AWS Transform'], aliases: [aws-transform]}
+  devops-agent: {keywords: ['DevOps Agent'], aliases: [devops-agent]}
+  security-agent: {keywords: ['Security Agent']}
+  finops-agent: {keywords: ['FinOps Agent']}
+
+  # ── networking ──
+  virtual-private-cloud:
+    id: vpc
+    short: VPC
+    keywords: ['VPC(?! Lattice)', 'IPAM', 'NAT Gateway']
+    aliases: [amazon-vpc, ipv6-at-aws, network-security-manager, networkflowmonitor, Amazon VPC]
+  vpc-lattice: {keywords: ['VPC Lattice'], aliases: [vpc-lattice]}
+  cloudfront: {keywords: ['CloudFront'], aliases: [cloudfront-keyvaluestore]}
+  route-53:
+    id: route53
+    short: Route 53
+    keywords: ['Route ?53']
+    aliases: [route53, route53domains, route53resolver, route53profiles, amazon-route-53]
+  application-recovery-controller:
+    id: arc
+    short: ARC
+    aliases: [arc-region-switch, arc-zonal-shift, route53-recovery-cluster, route53-recovery-control-config,
+              route53-recovery-readiness]
+  elastic-load-balancing:
+    id: elb
+    short: ELB
+    keywords: ['ELB', 'Application Load Balancer', 'Network Load Balancer', 'Gateway Load Balancer', 'ALB', 'NLB']
+    aliases: [elb, elbv2]
+  api-gateway: {keywords: ['API Gateway'], aliases: [apigateway, apigatewayv2, apigatewaymanagementapi]}
+  direct-connect: {keywords: ['Direct Connect'], aliases: [directconnect]}
+  transit-gateway: {keywords: ['Transit Gateway']}
+  cloud-wan: {keywords: ['Cloud WAN'], aliases: [networkmanager, amazon-vpc-global-wan]}
+  global-accelerator: {keywords: ['Global Accelerator']}
+  privatelink: {keywords: ['PrivateLink']}
+  site-to-site-vpn: {short: Site-to-Site VPN, keywords: ['Site-to-Site VPN'], aliases: [aws-site-to-site, aws-vpn]}
+  client-vpn: {keywords: ['Client VPN']}
+  cloud-map: {keywords: ['Cloud Map']}
+  app-mesh: {keywords: ['App Mesh']}
+  verified-access: {keywords: ['Verified Access']}
+  interconnect: {aliases: [interconnect]}
+
+  # ── security ──
+  identity-and-access-management:
+    id: iam
+    short: IAM
+    keywords: ['IAM(?! Identity Center)']
+    aliases: [iam, aws-iam, sts, rolesanywhere, iam-toolbox, accessanalyzer, IAM Access Analyzer, signin, mpa]
+  iam-identity-center:
+    short: IAM Identity Center
+    keywords: ['IAM Identity Center']
+    aliases: [sso, sso-admin, sso-oidc, identitystore, aws-single-sign-on]
+  key-management-service: {id: kms, short: KMS, keywords: ['KMS'], aliases: [kms, aws-kms]}
+  secrets-manager: {keywords: ['Secrets Manager']}
+  certificate-manager: {id: acm, short: ACM, keywords: ['ACM'], aliases: [acm]}
+  private-certificate-authority: {id: acm-pca, short: Private CA, aliases: [acm-pca, pca-connector-ad, pca-connector-scep]}
+  cloudhsm: {keywords: ['CloudHSM'], aliases: [cloudhsmv2]}
+  guardduty: {keywords: ['GuardDuty']}
+  inspector: {keywords: ['Amazon Inspector'], aliases: [inspector2, inspector-scan]}
+  macie: {keywords: ['Macie'], aliases: [macie2]}
+  security-hub: {keywords: ['Security Hub'], aliases: [securityhub]}
+  detective: {keywords: ['Amazon Detective']}
+  waf: {keywords: ['WAF'], aliases: [wafv2, waf-regional]}
+  shield: {keywords: ['AWS Shield', 'Shield Advanced']}
+  firewall-manager: {aliases: [fms]}
+  network-firewall: {keywords: ['Network Firewall']}
+  cognito: {keywords: ['Cognito'], aliases: [cognito-identity, cognito-idp, cognito-sync]}
+  verified-permissions: {keywords: ['Verified Permissions', 'Cedar']}
+  directory-service: {aliases: [ds, ds-data]}
+  artifact: {keywords: ['AWS Artifact']}
+  audit-manager: {keywords: ['Audit Manager']}
+  payment-cryptography: {keywords: ['Payment Cryptography']}
+  security-incident-response: {aliases: [security-ir]}
+  signer: {keywords: ['AWS Signer']}
+
+  # ── management & governance ──
+  cloudwatch:
+    keywords: ['CloudWatch']
+    aliases: [logs, cloudwatch-logs, amazon-cloudwatch-logs, synthetics, internetmonitor, application-insights,
+              application-signals, aiops, observabilityadmin, oam, rum, evidently, cloudwatchomni]
+  cloudtrail: {keywords: ['CloudTrail'], aliases: [cloudtrail-data]}
+  cloudformation: {keywords: ['CloudFormation']}
+  cloud-control-api: {keywords: ['Cloud Control API'], aliases: [cloudcontrol]}
+  systems-manager:
+    short: Systems Manager
+    keywords: ['Systems Manager', 'SSM']
+    aliases: [ssm, ssm-guiconnect, ssm-contacts, ssm-incidents, ssm-quicksetup, ssm-sap, aws-systems-manager]
+  config: {keywords: ['AWS Config']}
+  organizations: {keywords: ['AWS Organizations', 'SCPs?'], aliases: [account, account-access]}
+  control-tower: {keywords: ['Control Tower'], aliases: [controlcatalog]}
+  service-catalog: {keywords: ['Service Catalog'], aliases: [servicecatalog, servicecatalog-appregistry]}
+  trusted-advisor: {keywords: ['Trusted Advisor']}
+  health-dashboard: {id: health, short: Health, aliases: [health, aws-health, aws-service-health-dashboard]}
+  license-manager: {keywords: ['License Manager']}
+  resource-explorer: {aliases: [resource-explorer-2, resource-groups, resourcegroupstaggingapi, aws-resource-groups]}
+  resource-access-manager: {id: ram, short: RAM, aliases: [ram]}
+  user-notifications: {aliases: [notifications, notificationscontacts]}
+  well-architected-tool: {short: Well-Architected, keywords: ['Well-Architected'], aliases: [wellarchitected]}
+  management-console: {short: Console, aliases: [AWS Console]}
+  console-mobile-application: {parent: management-console}
+  managed-grafana: {short: Managed Grafana, keywords: ['Managed Grafana'], aliases: [grafana, amazon-managed-service-for-grafana]}
+  managed-service-for-prometheus: {id: amp, short: Managed Prometheus, aliases: [amp, amazon-amp, Amazon Prometheus Service]}
+  distro-for-opentelemetry: {id: adot, short: ADOT, keywords: ['ADOT']}
+  chatbot: {keywords: ['AWS Chatbot'], aliases: [chatbot]}
+  launch-wizard: {aliases: [launch-wizard]}
+  resilience-hub: {keywords: ['Resilience Hub'], aliases: [resiliencehub]}
+  fault-injection-service: {id: fis, short: FIS, keywords: ['Fault Injection Service'], aliases: [fis, aws-fault-injection-simulator]}
+  devops-guru: {keywords: ['DevOps Guru']}
+  compute-optimizer: {keywords: ['Compute Optimizer'], aliases: [compute-optimizer-automation]}
+
+  # ── cost ──
+  cost-explorer: {aliases: [ce, cost-optimization-hub, bcm-dashboards, bcm-recommended-actions, cloud-financial-management, aws-account-billing, billing, invoicing, taxsettings, freetier, pricing, bcm-pricing-calculator, pricing-plan-manager, aws-purchase-order-management]}
+  cost-and-usage-report: {id: cur, short: CUR, aliases: [cur, cost-usage-reports, bcm-data-exports]}
+  budgets: {aliases: [budgets]}
+  savings-plans: {keywords: ['Savings Plans?'], aliases: [savingsplans]}
+  billing-conductor: {aliases: [billingconductor]}
+
+  # ── integration ──
+  simple-queue-service: {id: sqs, short: SQS, keywords: ['SQS'], aliases: [sqs, amazon-sqs]}
+  simple-notification-service: {id: sns, short: SNS, keywords: ['SNS'], aliases: [sns, amazon-sns]}
+  eventbridge: {keywords: ['EventBridge'], aliases: [events, eventbridgev2, schemas, pipes, scheduler, amazon-eventBridge]}
+  step-functions: {keywords: ['Step Functions'], aliases: [stepfunctions, swf, amazon-swf]}
+  mq: {keywords: ['Amazon MQ']}
+  appflow: {keywords: ['AppFlow']}
+  appsync: {keywords: ['AppSync']}
+  b2b-data-interchange: {aliases: [b2bi]}
+
+  # ── developer tools ──
+  cloud-development-kit: {id: cdk, short: CDK, keywords: ['CDK'], aliases: [aws-cdk]}
+  command-line-interface: {id: cli, short: CLI, keywords: ['AWS CLI']}
+  tools-and-sdks: {id: sdk, short: SDKs, keywords: ['AWS SDKs?', 'boto3', 'botocore'], aliases: [aws-sdk-for-java, aws-toolkit-for-visual-studio, aws-toolkit-for-visual-studio-code, aws-developer-tools]}
+  codebuild: {keywords: ['CodeBuild']}
+  codepipeline: {keywords: ['CodePipeline'], aliases: [codeconnections, codestar-connections, codestar-notifications, aws-codestar]}
+  codedeploy: {keywords: ['CodeDeploy']}
+  codecommit: {keywords: ['CodeCommit']}
+  codeartifact: {keywords: ['CodeArtifact']}
+  codecatalyst: {keywords: ['CodeCatalyst']}
+  codeguru: {keywords: ['CodeGuru'], aliases: [codeguru-reviewer, codeguru-security, codeguruprofiler]}
+  cloud9: {keywords: ['Cloud9']}
+  cloudshell: {keywords: ['CloudShell']}
+  x-ray: {short: X-Ray, keywords: ['X-Ray'], aliases: [xray]}
+  infrastructure-composer: {keywords: ['Infrastructure Composer', 'Application Composer']}
+  appconfig: {keywords: ['AppConfig'], aliases: [appconfigdata]}
+  device-farm: {keywords: ['Device Farm']}
+
+  # ── front-end / end user / business ──
+  amplify: {keywords: ['Amplify'], aliases: [amplifybackend, amplifyuibuilder]}
+  location-service: {keywords: ['Location Service'], aliases: [location, geo-maps, geo-places, geo-routes]}
+  simple-email-service: {id: ses, short: SES, keywords: ['SES'], aliases: [ses, sesv2, amazon-ses, mailmanager]}
+  end-user-messaging: {aliases: [pinpoint-sms-voice, pinpoint-sms-voice-v2, pinpoint-email, endusermessaging]}
+  connect: {keywords: ['Amazon Connect'], aliases: [connect-contact-lens, connectcampaigns, connectcampaignsv2, connectcases, connectparticipant, customer-profiles, appintegrations, voice-id, wisdom, connecthealth]}
+  workspaces: {keywords: ['WorkSpaces'], aliases: [workspaces-web, workspaces-thin-client, appstream, amazon-appstream-2-0, AppStream 2.0]}
+  dcv: {aliases: [nice-dcv]}
+  chime-sdk: {aliases: [chime-sdk-identity, chime-sdk-media-pipelines, chime-sdk-meetings, chime-sdk-messaging, chime-sdk-voice]}
+  supply-chain: {aliases: [supplychain]}
+
+  # ── migration ──
+  application-migration-service: {id: mgn, short: MGN, aliases: [mgn]}
+  application-discovery-service: {aliases: [discovery, aws-migration-hub, mgh, migrationhub-config, migrationhuborchestrator, migrationhubstrategy, migration-hub-refactor-spaces]}
+  mainframe-modernization: {aliases: [m2]}
+  elastic-vmware-service: {id: evs, short: EVS, aliases: [evs, vmware-cloud-on-aws]}
+
+  # ── iot, media, games, other ──
+  iot-core: {keywords: ['IoT Core'], aliases: [iot, aws-iot, iot-data, iot-jobs-data, iotsecuretunneling, iotwireless, iotdeviceadvisor, iotthingsgraph, aws-iot-roborunner]}
+  iot-device-management: {aliases: [iot-managed-integrations]}
+  iot-greengrass: {short: Greengrass, keywords: ['Greengrass'], aliases: [greengrass, greengrassv2, aws-greengrass]}
+  interactive-video-service: {id: ivs, short: IVS, aliases: [ivs, ivs-realtime, ivschat, amazon-ivs]}
+  elemental-mediaconnect: {aliases: [mediaconnect]}
+  elemental-mediatailor: {aliases: [mediatailor]}
+  gamelift-servers: {id: gamelift, short: GameLift, keywords: ['GameLift(?! Streams)'], aliases: [gamelift, amazon-gamelift, aws-gamekit, amazon-gamesparks]}
+  deadline-cloud: {aliases: [deadline]}
+  marketplace-light:
+    id: marketplace
+    name: AWS Marketplace
+    short: Marketplace
+    aliases: [aws-marketplace, marketplace-agreement, marketplace-catalog, marketplace-deployment, marketplace-discovery,
+              marketplace-entitlement, marketplace-reporting, marketplacecommerceanalytics, meteringmarketplace]
+  support: {aliases: [support, support-app, supportauthz, service-quotas]}
+  braket: {keywords: ['Braket']}
+  managed-blockchain: {aliases: [aws-blockchain, managedblockchain, managedblockchain-query]}
+
+extra:
+  - id: govcloud
+    name: AWS GovCloud (US)
+    short: GovCloud
+    category: general
+    aliases: [aws-govcloud-us]
+    keywords: ['GovCloud']
+  - id: sam
+    name: AWS Serverless Application Model
+    short: SAM
+    category: developer-tools
+    aliases: [aws-serverless-application-model-sam]
+    keywords: ['SAM CLI', 'AWS SAM']
+  - id: mcp
+    name: AWS MCP Servers
+    short: MCP Servers
+    category: ai
+    aliases: [awslabs-mcp]
+    keywords: ['MCP [Ss]ervers?']
+  - id: kiro
+    name: Kiro
+    short: Kiro
+    category: developer-tools
+    keywords: ['Kiro']
+  - id: continuum
+    name: AWS Continuum
+    short: Continuum
+    category: security
+    aliases: [continuum]
+    keywords: ['AWS Continuum']

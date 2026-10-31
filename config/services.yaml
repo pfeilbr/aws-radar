@@ -1,0 +1,3011 @@
+generated_by: scripts/build_catalog.py (edit config/service_overrides.yaml instead)
+categories:
+  ai:
+    name: Artificial Intelligence
+    icon: assets/icons/categories/ai.svg
+  analytics:
+    name: Analytics
+    icon: assets/icons/categories/analytics.svg
+  application-integration:
+    name: Application Integration
+    icon: assets/icons/categories/application-integration.svg
+  blockchain:
+    name: Blockchain
+    icon: assets/icons/categories/blockchain.svg
+  business-applications:
+    name: Business Applications
+    icon: assets/icons/categories/business-applications.svg
+  cloud-financial-management:
+    name: Cloud Financial Management
+    icon: assets/icons/categories/cloud-financial-management.svg
+  compute:
+    name: Compute
+    icon: assets/icons/categories/compute.svg
+  containers:
+    name: Containers
+    icon: assets/icons/categories/containers.svg
+  customer-enablement:
+    name: Customer Enablement
+    icon: assets/icons/categories/customer-enablement.svg
+  databases:
+    name: Databases
+    icon: assets/icons/categories/databases.svg
+  developer-tools:
+    name: Developer Tools
+    icon: assets/icons/categories/developer-tools.svg
+  end-user-computing:
+    name: End User Computing
+    icon: assets/icons/categories/end-user-computing.svg
+  front-end-web-mobile:
+    name: Front-End Web & Mobile
+    icon: assets/icons/categories/front-end-web-mobile.svg
+  games:
+    name: Games
+    icon: assets/icons/categories/games.svg
+  general:
+    name: General
+    icon: null
+  iot:
+    name: Internet of Things
+    icon: assets/icons/categories/iot.svg
+  management-governance:
+    name: Management & Governance
+    icon: assets/icons/categories/management-governance.svg
+  media:
+    name: Media Services
+    icon: assets/icons/categories/media.svg
+  migration:
+    name: Migration & Modernization
+    icon: assets/icons/categories/migration.svg
+  networking:
+    name: Networking & Content Delivery
+    icon: assets/icons/categories/networking.svg
+  quantum:
+    name: Quantum Technologies
+    icon: assets/icons/categories/quantum.svg
+  satellite:
+    name: Satellite
+    icon: assets/icons/categories/satellite.svg
+  security:
+    name: Security, Identity & Compliance
+    icon: assets/icons/categories/security.svg
+  storage:
+    name: Storage
+    icon: assets/icons/categories/storage.svg
+services:
+- id: a2i
+  name: Amazon Augmented AI A2I
+  short: A2I
+  category: ai
+  icon: assets/icons/services/a2i.svg
+  aliases: []
+  keywords: []
+  parent: sagemaker
+- id: acm
+  name: AWS Certificate Manager
+  short: ACM
+  category: security
+  icon: assets/icons/services/acm.svg
+  aliases:
+  - acm
+  keywords:
+  - ACM
+  parent: null
+- id: acm-pca
+  name: AWS Private Certificate Authority
+  short: Private CA
+  category: security
+  icon: assets/icons/services/acm-pca.svg
+  aliases:
+  - acm-pca
+  - pca-connector-ad
+  - pca-connector-scep
+  keywords: []
+  parent: null
+- id: activate
+  name: AWS Activate
+  short: Activate
+  category: customer-enablement
+  icon: assets/icons/services/activate.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: adot
+  name: AWS Distro for OpenTelemetry
+  short: ADOT
+  category: management-governance
+  icon: assets/icons/services/adot.svg
+  aliases: []
+  keywords:
+  - ADOT
+  parent: null
+- id: amp
+  name: Amazon Managed Service for Prometheus
+  short: Managed Prometheus
+  category: management-governance
+  icon: assets/icons/services/amp.svg
+  aliases:
+  - amp
+  - amazon-amp
+  - Amazon Prometheus Service
+  keywords: []
+  parent: null
+- id: amplify
+  name: AWS Amplify
+  short: Amplify
+  category: front-end-web-mobile
+  icon: assets/icons/services/amplify.svg
+  aliases:
+  - amplifybackend
+  - amplifyuibuilder
+  keywords:
+  - Amplify
+  parent: null
+- id: api-gateway
+  name: Amazon API Gateway
+  short: API Gateway
+  category: networking
+  icon: assets/icons/services/api-gateway.svg
+  aliases:
+  - apigateway
+  - apigatewayv2
+  - apigatewaymanagementapi
+  keywords:
+  - API Gateway
+  parent: null
+- id: app-mesh
+  name: AWS App Mesh
+  short: App Mesh
+  category: networking
+  icon: assets/icons/services/app-mesh.svg
+  aliases: []
+  keywords:
+  - App Mesh
+  parent: null
+- id: app-runner
+  name: AWS App Runner
+  short: App Runner
+  category: compute
+  icon: assets/icons/services/app-runner.svg
+  aliases: []
+  keywords:
+  - App Runner
+  parent: null
+- id: app-studio
+  name: AWS App Studio
+  short: App Studio
+  category: ai
+  icon: assets/icons/services/app-studio.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: appconfig
+  name: AWS AppConfig
+  short: AppConfig
+  category: management-governance
+  icon: assets/icons/services/appconfig.svg
+  aliases:
+  - appconfigdata
+  keywords:
+  - AppConfig
+  parent: null
+- id: appfabric
+  name: AWS AppFabric
+  short: AppFabric
+  category: business-applications
+  icon: assets/icons/services/appfabric.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: appflow
+  name: Amazon AppFlow
+  short: AppFlow
+  category: application-integration
+  icon: assets/icons/services/appflow.svg
+  aliases: []
+  keywords:
+  - AppFlow
+  parent: null
+- id: application-auto-scaling
+  name: AWS Application Auto Scaling
+  short: Application Auto Scaling
+  category: management-governance
+  icon: assets/icons/services/application-auto-scaling.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: application-discovery-service
+  name: AWS Application Discovery Service
+  short: Application Discovery Service
+  category: migration
+  icon: assets/icons/services/application-discovery-service.svg
+  aliases:
+  - discovery
+  - aws-migration-hub
+  - mgh
+  - migrationhub-config
+  - migrationhuborchestrator
+  - migrationhubstrategy
+  - migration-hub-refactor-spaces
+  keywords: []
+  parent: null
+- id: appsync
+  name: AWS AppSync
+  short: AppSync
+  category: application-integration
+  icon: assets/icons/services/appsync.svg
+  aliases: []
+  keywords:
+  - AppSync
+  parent: null
+- id: arc
+  name: Amazon Application Recovery Controller
+  short: ARC
+  category: networking
+  icon: assets/icons/services/arc.svg
+  aliases:
+  - arc-region-switch
+  - arc-zonal-shift
+  - route53-recovery-cluster
+  - route53-recovery-control-config
+  - route53-recovery-readiness
+  keywords: []
+  parent: null
+- id: artifact
+  name: AWS Artifact
+  short: Artifact
+  category: security
+  icon: assets/icons/services/artifact.svg
+  aliases: []
+  keywords:
+  - AWS Artifact
+  parent: null
+- id: athena
+  name: Amazon Athena
+  short: Athena
+  category: analytics
+  icon: assets/icons/services/athena.svg
+  aliases: []
+  keywords:
+  - Athena
+  parent: null
+- id: audit-manager
+  name: AWS Audit Manager
+  short: Audit Manager
+  category: security
+  icon: assets/icons/services/audit-manager.svg
+  aliases: []
+  keywords:
+  - Audit Manager
+  parent: null
+- id: aurora
+  name: Amazon Aurora
+  short: Aurora
+  category: databases
+  icon: assets/icons/services/aurora.svg
+  aliases:
+  - dsql
+  - Aurora DSQL
+  keywords:
+  - Aurora
+  parent: null
+- id: auto-scaling
+  name: AWS Auto Scaling
+  short: Auto Scaling
+  category: management-governance
+  icon: assets/icons/services/auto-scaling.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: b2b-data-interchange
+  name: AWS B2B Data Interchange
+  short: B2B Data Interchange
+  category: application-integration
+  icon: assets/icons/services/b2b-data-interchange.svg
+  aliases:
+  - b2bi
+  keywords: []
+  parent: null
+- id: backup
+  name: AWS Backup
+  short: Backup
+  category: storage
+  icon: assets/icons/services/backup.svg
+  aliases:
+  - aws-backup
+  - backup-gateway
+  - backupsearch
+  keywords: []
+  parent: null
+- id: batch
+  name: AWS Batch
+  short: Batch
+  category: compute
+  icon: assets/icons/services/batch.svg
+  aliases:
+  - aws-batch
+  keywords: []
+  parent: null
+- id: bedrock
+  name: Amazon Bedrock
+  short: Bedrock
+  category: ai
+  icon: assets/icons/services/bedrock.svg
+  aliases:
+  - amazon-bedrock
+  - bedrock-agent
+  - bedrock-agent-runtime
+  - bedrock-runtime
+  - bedrock-data-automation
+  - bedrock-data-automation-runtime
+  - Agents for Amazon Bedrock
+  - Knowledge Bases for Amazon Bedrock
+  - Guardrails for Amazon Bedrock
+  keywords:
+  - Bedrock(?! AgentCore)
+  parent: null
+- id: bedrock-agentcore
+  name: Amazon Bedrock AgentCore
+  short: AgentCore
+  category: ai
+  icon: assets/icons/services/bedrock-agentcore.svg
+  aliases:
+  - bedrock-agentcore-control
+  - agent-registry
+  - agent-registry-control
+  keywords:
+  - AgentCore
+  parent: null
+- id: billing-conductor
+  name: AWS Billing Conductor
+  short: Billing Conductor
+  category: cloud-financial-management
+  icon: assets/icons/services/billing-conductor.svg
+  aliases:
+  - billingconductor
+  keywords: []
+  parent: null
+- id: bottlerocket
+  name: Bottlerocket
+  short: Bottlerocket
+  category: compute
+  icon: assets/icons/services/bottlerocket.svg
+  aliases: []
+  keywords:
+  - Bottlerocket
+  parent: null
+- id: braket
+  name: Amazon Braket
+  short: Braket
+  category: quantum
+  icon: assets/icons/services/braket.svg
+  aliases: []
+  keywords:
+  - Braket
+  parent: null
+- id: budgets
+  name: AWS Budgets
+  short: Budgets
+  category: cloud-financial-management
+  icon: assets/icons/services/budgets.svg
+  aliases:
+  - budgets
+  keywords: []
+  parent: null
+- id: cdk
+  name: AWS Cloud Development Kit
+  short: CDK
+  category: developer-tools
+  icon: assets/icons/services/cdk.svg
+  aliases:
+  - aws-cdk
+  keywords:
+  - CDK
+  parent: null
+- id: chatbot
+  name: AWS Chatbot
+  short: Chatbot
+  category: management-governance
+  icon: assets/icons/services/chatbot.svg
+  aliases:
+  - chatbot
+  keywords:
+  - AWS Chatbot
+  parent: null
+- id: chime
+  name: Amazon Chime
+  short: Chime
+  category: business-applications
+  icon: assets/icons/services/chime.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: chime-sdk
+  name: Amazon Chime SDK
+  short: Chime SDK
+  category: business-applications
+  icon: assets/icons/services/chime-sdk.svg
+  aliases:
+  - chime-sdk-identity
+  - chime-sdk-media-pipelines
+  - chime-sdk-meetings
+  - chime-sdk-messaging
+  - chime-sdk-voice
+  keywords: []
+  parent: null
+- id: clean-rooms
+  name: AWS Clean Rooms
+  short: Clean Rooms
+  category: analytics
+  icon: assets/icons/services/clean-rooms.svg
+  aliases:
+  - cleanrooms
+  - cleanroomsml
+  keywords:
+  - Clean Rooms
+  parent: null
+- id: cli
+  name: AWS Command Line Interface
+  short: CLI
+  category: developer-tools
+  icon: assets/icons/services/cli.svg
+  aliases: []
+  keywords:
+  - AWS CLI
+  parent: null
+- id: client-vpn
+  name: AWS Client VPN
+  short: Client VPN
+  category: networking
+  icon: assets/icons/services/client-vpn.svg
+  aliases: []
+  keywords:
+  - Client VPN
+  parent: null
+- id: cloud-control-api
+  name: AWS Cloud Control API
+  short: Cloud Control API
+  category: developer-tools
+  icon: assets/icons/services/cloud-control-api.svg
+  aliases:
+  - cloudcontrol
+  keywords:
+  - Cloud Control API
+  parent: null
+- id: cloud-directory
+  name: Amazon Cloud Directory
+  short: Cloud Directory
+  category: security
+  icon: assets/icons/services/cloud-directory.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: cloud-map
+  name: AWS Cloud Map
+  short: Cloud Map
+  category: networking
+  icon: assets/icons/services/cloud-map.svg
+  aliases: []
+  keywords:
+  - Cloud Map
+  parent: null
+- id: cloud-wan
+  name: AWS Cloud WAN
+  short: Cloud WAN
+  category: networking
+  icon: assets/icons/services/cloud-wan.svg
+  aliases:
+  - networkmanager
+  - amazon-vpc-global-wan
+  keywords:
+  - Cloud WAN
+  parent: null
+- id: cloud9
+  name: AWS Cloud9
+  short: Cloud9
+  category: developer-tools
+  icon: assets/icons/services/cloud9.svg
+  aliases: []
+  keywords:
+  - Cloud9
+  parent: null
+- id: cloudformation
+  name: AWS CloudFormation
+  short: CloudFormation
+  category: management-governance
+  icon: assets/icons/services/cloudformation.svg
+  aliases: []
+  keywords:
+  - CloudFormation
+  parent: null
+- id: cloudfront
+  name: Amazon CloudFront
+  short: CloudFront
+  category: networking
+  icon: assets/icons/services/cloudfront.svg
+  aliases:
+  - cloudfront-keyvaluestore
+  keywords:
+  - CloudFront
+  parent: null
+- id: cloudhsm
+  name: AWS CloudHSM
+  short: CloudHSM
+  category: security
+  icon: assets/icons/services/cloudhsm.svg
+  aliases:
+  - cloudhsmv2
+  keywords:
+  - CloudHSM
+  parent: null
+- id: cloudsearch
+  name: Amazon CloudSearch
+  short: CloudSearch
+  category: analytics
+  icon: assets/icons/services/cloudsearch.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: cloudshell
+  name: AWS CloudShell
+  short: CloudShell
+  category: developer-tools
+  icon: assets/icons/services/cloudshell.svg
+  aliases: []
+  keywords:
+  - CloudShell
+  parent: null
+- id: cloudtrail
+  name: AWS CloudTrail
+  short: CloudTrail
+  category: management-governance
+  icon: assets/icons/services/cloudtrail.svg
+  aliases:
+  - cloudtrail-data
+  keywords:
+  - CloudTrail
+  parent: null
+- id: cloudwatch
+  name: Amazon CloudWatch
+  short: CloudWatch
+  category: management-governance
+  icon: assets/icons/services/cloudwatch.svg
+  aliases:
+  - logs
+  - cloudwatch-logs
+  - amazon-cloudwatch-logs
+  - synthetics
+  - internetmonitor
+  - application-insights
+  - application-signals
+  - aiops
+  - observabilityadmin
+  - oam
+  - rum
+  - evidently
+  - cloudwatchomni
+  keywords:
+  - CloudWatch
+  parent: null
+- id: codeartifact
+  name: AWS CodeArtifact
+  short: CodeArtifact
+  category: developer-tools
+  icon: assets/icons/services/codeartifact.svg
+  aliases: []
+  keywords:
+  - CodeArtifact
+  parent: null
+- id: codebuild
+  name: AWS CodeBuild
+  short: CodeBuild
+  category: developer-tools
+  icon: assets/icons/services/codebuild.svg
+  aliases: []
+  keywords:
+  - CodeBuild
+  parent: null
+- id: codecatalyst
+  name: Amazon CodeCatalyst
+  short: CodeCatalyst
+  category: developer-tools
+  icon: assets/icons/services/codecatalyst.svg
+  aliases: []
+  keywords:
+  - CodeCatalyst
+  parent: null
+- id: codecommit
+  name: AWS CodeCommit
+  short: CodeCommit
+  category: developer-tools
+  icon: assets/icons/services/codecommit.svg
+  aliases: []
+  keywords:
+  - CodeCommit
+  parent: null
+- id: codedeploy
+  name: AWS CodeDeploy
+  short: CodeDeploy
+  category: developer-tools
+  icon: assets/icons/services/codedeploy.svg
+  aliases: []
+  keywords:
+  - CodeDeploy
+  parent: null
+- id: codeguru
+  name: Amazon CodeGuru
+  short: CodeGuru
+  category: ai
+  icon: assets/icons/services/codeguru.svg
+  aliases:
+  - codeguru-reviewer
+  - codeguru-security
+  - codeguruprofiler
+  keywords:
+  - CodeGuru
+  parent: null
+- id: codepipeline
+  name: AWS CodePipeline
+  short: CodePipeline
+  category: developer-tools
+  icon: assets/icons/services/codepipeline.svg
+  aliases:
+  - codeconnections
+  - codestar-connections
+  - codestar-notifications
+  - aws-codestar
+  keywords:
+  - CodePipeline
+  parent: null
+- id: codewhisperer
+  name: Amazon CodeWhisperer
+  short: CodeWhisperer
+  category: ai
+  icon: assets/icons/services/codewhisperer.svg
+  aliases: []
+  keywords: []
+  parent: q
+- id: cognito
+  name: Amazon Cognito
+  short: Cognito
+  category: security
+  icon: assets/icons/services/cognito.svg
+  aliases:
+  - cognito-identity
+  - cognito-idp
+  - cognito-sync
+  keywords:
+  - Cognito
+  parent: null
+- id: comprehend
+  name: Amazon Comprehend
+  short: Comprehend
+  category: ai
+  icon: assets/icons/services/comprehend.svg
+  aliases: []
+  keywords:
+  - Comprehend
+  parent: null
+- id: comprehend-medical
+  name: Amazon Comprehend Medical
+  short: Comprehend Medical
+  category: ai
+  icon: assets/icons/services/comprehend-medical.svg
+  aliases:
+  - comprehendmedical
+  keywords: []
+  parent: comprehend
+- id: compute-optimizer
+  name: AWS Compute Optimizer
+  short: Compute Optimizer
+  category: compute
+  icon: assets/icons/services/compute-optimizer.svg
+  aliases:
+  - compute-optimizer-automation
+  keywords:
+  - Compute Optimizer
+  parent: null
+- id: config
+  name: AWS Config
+  short: Config
+  category: management-governance
+  icon: assets/icons/services/config.svg
+  aliases: []
+  keywords:
+  - AWS Config
+  parent: null
+- id: connect
+  name: Amazon Connect
+  short: Connect
+  category: business-applications
+  icon: assets/icons/services/connect.svg
+  aliases:
+  - connect-contact-lens
+  - connectcampaigns
+  - connectcampaignsv2
+  - connectcases
+  - connectparticipant
+  - customer-profiles
+  - appintegrations
+  - voice-id
+  - wisdom
+  - connecthealth
+  keywords:
+  - Amazon Connect
+  parent: null
+- id: console-mobile-application
+  name: AWS Console Mobile Application
+  short: Console Mobile Application
+  category: management-governance
+  icon: assets/icons/services/console-mobile-application.svg
+  aliases: []
+  keywords: []
+  parent: management-console
+- aliases:
+  - continuum
+  keywords:
+  - AWS Continuum
+  parent: null
+  short: Continuum
+  icon: null
+  id: continuum
+  name: AWS Continuum
+  category: security
+- id: control-tower
+  name: AWS Control Tower
+  short: Control Tower
+  category: management-governance
+  icon: assets/icons/services/control-tower.svg
+  aliases:
+  - controlcatalog
+  keywords:
+  - Control Tower
+  parent: null
+- id: corretto
+  name: Amazon Corretto
+  short: Corretto
+  category: developer-tools
+  icon: assets/icons/services/corretto.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: cost-explorer
+  name: AWS Cost Explorer
+  short: Cost Explorer
+  category: cloud-financial-management
+  icon: assets/icons/services/cost-explorer.svg
+  aliases:
+  - ce
+  - cost-optimization-hub
+  - bcm-dashboards
+  - bcm-recommended-actions
+  - cloud-financial-management
+  - aws-account-billing
+  - billing
+  - invoicing
+  - taxsettings
+  - freetier
+  - pricing
+  - bcm-pricing-calculator
+  - pricing-plan-manager
+  - aws-purchase-order-management
+  keywords: []
+  parent: null
+- id: cur
+  name: AWS Cost and Usage Report
+  short: CUR
+  category: cloud-financial-management
+  icon: assets/icons/services/cur.svg
+  aliases:
+  - cur
+  - cost-usage-reports
+  - bcm-data-exports
+  keywords: []
+  parent: null
+- id: data-exchange
+  name: AWS Data Exchange
+  short: Data Exchange
+  category: analytics
+  icon: assets/icons/services/data-exchange.svg
+  aliases:
+  - dataexchange
+  keywords: []
+  parent: null
+- id: data-transfer-terminal
+  name: AWS Data Transfer Terminal
+  short: Data Transfer Terminal
+  category: migration
+  icon: assets/icons/services/data-transfer-terminal.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: datasync
+  name: AWS DataSync
+  short: DataSync
+  category: migration
+  icon: assets/icons/services/datasync.svg
+  aliases: []
+  keywords:
+  - DataSync
+  parent: null
+- id: datazone
+  name: Amazon DataZone
+  short: DataZone
+  category: analytics
+  icon: assets/icons/services/datazone.svg
+  aliases: []
+  keywords:
+  - DataZone
+  parent: null
+- id: dcv
+  name: Amazon DCV
+  short: DCV
+  category: compute
+  icon: assets/icons/services/dcv.svg
+  aliases:
+  - nice-dcv
+  keywords: []
+  parent: null
+- id: deadline-cloud
+  name: AWS Deadline Cloud
+  short: Deadline Cloud
+  category: media
+  icon: assets/icons/services/deadline-cloud.svg
+  aliases:
+  - deadline
+  keywords: []
+  parent: null
+- id: deep-learning-amis
+  name: AWS Deep Learning AMIs
+  short: Deep Learning AMIs
+  category: ai
+  icon: assets/icons/services/deep-learning-amis.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: deep-learning-containers
+  name: AWS Deep Learning Containers
+  short: Deep Learning Containers
+  category: ai
+  icon: assets/icons/services/deep-learning-containers.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: deepracer
+  name: AWS DeepRacer
+  short: DeepRacer
+  category: ai
+  icon: assets/icons/services/deepracer.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: detective
+  name: Amazon Detective
+  short: Detective
+  category: security
+  icon: assets/icons/services/detective.svg
+  aliases: []
+  keywords:
+  - Amazon Detective
+  parent: null
+- id: device-farm
+  name: AWS Device Farm
+  short: Device Farm
+  category: front-end-web-mobile
+  icon: assets/icons/services/device-farm.svg
+  aliases: []
+  keywords:
+  - Device Farm
+  parent: null
+- id: devops-agent
+  name: AWS DevOps Agent
+  short: DevOps Agent
+  category: management-governance
+  icon: assets/icons/services/devops-agent.svg
+  aliases:
+  - devops-agent
+  keywords:
+  - DevOps Agent
+  parent: null
+- id: devops-guru
+  name: Amazon DevOps Guru
+  short: DevOps Guru
+  category: ai
+  icon: assets/icons/services/devops-guru.svg
+  aliases: []
+  keywords:
+  - DevOps Guru
+  parent: null
+- id: direct-connect
+  name: AWS Direct Connect
+  short: Direct Connect
+  category: networking
+  icon: assets/icons/services/direct-connect.svg
+  aliases:
+  - directconnect
+  keywords:
+  - Direct Connect
+  parent: null
+- id: directory-service
+  name: AWS Directory Service
+  short: Directory Service
+  category: security
+  icon: assets/icons/services/directory-service.svg
+  aliases:
+  - ds
+  - ds-data
+  keywords: []
+  parent: null
+- id: dms
+  name: AWS Database Migration Service
+  short: DMS
+  category: databases
+  icon: assets/icons/services/dms.svg
+  aliases:
+  - dms
+  keywords:
+  - AWS DMS
+  parent: null
+- id: documentdb
+  name: Amazon DocumentDB
+  short: DocumentDB
+  category: databases
+  icon: assets/icons/services/documentdb.svg
+  aliases:
+  - docdb
+  - docdb-elastic
+  - aws-mongodb
+  keywords:
+  - DocumentDB
+  parent: null
+- id: drs
+  name: AWS Elastic Disaster Recovery
+  short: Elastic Disaster Recovery
+  category: storage
+  icon: assets/icons/services/drs.svg
+  aliases:
+  - drs
+  keywords: []
+  parent: null
+- id: dynamodb
+  name: Amazon DynamoDB
+  short: DynamoDB
+  category: databases
+  icon: assets/icons/services/dynamodb.svg
+  aliases:
+  - dynamodbstreams
+  - dax
+  keywords:
+  - DynamoDB
+  - DAX
+  parent: null
+- id: ebs
+  name: Amazon Elastic Block Store
+  short: EBS
+  category: storage
+  icon: assets/icons/services/ebs.svg
+  aliases:
+  - ebs
+  keywords:
+  - EBS
+  parent: null
+- id: ec2
+  name: Amazon EC2
+  short: EC2
+  category: compute
+  icon: assets/icons/services/ec2.svg
+  aliases:
+  - amazon-ec2
+  - ec2-instance-connect
+  - amazon-linux-2023
+  - amazon-linux
+  - rbin
+  - Recycle Bin
+  - aws-inferentia
+  - aws-graviton
+  - graviton
+  - dlm
+  - Amazon Data Lifecycle Manager
+  - ebs-snapshots-archive
+  keywords:
+  - EC2
+  - 'Amazon Linux(?: 2023| 2)?'
+  - Graviton\d?
+  parent: null
+- id: ec2-auto-scaling
+  name: Amazon EC2 Auto Scaling
+  short: EC2 Auto Scaling
+  category: compute
+  icon: assets/icons/services/ec2-auto-scaling.svg
+  aliases:
+  - autoscaling
+  - amazon-ec2-auto-scaling
+  keywords: []
+  parent: null
+- id: ec2-image-builder
+  name: Amazon EC2 Image Builder
+  short: EC2 Image Builder
+  category: compute
+  icon: assets/icons/services/ec2-image-builder.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: ecr
+  name: Amazon Elastic Container Registry
+  short: ECR
+  category: containers
+  icon: assets/icons/services/ecr.svg
+  aliases:
+  - amazon-ecr
+  - ecr-public
+  keywords:
+  - ECR
+  parent: null
+- id: ecs
+  name: Amazon Elastic Container Service
+  short: ECS
+  category: containers
+  icon: assets/icons/services/ecs.svg
+  aliases:
+  - amazon-ecs
+  - Amazon EC2 Container Service
+  keywords:
+  - ECS
+  parent: null
+- id: ecs-anywhere
+  name: Amazon ECS Anywhere
+  short: ECS Anywhere
+  category: containers
+  icon: assets/icons/services/ecs-anywhere.svg
+  aliases: []
+  keywords:
+  - ECS Anywhere
+  parent: ecs
+- id: efs
+  name: Amazon EFS
+  short: EFS
+  category: storage
+  icon: assets/icons/services/efs.svg
+  aliases: []
+  keywords:
+  - EFS
+  parent: null
+- id: eks
+  name: Amazon Elastic Kubernetes Service
+  short: EKS
+  category: containers
+  icon: assets/icons/services/eks.svg
+  aliases:
+  - amazon-eks
+  - eks-auth
+  keywords:
+  - EKS
+  parent: null
+- id: eks-anywhere
+  name: Amazon EKS Anywhere
+  short: EKS Anywhere
+  category: containers
+  icon: assets/icons/services/eks-anywhere.svg
+  aliases: []
+  keywords:
+  - EKS Anywhere
+  parent: eks
+- id: eks-distro
+  name: Amazon EKS Distro
+  short: EKS Distro
+  category: containers
+  icon: assets/icons/services/eks-distro.svg
+  aliases: []
+  keywords: []
+  parent: eks
+- id: elastic-beanstalk
+  name: AWS Elastic Beanstalk
+  short: Beanstalk
+  category: compute
+  icon: assets/icons/services/elastic-beanstalk.svg
+  aliases: []
+  keywords:
+  - Elastic Beanstalk
+  - Beanstalk
+  parent: null
+- id: elastic-fabric-adapter
+  name: Elastic Fabric Adapter
+  short: Elastic Fabric Adapter
+  category: compute
+  icon: assets/icons/services/elastic-fabric-adapter.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elastic-inference
+  name: Amazon Elastic Inference
+  short: Elastic Inference
+  category: ai
+  icon: assets/icons/services/elastic-inference.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elasticache
+  name: Amazon ElastiCache
+  short: ElastiCache
+  category: databases
+  icon: assets/icons/services/elasticache.svg
+  aliases: []
+  keywords:
+  - ElastiCache
+  - Valkey
+  parent: null
+- id: elb
+  name: Elastic Load Balancing
+  short: ELB
+  category: networking
+  icon: assets/icons/services/elb.svg
+  aliases:
+  - elb
+  - elbv2
+  keywords:
+  - ELB
+  - Application Load Balancer
+  - Network Load Balancer
+  - Gateway Load Balancer
+  - ALB
+  - NLB
+  parent: null
+- id: elemental-inference
+  name: AWS Elemental Inference
+  short: Elemental Inference
+  category: ai
+  icon: assets/icons/services/elemental-inference.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-link
+  name: AWS Elemental Link
+  short: Elemental Link
+  category: media
+  icon: assets/icons/services/elemental-link.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-live
+  name: AWS Elemental Live
+  short: Elemental Live
+  category: media
+  icon: assets/icons/services/elemental-live.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-mediaconnect
+  name: AWS Elemental MediaConnect
+  short: Elemental MediaConnect
+  category: media
+  icon: assets/icons/services/elemental-mediaconnect.svg
+  aliases:
+  - mediaconnect
+  keywords: []
+  parent: null
+- id: elemental-mediaconvert
+  name: AWS Elemental MediaConvert
+  short: Elemental MediaConvert
+  category: media
+  icon: assets/icons/services/elemental-mediaconvert.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-medialive
+  name: AWS Elemental MediaLive
+  short: Elemental MediaLive
+  category: media
+  icon: assets/icons/services/elemental-medialive.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-mediapackage
+  name: AWS Elemental MediaPackage
+  short: Elemental MediaPackage
+  category: media
+  icon: assets/icons/services/elemental-mediapackage.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-mediastore
+  name: AWS Elemental MediaStore
+  short: Elemental MediaStore
+  category: media
+  icon: assets/icons/services/elemental-mediastore.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: elemental-mediatailor
+  name: AWS Elemental MediaTailor
+  short: Elemental MediaTailor
+  category: media
+  icon: assets/icons/services/elemental-mediatailor.svg
+  aliases:
+  - mediatailor
+  keywords: []
+  parent: null
+- id: emr
+  name: Amazon EMR
+  short: EMR
+  category: analytics
+  icon: assets/icons/services/emr.svg
+  aliases:
+  - emr-containers
+  - emr-serverless
+  keywords:
+  - EMR
+  parent: null
+- id: end-user-messaging
+  name: AWS End User Messaging
+  short: End User Messaging
+  category: business-applications
+  icon: assets/icons/services/end-user-messaging.svg
+  aliases:
+  - pinpoint-sms-voice
+  - pinpoint-sms-voice-v2
+  - pinpoint-email
+  - endusermessaging
+  keywords: []
+  parent: null
+- id: entity-resolution
+  name: AWS Entity Resolution
+  short: Entity Resolution
+  category: analytics
+  icon: assets/icons/services/entity-resolution.svg
+  aliases:
+  - entityresolution
+  keywords: []
+  parent: null
+- id: eventbridge
+  name: Amazon EventBridge
+  short: EventBridge
+  category: application-integration
+  icon: assets/icons/services/eventbridge.svg
+  aliases:
+  - events
+  - eventbridgev2
+  - schemas
+  - pipes
+  - scheduler
+  - amazon-eventBridge
+  keywords:
+  - EventBridge
+  parent: null
+- id: evs
+  name: Amazon Elastic VMware Service
+  short: EVS
+  category: compute
+  icon: assets/icons/services/evs.svg
+  aliases:
+  - evs
+  - vmware-cloud-on-aws
+  keywords: []
+  parent: null
+- id: fargate
+  name: AWS Fargate
+  short: Fargate
+  category: containers
+  icon: assets/icons/services/fargate.svg
+  aliases: []
+  keywords:
+  - Fargate
+  parent: null
+- id: file-cache
+  name: Amazon File Cache
+  short: File Cache
+  category: storage
+  icon: assets/icons/services/file-cache.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: finops-agent
+  name: AWS FinOps Agent
+  short: FinOps Agent
+  category: cloud-financial-management
+  icon: assets/icons/services/finops-agent.svg
+  aliases: []
+  keywords:
+  - FinOps Agent
+  parent: null
+- id: finspace
+  name: Amazon FinSpace
+  short: FinSpace
+  category: analytics
+  icon: assets/icons/services/finspace.svg
+  aliases: []
+  keywords:
+  - FinSpace
+  parent: null
+- id: firehose
+  name: Amazon Data Firehose
+  short: Data Firehose
+  category: analytics
+  icon: assets/icons/services/firehose.svg
+  aliases:
+  - firehose
+  - Kinesis Data Firehose
+  keywords:
+  - Firehose
+  parent: null
+- id: firewall-manager
+  name: AWS Firewall Manager
+  short: Firewall Manager
+  category: security
+  icon: assets/icons/services/firewall-manager.svg
+  aliases:
+  - fms
+  keywords: []
+  parent: null
+- id: fis
+  name: AWS Fault Injection Service
+  short: FIS
+  category: developer-tools
+  icon: assets/icons/services/fis.svg
+  aliases:
+  - fis
+  - aws-fault-injection-simulator
+  keywords:
+  - Fault Injection Service
+  parent: null
+- id: flink
+  name: Amazon Managed Service for Apache Flink
+  short: Managed Flink
+  category: analytics
+  icon: assets/icons/services/flink.svg
+  aliases:
+  - kinesisanalytics
+  - kinesisanalyticsv2
+  - Amazon Kinesis Data Analytics
+  keywords: []
+  parent: null
+- id: forecast
+  name: Amazon Forecast
+  short: Forecast
+  category: ai
+  icon: assets/icons/services/forecast.svg
+  aliases:
+  - forecastquery
+  keywords: []
+  parent: null
+- id: fraud-detector
+  name: Amazon Fraud Detector
+  short: Fraud Detector
+  category: ai
+  icon: assets/icons/services/fraud-detector.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: freertos
+  name: FreeRTOS
+  short: FreeRTOS
+  category: iot
+  icon: assets/icons/services/freertos.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: fsx
+  name: Amazon FSx
+  short: FSx
+  category: storage
+  icon: assets/icons/services/fsx.svg
+  aliases: []
+  keywords:
+  - FSx
+  parent: null
+- id: fsx-for-lustre
+  name: Amazon FSx for Lustre
+  short: FSx for Lustre
+  category: storage
+  icon: assets/icons/services/fsx-for-lustre.svg
+  aliases: []
+  keywords: []
+  parent: fsx
+- id: fsx-for-netapp-ontap
+  name: Amazon FSx for NetApp ONTAP
+  short: FSx for NetApp ONTAP
+  category: storage
+  icon: assets/icons/services/fsx-for-netapp-ontap.svg
+  aliases:
+  - amazon-fsx-netapp-ontap
+  keywords: []
+  parent: fsx
+- id: fsx-for-openzfs
+  name: Amazon FSx for OpenZFS
+  short: FSx for OpenZFS
+  category: storage
+  icon: assets/icons/services/fsx-for-openzfs.svg
+  aliases: []
+  keywords: []
+  parent: fsx
+- id: fsx-for-wfs
+  name: Amazon FSx for WFS
+  short: FSx for Windows
+  category: storage
+  icon: assets/icons/services/fsx-for-wfs.svg
+  aliases:
+  - amazon-fsx-for-windows-file-server
+  keywords: []
+  parent: fsx
+- id: gamelift
+  name: Amazon GameLift Servers
+  short: GameLift
+  category: games
+  icon: assets/icons/services/gamelift.svg
+  aliases:
+  - gamelift
+  - amazon-gamelift
+  - aws-gamekit
+  - amazon-gamesparks
+  keywords:
+  - GameLift(?! Streams)
+  parent: null
+- id: gamelift-streams
+  name: Amazon GameLift Streams
+  short: GameLift Streams
+  category: games
+  icon: assets/icons/services/gamelift-streams.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: glacier
+  name: Amazon Simple Storage Service Glacier
+  short: Glacier
+  category: storage
+  icon: assets/icons/services/glacier.svg
+  aliases:
+  - amazon-glacier
+  - glacier
+  keywords:
+  - Glacier
+  parent: null
+- id: global-accelerator
+  name: AWS Global Accelerator
+  short: Global Accelerator
+  category: networking
+  icon: assets/icons/services/global-accelerator.svg
+  aliases: []
+  keywords:
+  - Global Accelerator
+  parent: null
+- id: glue
+  name: AWS Glue
+  short: Glue
+  category: analytics
+  icon: assets/icons/services/glue.svg
+  aliases:
+  - aws-glue
+  keywords:
+  - AWS Glue
+  parent: null
+- id: glue-databrew
+  name: AWS Glue DataBrew
+  short: DataBrew
+  category: analytics
+  icon: assets/icons/services/glue-databrew.svg
+  aliases:
+  - databrew
+  keywords:
+  - DataBrew
+  parent: null
+- aliases:
+  - aws-govcloud-us
+  keywords:
+  - GovCloud
+  parent: null
+  short: GovCloud
+  icon: null
+  id: govcloud
+  name: AWS GovCloud (US)
+  category: general
+- id: ground-station
+  name: AWS Ground Station
+  short: Ground Station
+  category: satellite
+  icon: assets/icons/services/ground-station.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: guardduty
+  name: Amazon GuardDuty
+  short: GuardDuty
+  category: security
+  icon: assets/icons/services/guardduty.svg
+  aliases: []
+  keywords:
+  - GuardDuty
+  parent: null
+- id: health
+  name: AWS Health Dashboard
+  short: Health
+  category: management-governance
+  icon: assets/icons/services/health.svg
+  aliases:
+  - health
+  - aws-health
+  - aws-service-health-dashboard
+  keywords: []
+  parent: null
+- id: healthimaging
+  name: AWS HealthImaging
+  short: HealthImaging
+  category: ai
+  icon: assets/icons/services/healthimaging.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: healthlake
+  name: AWS HealthLake
+  short: HealthLake
+  category: ai
+  icon: assets/icons/services/healthlake.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: healthomics
+  name: AWS HealthOmics
+  short: HealthOmics
+  category: ai
+  icon: assets/icons/services/healthomics.svg
+  aliases:
+  - omics
+  - amazon-omics
+  - amazon-genomics
+  keywords: []
+  parent: null
+- id: healthscribe
+  name: AWS HealthScribe
+  short: HealthScribe
+  category: ai
+  icon: assets/icons/services/healthscribe.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iam
+  name: AWS Identity and Access Management
+  short: IAM
+  category: security
+  icon: assets/icons/services/iam.svg
+  aliases:
+  - iam
+  - aws-iam
+  - sts
+  - rolesanywhere
+  - iam-toolbox
+  - accessanalyzer
+  - IAM Access Analyzer
+  - signin
+  - mpa
+  keywords:
+  - IAM(?! Identity Center)
+  parent: null
+- id: iam-identity-center
+  name: AWS IAM Identity Center
+  short: IAM Identity Center
+  category: security
+  icon: assets/icons/services/iam-identity-center.svg
+  aliases:
+  - sso
+  - sso-admin
+  - sso-oidc
+  - identitystore
+  - aws-single-sign-on
+  keywords:
+  - IAM Identity Center
+  parent: null
+- id: infrastructure-composer
+  name: AWS Infrastructure Composer
+  short: Infrastructure Composer
+  category: developer-tools
+  icon: assets/icons/services/infrastructure-composer.svg
+  aliases: []
+  keywords:
+  - Infrastructure Composer
+  - Application Composer
+  parent: null
+- id: inspector
+  name: Amazon Inspector
+  short: Inspector
+  category: security
+  icon: assets/icons/services/inspector.svg
+  aliases:
+  - inspector2
+  - inspector-scan
+  keywords:
+  - Amazon Inspector
+  parent: null
+- id: interconnect
+  name: AWS Interconnect
+  short: Interconnect
+  category: networking
+  icon: assets/icons/services/interconnect.svg
+  aliases:
+  - interconnect
+  keywords: []
+  parent: null
+- id: iot-core
+  name: AWS IoT Core
+  short: IoT Core
+  category: iot
+  icon: assets/icons/services/iot-core.svg
+  aliases:
+  - iot
+  - aws-iot
+  - iot-data
+  - iot-jobs-data
+  - iotsecuretunneling
+  - iotwireless
+  - iotdeviceadvisor
+  - iotthingsgraph
+  - aws-iot-roborunner
+  keywords:
+  - IoT Core
+  parent: null
+- id: iot-device-defender
+  name: AWS IoT Device Defender
+  short: IoT Device Defender
+  category: iot
+  icon: assets/icons/services/iot-device-defender.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iot-device-management
+  name: AWS IoT Device Management
+  short: IoT Device Management
+  category: iot
+  icon: assets/icons/services/iot-device-management.svg
+  aliases:
+  - iot-managed-integrations
+  keywords: []
+  parent: null
+- id: iot-events
+  name: AWS IoT Events
+  short: IoT Events
+  category: iot
+  icon: assets/icons/services/iot-events.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iot-expresslink
+  name: AWS IoT ExpressLink
+  short: IoT ExpressLink
+  category: iot
+  icon: assets/icons/services/iot-expresslink.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iot-fleetwise
+  name: AWS IoT FleetWise
+  short: IoT FleetWise
+  category: iot
+  icon: assets/icons/services/iot-fleetwise.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iot-greengrass
+  name: AWS IoT Greengrass
+  short: Greengrass
+  category: iot
+  icon: assets/icons/services/iot-greengrass.svg
+  aliases:
+  - greengrass
+  - greengrassv2
+  - aws-greengrass
+  keywords:
+  - Greengrass
+  parent: null
+- id: iot-sitewise
+  name: AWS IoT SiteWise
+  short: IoT SiteWise
+  category: iot
+  icon: assets/icons/services/iot-sitewise.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iot-twinmaker
+  name: AWS IoT TwinMaker
+  short: IoT TwinMaker
+  category: iot
+  icon: assets/icons/services/iot-twinmaker.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: iq
+  name: AWS IQ
+  short: IQ
+  category: customer-enablement
+  icon: assets/icons/services/iq.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: ivs
+  name: Amazon Interactive Video Service
+  short: IVS
+  category: media
+  icon: assets/icons/services/ivs.svg
+  aliases:
+  - ivs
+  - ivs-realtime
+  - ivschat
+  - amazon-ivs
+  keywords: []
+  parent: null
+- id: kendra
+  name: Amazon Kendra
+  short: Kendra
+  category: ai
+  icon: assets/icons/services/kendra.svg
+  aliases:
+  - kendra-ranking
+  keywords:
+  - Kendra
+  parent: null
+- id: keyspaces
+  name: Amazon Keyspaces
+  short: Keyspaces
+  category: databases
+  icon: assets/icons/services/keyspaces.svg
+  aliases: []
+  keywords:
+  - Keyspaces
+  parent: null
+- id: kinesis
+  name: Amazon Kinesis
+  short: Kinesis
+  category: analytics
+  icon: assets/icons/services/kinesis.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: kinesis-data-streams
+  name: Amazon Kinesis Data Streams
+  short: Kinesis Data Streams
+  category: analytics
+  icon: assets/icons/services/kinesis-data-streams.svg
+  aliases: []
+  keywords:
+  - Kinesis Data Streams
+  parent: kinesis
+- id: kinesis-video-streams
+  name: Amazon Kinesis Video Streams
+  short: Kinesis Video Streams
+  category: media
+  icon: assets/icons/services/kinesis-video-streams.svg
+  aliases: []
+  keywords:
+  - Kinesis Video Streams
+  parent: null
+- aliases: []
+  keywords:
+  - Kiro
+  parent: null
+  short: Kiro
+  icon: null
+  id: kiro
+  name: Kiro
+  category: developer-tools
+- id: kms
+  name: AWS Key Management Service
+  short: KMS
+  category: security
+  icon: assets/icons/services/kms.svg
+  aliases:
+  - kms
+  - aws-kms
+  keywords:
+  - KMS
+  parent: null
+- id: lake-formation
+  name: AWS Lake Formation
+  short: Lake Formation
+  category: analytics
+  icon: assets/icons/services/lake-formation.svg
+  aliases: []
+  keywords:
+  - Lake Formation
+  parent: null
+- id: lambda
+  name: AWS Lambda
+  short: Lambda
+  category: compute
+  icon: assets/icons/services/lambda.svg
+  aliases:
+  - aws-lambda
+  - lambda-core
+  - lambda-microvms
+  - lambda-web
+  keywords:
+  - Lambda(?! (?:calculus|expression|function in Python))
+  - Lambda@Edge
+  parent: null
+- id: launch-wizard
+  name: AWS Launch Wizard
+  short: Launch Wizard
+  category: management-governance
+  icon: assets/icons/services/launch-wizard.svg
+  aliases:
+  - launch-wizard
+  keywords: []
+  parent: null
+- id: lex
+  name: Amazon Lex
+  short: Lex
+  category: ai
+  icon: assets/icons/services/lex.svg
+  aliases:
+  - lex-models
+  - lex-runtime
+  - lexv2-models
+  - lexv2-runtime
+  keywords:
+  - Amazon Lex
+  parent: null
+- id: license-manager
+  name: AWS License Manager
+  short: License Manager
+  category: management-governance
+  icon: assets/icons/services/license-manager.svg
+  aliases: []
+  keywords:
+  - License Manager
+  parent: null
+- id: lightsail
+  name: Amazon Lightsail
+  short: Lightsail
+  category: compute
+  icon: assets/icons/services/lightsail.svg
+  aliases: []
+  keywords:
+  - Lightsail
+  parent: null
+- id: lightsail-for-research
+  name: Amazon Lightsail for Research
+  short: Lightsail for Research
+  category: compute
+  icon: assets/icons/services/lightsail-for-research.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: local-zones
+  name: AWS Local Zones
+  short: Local Zones
+  category: compute
+  icon: assets/icons/services/local-zones.svg
+  aliases: []
+  keywords:
+  - Local Zones?
+  parent: null
+- id: location-service
+  name: Amazon Location Service
+  short: Location Service
+  category: front-end-web-mobile
+  icon: assets/icons/services/location-service.svg
+  aliases:
+  - location
+  - geo-maps
+  - geo-places
+  - geo-routes
+  keywords:
+  - Location Service
+  parent: null
+- id: lookout-for-equipment
+  name: Amazon Lookout for Equipment
+  short: Lookout for Equipment
+  category: ai
+  icon: assets/icons/services/lookout-for-equipment.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: lookout-for-vision
+  name: Amazon Lookout for Vision
+  short: Lookout for Vision
+  category: ai
+  icon: assets/icons/services/lookout-for-vision.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: macie
+  name: Amazon Macie
+  short: Macie
+  category: security
+  icon: assets/icons/services/macie.svg
+  aliases:
+  - macie2
+  keywords:
+  - Macie
+  parent: null
+- id: mainframe-modernization
+  name: AWS Mainframe Modernization
+  short: Mainframe Modernization
+  category: migration
+  icon: assets/icons/services/mainframe-modernization.svg
+  aliases:
+  - m2
+  keywords: []
+  parent: null
+- id: managed-blockchain
+  name: Amazon Managed Blockchain
+  short: Managed Blockchain
+  category: blockchain
+  icon: assets/icons/services/managed-blockchain.svg
+  aliases:
+  - aws-blockchain
+  - managedblockchain
+  - managedblockchain-query
+  keywords: []
+  parent: null
+- id: managed-grafana
+  name: Amazon Managed Grafana
+  short: Managed Grafana
+  category: management-governance
+  icon: assets/icons/services/managed-grafana.svg
+  aliases:
+  - grafana
+  - amazon-managed-service-for-grafana
+  keywords:
+  - Managed Grafana
+  parent: null
+- id: managed-services
+  name: AWS Managed Services
+  short: Managed Services
+  category: customer-enablement
+  icon: assets/icons/services/managed-services.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: management-console
+  name: AWS Management Console
+  short: Console
+  category: management-governance
+  icon: assets/icons/services/management-console.svg
+  aliases:
+  - AWS Console
+  keywords: []
+  parent: null
+- id: marketplace
+  name: AWS Marketplace
+  short: Marketplace
+  category: general
+  icon: assets/icons/services/marketplace.svg
+  aliases:
+  - aws-marketplace
+  - marketplace-agreement
+  - marketplace-catalog
+  - marketplace-deployment
+  - marketplace-discovery
+  - marketplace-entitlement
+  - marketplace-reporting
+  - marketplacecommerceanalytics
+  - meteringmarketplace
+  keywords: []
+  parent: null
+- aliases:
+  - awslabs-mcp
+  keywords:
+  - MCP [Ss]ervers?
+  parent: null
+  short: MCP Servers
+  icon: null
+  id: mcp
+  name: AWS MCP Servers
+  category: ai
+- id: memorydb
+  name: Amazon MemoryDB
+  short: MemoryDB
+  category: databases
+  icon: assets/icons/services/memorydb.svg
+  aliases: []
+  keywords:
+  - MemoryDB
+  parent: null
+- id: mgn
+  name: AWS Application Migration Service
+  short: MGN
+  category: migration
+  icon: assets/icons/services/mgn.svg
+  aliases:
+  - mgn
+  keywords: []
+  parent: null
+- id: migration-evaluator
+  name: AWS Migration Evaluator
+  short: Migration Evaluator
+  category: migration
+  icon: assets/icons/services/migration-evaluator.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: monitron
+  name: Amazon Monitron
+  short: Monitron
+  category: ai
+  icon: assets/icons/services/monitron.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: mq
+  name: Amazon MQ
+  short: MQ
+  category: application-integration
+  icon: assets/icons/services/mq.svg
+  aliases: []
+  keywords:
+  - Amazon MQ
+  parent: null
+- id: msk
+  name: Amazon Managed Streaming for Apache Kafka
+  short: MSK
+  category: analytics
+  icon: assets/icons/services/msk.svg
+  aliases:
+  - amazon-msk
+  - kafka
+  - kafkaconnect
+  keywords:
+  - MSK
+  parent: null
+- id: mwaa
+  name: Amazon Managed Workflows for Apache Airflow
+  short: MWAA
+  category: application-integration
+  icon: assets/icons/services/mwaa.svg
+  aliases:
+  - amazon-mwaa
+  - mwaa
+  - mwaa-serverless
+  keywords:
+  - MWAA
+  parent: null
+- id: neptune
+  name: Amazon Neptune
+  short: Neptune
+  category: databases
+  icon: assets/icons/services/neptune.svg
+  aliases:
+  - neptunedata
+  - neptune-graph
+  keywords:
+  - Neptune(?! Analytics)?
+  parent: null
+- id: network-firewall
+  name: AWS Network Firewall
+  short: Network Firewall
+  category: security
+  icon: assets/icons/services/network-firewall.svg
+  aliases: []
+  keywords:
+  - Network Firewall
+  parent: null
+- id: neuron
+  name: AWS Neuron
+  short: Neuron
+  category: ai
+  icon: assets/icons/services/neuron.svg
+  aliases:
+  - aws-inferentia
+  - AWS Trainium
+  keywords:
+  - Neuron SDK
+  - Trainium
+  - Inferentia
+  parent: null
+- id: nitro-enclaves
+  name: AWS Nitro Enclaves
+  short: Nitro Enclaves
+  category: compute
+  icon: assets/icons/services/nitro-enclaves.svg
+  aliases: []
+  keywords:
+  - Nitro Enclaves
+  parent: null
+- id: nova
+  name: Amazon Nova
+  short: Nova
+  category: ai
+  icon: assets/icons/services/nova.svg
+  aliases: []
+  keywords:
+  - Amazon Nova
+  - Nova (?:Pro|Lite|Micro|Premier|Canvas|Reel|Sonic|Act|Forge|2)
+  parent: null
+- id: open-3d-engine
+  name: Open 3D Engine
+  short: Open 3D Engine
+  category: games
+  icon: assets/icons/services/open-3d-engine.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: opensearch
+  name: Amazon OpenSearch Service
+  short: OpenSearch
+  category: analytics
+  icon: assets/icons/services/opensearch.svg
+  aliases:
+  - es
+  - opensearchserverless
+  - osis
+  - amazon-elasticsearch-service
+  - Amazon Elasticsearch Service
+  keywords:
+  - OpenSearch
+  parent: null
+- id: oracle-db-at-aws
+  name: Oracle Database at AWS
+  short: Oracle Database at AWS
+  category: databases
+  icon: assets/icons/services/oracle-db-at-aws.svg
+  aliases:
+  - odb
+  - Oracle Database@AWS
+  keywords: []
+  parent: null
+- id: organizations
+  name: AWS Organizations
+  short: Organizations
+  category: management-governance
+  icon: assets/icons/services/organizations.svg
+  aliases:
+  - account
+  - account-access
+  keywords:
+  - AWS Organizations
+  - SCPs?
+  parent: null
+- id: outposts
+  name: AWS Outposts family
+  short: Outposts
+  category: compute
+  icon: assets/icons/services/outposts.svg
+  aliases:
+  - aws-outposts
+  - outposts
+  keywords:
+  - Outposts?
+  parent: null
+- id: outposts-rack
+  name: AWS Outposts rack
+  short: Outposts rack
+  category: compute
+  icon: assets/icons/services/outposts-rack.svg
+  aliases: []
+  keywords: []
+  parent: outposts
+- id: outposts-servers
+  name: AWS Outposts servers
+  short: Outposts servers
+  category: compute
+  icon: assets/icons/services/outposts-servers.svg
+  aliases: []
+  keywords: []
+  parent: outposts
+- id: panorama
+  name: AWS Panorama
+  short: Panorama
+  category: ai
+  icon: assets/icons/services/panorama.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: parallelcluster
+  name: AWS Parallel Cluster
+  short: ParallelCluster
+  category: compute
+  icon: assets/icons/services/parallelcluster.svg
+  aliases: []
+  keywords:
+  - ParallelCluster
+  parent: null
+- id: partner-central
+  name: AWS Partner Central
+  short: Partner Central
+  category: management-governance
+  icon: assets/icons/services/partner-central.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: payment-cryptography
+  name: AWS Payment Cryptography
+  short: Payment Cryptography
+  category: security
+  icon: assets/icons/services/payment-cryptography.svg
+  aliases: []
+  keywords:
+  - Payment Cryptography
+  parent: null
+- id: pcs
+  name: AWS Parallel Computing Service
+  short: PCS
+  category: compute
+  icon: assets/icons/services/pcs.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: personalize
+  name: Amazon Personalize
+  short: Personalize
+  category: ai
+  icon: assets/icons/services/personalize.svg
+  aliases:
+  - personalize-events
+  - personalize-runtime
+  keywords:
+  - Amazon Personalize
+  parent: null
+- id: pinpoint
+  name: Amazon Pinpoint
+  short: Pinpoint
+  category: business-applications
+  icon: assets/icons/services/pinpoint.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: polly
+  name: Amazon Polly
+  short: Polly
+  category: ai
+  icon: assets/icons/services/polly.svg
+  aliases: []
+  keywords:
+  - Amazon Polly
+  parent: null
+- id: privatelink
+  name: AWS PrivateLink
+  short: PrivateLink
+  category: networking
+  icon: assets/icons/services/privatelink.svg
+  aliases: []
+  keywords:
+  - PrivateLink
+  parent: null
+- id: professional-services
+  name: AWS Professional Services
+  short: Professional Services
+  category: customer-enablement
+  icon: assets/icons/services/professional-services.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: proton
+  name: AWS Proton
+  short: Proton
+  category: management-governance
+  icon: assets/icons/services/proton.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: pytorch-on-aws
+  name: PyTorch on AWS
+  short: PyTorch on AWS
+  category: ai
+  icon: assets/icons/services/pytorch-on-aws.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: q
+  name: Amazon Q
+  short: Amazon Q
+  category: ai
+  icon: assets/icons/services/q.svg
+  aliases:
+  - qbusiness
+  - qapps
+  - qconnect
+  - Amazon Q Developer
+  - Amazon Q Business
+  - amazon-q
+  keywords:
+  - 'Amazon Q(?: Developer| Business)?'
+  - Q Developer
+  - Q Business
+  parent: null
+- id: quick
+  name: Amazon Quick
+  short: Quick Suite
+  category: business-applications
+  icon: assets/icons/services/quick.svg
+  aliases:
+  - amazon-quicksight
+  - quicksight
+  - Amazon Quick Suite
+  - Amazon QuickSight
+  keywords:
+  - QuickSight
+  - Quick Suite
+  parent: null
+- id: ram
+  name: AWS Resource Access Manager
+  short: RAM
+  category: security
+  icon: assets/icons/services/ram.svg
+  aliases:
+  - ram
+  keywords: []
+  parent: null
+- id: rds
+  name: Amazon RDS
+  short: RDS
+  category: databases
+  icon: assets/icons/services/rds.svg
+  aliases:
+  - amazon-rds
+  - pi
+  - Performance Insights
+  keywords:
+  - RDS
+  parent: null
+- id: redshift
+  name: Amazon Redshift
+  short: Redshift
+  category: analytics
+  icon: assets/icons/services/redshift.svg
+  aliases:
+  - redshift-data
+  - redshift-serverless
+  keywords:
+  - Redshift
+  parent: null
+- id: rekognition
+  name: Amazon Rekognition
+  short: Rekognition
+  category: ai
+  icon: assets/icons/services/rekognition.svg
+  aliases: []
+  keywords:
+  - Rekognition
+  parent: null
+- id: repost
+  name: AWS rePost
+  short: rePost
+  category: customer-enablement
+  icon: assets/icons/services/repost.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: repost-private
+  name: AWS rePost Private
+  short: rePost Private
+  category: customer-enablement
+  icon: assets/icons/services/repost-private.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: reserved-instance-reporting
+  name: Reserved Instance Reporting
+  short: Reserved Instance Reporting
+  category: cloud-financial-management
+  icon: assets/icons/services/reserved-instance-reporting.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: resilience-hub
+  name: AWS Resilience Hub
+  short: Resilience Hub
+  category: management-governance
+  icon: assets/icons/services/resilience-hub.svg
+  aliases:
+  - resiliencehub
+  keywords:
+  - Resilience Hub
+  parent: null
+- id: resource-explorer
+  name: AWS Resource Explorer
+  short: Resource Explorer
+  category: management-governance
+  icon: assets/icons/services/resource-explorer.svg
+  aliases:
+  - resource-explorer-2
+  - resource-groups
+  - resourcegroupstaggingapi
+  - aws-resource-groups
+  keywords: []
+  parent: null
+- id: rosa
+  name: Red Hat OpenShift Service on AWS
+  short: ROSA
+  category: containers
+  icon: assets/icons/services/rosa.svg
+  aliases:
+  - rosa
+  keywords:
+  - ROSA
+  parent: null
+- id: route53
+  name: Amazon Route 53
+  short: Route 53
+  category: networking
+  icon: assets/icons/services/route53.svg
+  aliases:
+  - route53
+  - route53domains
+  - route53resolver
+  - route53profiles
+  - amazon-route-53
+  keywords:
+  - Route ?53
+  parent: null
+- id: rtb-fabric
+  name: AWS RTB Fabric
+  short: RTB Fabric
+  category: networking
+  icon: assets/icons/services/rtb-fabric.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: s3
+  name: Amazon Simple Storage Service
+  short: S3
+  category: storage
+  icon: assets/icons/services/s3.svg
+  aliases:
+  - amazon-s3
+  - s3control
+  - s3tables
+  - s3vectors
+  - s3files
+  - s3outposts
+  - S3 Tables
+  - S3 Vectors
+  - S3 Express One Zone
+  keywords:
+  - S3
+  parent: null
+- id: s3-on-outposts
+  name: Amazon S3 on Outposts
+  short: S3 on Outposts
+  category: storage
+  icon: assets/icons/services/s3-on-outposts.svg
+  aliases: []
+  keywords: []
+  parent: s3
+- id: sagemaker
+  name: Amazon SageMaker
+  short: SageMaker
+  category: analytics
+  icon: assets/icons/services/sagemaker.svg
+  aliases:
+  - amazon-sagemaker
+  - amazon-machine-learning
+  - machinelearning
+  - geospatial-ml-with-amazon-sagemaker
+  - sagemaker-runtime
+  - sagemaker-featurestore-runtime
+  - sagemaker-geospatial
+  - sagemaker-metrics
+  - sagemaker-a2i-runtime
+  - sagemaker-edge
+  keywords:
+  - SageMaker
+  parent: null
+- id: sagemaker-ai
+  name: Amazon SageMaker AI
+  short: SageMaker AI
+  category: ai
+  icon: assets/icons/services/sagemaker-ai.svg
+  aliases: []
+  keywords:
+  - SageMaker AI
+  parent: sagemaker
+- id: sagemaker-ground-truth
+  name: Amazon SageMaker Ground Truth
+  short: SageMaker Ground Truth
+  category: ai
+  icon: assets/icons/services/sagemaker-ground-truth.svg
+  aliases: []
+  keywords: []
+  parent: sagemaker
+- id: sagemaker-studio-lab
+  name: Amazon SageMaker Studio Lab
+  short: SageMaker Studio Lab
+  category: ai
+  icon: assets/icons/services/sagemaker-studio-lab.svg
+  aliases: []
+  keywords: []
+  parent: sagemaker
+- aliases:
+  - aws-serverless-application-model-sam
+  keywords:
+  - SAM CLI
+  - AWS SAM
+  parent: null
+  short: SAM
+  icon: null
+  id: sam
+  name: AWS Serverless Application Model
+  category: developer-tools
+- id: savings-plans
+  name: Savings Plans
+  short: Savings Plans
+  category: cloud-financial-management
+  icon: assets/icons/services/savings-plans.svg
+  aliases:
+  - savingsplans
+  keywords:
+  - Savings Plans?
+  parent: null
+- id: sdk
+  name: AWS Tools and SDKs
+  short: SDKs
+  category: developer-tools
+  icon: assets/icons/services/sdk.svg
+  aliases:
+  - aws-sdk-for-java
+  - aws-toolkit-for-visual-studio
+  - aws-toolkit-for-visual-studio-code
+  - aws-developer-tools
+  keywords:
+  - AWS SDKs?
+  - boto3
+  - botocore
+  parent: null
+- id: secrets-manager
+  name: AWS Secrets Manager
+  short: Secrets Manager
+  category: security
+  icon: assets/icons/services/secrets-manager.svg
+  aliases: []
+  keywords:
+  - Secrets Manager
+  parent: null
+- id: security-agent
+  name: AWS Security Agent
+  short: Security Agent
+  category: security
+  icon: assets/icons/services/security-agent.svg
+  aliases: []
+  keywords:
+  - Security Agent
+  parent: null
+- id: security-hub
+  name: AWS Security Hub
+  short: Security Hub
+  category: security
+  icon: assets/icons/services/security-hub.svg
+  aliases:
+  - securityhub
+  keywords:
+  - Security Hub
+  parent: null
+- id: security-incident-response
+  name: AWS Security Incident Response
+  short: Security Incident Response
+  category: security
+  icon: assets/icons/services/security-incident-response.svg
+  aliases:
+  - security-ir
+  keywords: []
+  parent: null
+- id: security-lake
+  name: Amazon Security Lake
+  short: Security Lake
+  category: security
+  icon: assets/icons/services/security-lake.svg
+  aliases: []
+  keywords:
+  - Security Lake
+  parent: null
+- id: serverlessrepo
+  name: AWS Serverless Application Repository
+  short: Serverless Application Repository
+  category: compute
+  icon: assets/icons/services/serverlessrepo.svg
+  aliases:
+  - serverlessrepo
+  keywords: []
+  parent: null
+- id: service-catalog
+  name: AWS Service Catalog
+  short: Service Catalog
+  category: management-governance
+  icon: assets/icons/services/service-catalog.svg
+  aliases:
+  - servicecatalog
+  - servicecatalog-appregistry
+  keywords:
+  - Service Catalog
+  parent: null
+- id: service-management-connector
+  name: AWS Service Management Connector
+  short: Service Management Connector
+  category: management-governance
+  icon: assets/icons/services/service-management-connector.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: ses
+  name: Amazon Simple Email Service
+  short: SES
+  category: business-applications
+  icon: assets/icons/services/ses.svg
+  aliases:
+  - ses
+  - sesv2
+  - amazon-ses
+  - mailmanager
+  keywords:
+  - SES
+  parent: null
+- id: shield
+  name: AWS Shield
+  short: Shield
+  category: security
+  icon: assets/icons/services/shield.svg
+  aliases: []
+  keywords:
+  - AWS Shield
+  - Shield Advanced
+  parent: null
+- id: signer
+  name: AWS Signer
+  short: Signer
+  category: security
+  icon: assets/icons/services/signer.svg
+  aliases: []
+  keywords:
+  - AWS Signer
+  parent: null
+- id: simspace-weaver
+  name: AWS SimSpace Weaver
+  short: SimSpace Weaver
+  category: compute
+  icon: assets/icons/services/simspace-weaver.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: site-to-site-vpn
+  name: AWS Site to Site VPN
+  short: Site-to-Site VPN
+  category: networking
+  icon: assets/icons/services/site-to-site-vpn.svg
+  aliases:
+  - aws-site-to-site
+  - aws-vpn
+  keywords:
+  - Site-to-Site VPN
+  parent: null
+- id: snowball
+  name: AWS Snowball
+  short: Snowball
+  category: storage
+  icon: assets/icons/services/snowball.svg
+  aliases:
+  - aws-snowcone
+  - aws-snowmobile
+  - snow-device-management
+  - Snow Family
+  keywords: []
+  parent: null
+- id: snowball-edge
+  name: AWS Snowball Edge
+  short: Snowball Edge
+  category: storage
+  icon: assets/icons/services/snowball-edge.svg
+  aliases: []
+  keywords: []
+  parent: snowball
+- id: sns
+  name: Amazon Simple Notification Service
+  short: SNS
+  category: application-integration
+  icon: assets/icons/services/sns.svg
+  aliases:
+  - sns
+  - amazon-sns
+  keywords:
+  - SNS
+  parent: null
+- id: sqs
+  name: Amazon Simple Queue Service
+  short: SQS
+  category: application-integration
+  icon: assets/icons/services/sqs.svg
+  aliases:
+  - sqs
+  - amazon-sqs
+  keywords:
+  - SQS
+  parent: null
+- id: step-functions
+  name: AWS Step Functions
+  short: Step Functions
+  category: application-integration
+  icon: assets/icons/services/step-functions.svg
+  aliases:
+  - stepfunctions
+  - swf
+  - amazon-swf
+  keywords:
+  - Step Functions
+  parent: null
+- id: storage-gateway
+  name: AWS Storage Gateway
+  short: Storage Gateway
+  category: storage
+  icon: assets/icons/services/storage-gateway.svg
+  aliases: []
+  keywords:
+  - Storage Gateway
+  parent: null
+- id: supply-chain
+  name: AWS Supply Chain
+  short: Supply Chain
+  category: business-applications
+  icon: assets/icons/services/supply-chain.svg
+  aliases:
+  - supplychain
+  keywords: []
+  parent: null
+- id: support
+  name: AWS Support
+  short: Support
+  category: customer-enablement
+  icon: assets/icons/services/support.svg
+  aliases:
+  - support
+  - support-app
+  - supportauthz
+  - service-quotas
+  keywords: []
+  parent: null
+- id: sustainability
+  name: AWS Sustainability
+  short: Sustainability
+  category: management-governance
+  icon: assets/icons/services/sustainability.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: systems-manager
+  name: AWS Systems Manager
+  short: Systems Manager
+  category: management-governance
+  icon: assets/icons/services/systems-manager.svg
+  aliases:
+  - ssm
+  - ssm-guiconnect
+  - ssm-contacts
+  - ssm-incidents
+  - ssm-quicksetup
+  - ssm-sap
+  - aws-systems-manager
+  keywords:
+  - Systems Manager
+  - SSM
+  parent: null
+- id: telco-network-builder
+  name: AWS Telco Network Builder
+  short: Telco Network Builder
+  category: management-governance
+  icon: assets/icons/services/telco-network-builder.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: tensorflow-on-aws
+  name: TensorFlow on AWS
+  short: TensorFlow on AWS
+  category: ai
+  icon: assets/icons/services/tensorflow-on-aws.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: textract
+  name: Amazon Textract
+  short: Textract
+  category: ai
+  icon: assets/icons/services/textract.svg
+  aliases: []
+  keywords:
+  - Textract
+  parent: null
+- id: thinkbox-deadline
+  name: AWS Thinkbox Deadline
+  short: Thinkbox Deadline
+  category: media
+  icon: assets/icons/services/thinkbox-deadline.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: timestream
+  name: Amazon Timestream
+  short: Timestream
+  category: databases
+  icon: assets/icons/services/timestream.svg
+  aliases: []
+  keywords:
+  - Timestream
+  parent: null
+- id: training-certification
+  name: AWS Training Certification
+  short: Training Certification
+  category: customer-enablement
+  icon: assets/icons/services/training-certification.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: transcribe
+  name: Amazon Transcribe
+  short: Transcribe
+  category: ai
+  icon: assets/icons/services/transcribe.svg
+  aliases: []
+  keywords:
+  - Transcribe
+  parent: null
+- id: transfer-family
+  name: AWS Transfer Family
+  short: Transfer Family
+  category: migration
+  icon: assets/icons/services/transfer-family.svg
+  aliases: []
+  keywords:
+  - Transfer Family
+  parent: null
+- id: transform
+  name: AWS Transform
+  short: Transform
+  category: migration
+  icon: assets/icons/services/transform.svg
+  aliases:
+  - aws-transform
+  keywords:
+  - AWS Transform
+  parent: null
+- id: transit-gateway
+  name: AWS Transit Gateway
+  short: Transit Gateway
+  category: networking
+  icon: assets/icons/services/transit-gateway.svg
+  aliases: []
+  keywords:
+  - Transit Gateway
+  parent: null
+- id: translate
+  name: Amazon Translate
+  short: Translate
+  category: ai
+  icon: assets/icons/services/translate.svg
+  aliases: []
+  keywords:
+  - Amazon Translate
+  parent: null
+- id: trusted-advisor
+  name: AWS Trusted Advisor
+  short: Trusted Advisor
+  category: management-governance
+  icon: assets/icons/services/trusted-advisor.svg
+  aliases: []
+  keywords:
+  - Trusted Advisor
+  parent: null
+- id: user-notifications
+  name: AWS User Notifications
+  short: User Notifications
+  category: management-governance
+  icon: assets/icons/services/user-notifications.svg
+  aliases:
+  - notifications
+  - notificationscontacts
+  keywords: []
+  parent: null
+- id: verified-access
+  name: AWS Verified Access
+  short: Verified Access
+  category: networking
+  icon: assets/icons/services/verified-access.svg
+  aliases: []
+  keywords:
+  - Verified Access
+  parent: null
+- id: verified-permissions
+  name: Amazon Verified Permissions
+  short: Verified Permissions
+  category: security
+  icon: assets/icons/services/verified-permissions.svg
+  aliases: []
+  keywords:
+  - Verified Permissions
+  - Cedar
+  parent: null
+- id: vpc
+  name: Amazon Virtual Private Cloud
+  short: VPC
+  category: networking
+  icon: assets/icons/services/vpc.svg
+  aliases:
+  - amazon-vpc
+  - ipv6-at-aws
+  - network-security-manager
+  - networkflowmonitor
+  - Amazon VPC
+  keywords:
+  - VPC(?! Lattice)
+  - IPAM
+  - NAT Gateway
+  parent: null
+- id: vpc-lattice
+  name: Amazon VPC Lattice
+  short: VPC Lattice
+  category: networking
+  icon: assets/icons/services/vpc-lattice.svg
+  aliases:
+  - vpc-lattice
+  keywords:
+  - VPC Lattice
+  parent: null
+- id: waf
+  name: AWS WAF
+  short: WAF
+  category: security
+  icon: assets/icons/services/waf.svg
+  aliases:
+  - wafv2
+  - waf-regional
+  keywords:
+  - WAF
+  parent: null
+- id: wavelength
+  name: AWS Wavelength
+  short: Wavelength
+  category: compute
+  icon: assets/icons/services/wavelength.svg
+  aliases: []
+  keywords:
+  - Wavelength Zones?
+  parent: null
+- id: well-architected-tool
+  name: AWS Well Architected Tool
+  short: Well-Architected
+  category: management-governance
+  icon: assets/icons/services/well-architected-tool.svg
+  aliases:
+  - wellarchitected
+  keywords:
+  - Well-Architected
+  parent: null
+- id: wickr
+  name: AWS Wickr
+  short: Wickr
+  category: business-applications
+  icon: assets/icons/services/wickr.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: workdocs
+  name: Amazon WorkDocs
+  short: WorkDocs
+  category: business-applications
+  icon: assets/icons/services/workdocs.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: workmail
+  name: Amazon WorkMail
+  short: WorkMail
+  category: business-applications
+  icon: assets/icons/services/workmail.svg
+  aliases: []
+  keywords: []
+  parent: null
+- id: workspaces
+  name: Amazon WorkSpaces
+  short: WorkSpaces
+  category: end-user-computing
+  icon: assets/icons/services/workspaces.svg
+  aliases:
+  - workspaces-web
+  - workspaces-thin-client
+  - appstream
+  - amazon-appstream-2-0
+  - AppStream 2.0
+  keywords:
+  - WorkSpaces
+  parent: null
+- id: x-ray
+  name: AWS X Ray
+  short: X-Ray
+  category: developer-tools
+  icon: assets/icons/services/x-ray.svg
+  aliases:
+  - xray
+  keywords:
+  - X-Ray
+  parent: null
