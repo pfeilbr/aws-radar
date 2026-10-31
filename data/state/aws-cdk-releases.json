@@ -1,0 +1,9 @@
+{
+  "http": {
+    "https://github.com/aws/aws-cdk/releases.atom": {
+      "etag": "W/\"2affb2c65614c7bd37f10a81ca662dd0\""
+    }
+  },
+  "last_run": "2026-10-31T14:32:18Z",
+  "last_success": "2026-10-31T14:32:18Z"
+}
