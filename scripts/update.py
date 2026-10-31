@@ -11,13 +11,14 @@
 from __future__ import annotations
 
 import argparse
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from radar import ROOT  # noqa: E402
-from radar.build import append_changes, build  # noqa: E402
+from radar.build import build  # noqa: E402
 from radar.collect import run  # noqa: E402
 from radar.store import utcnow  # noqa: E402
 
@@ -40,7 +41,6 @@ def main() -> int:
     if not args.build_only:
         print("collecting", file=sys.stderr)
         added, report = run(args.only, force=args.force, backfill=args.backfill)
-        append_changes(added)
     stats = build()
     errors = [r for r in report if r.get("status") == "error"]
     print(f"added {len(added)} items; {stats}; {len(errors)} source errors", file=sys.stderr)
@@ -60,7 +60,18 @@ def main() -> int:
             git("commit", "-m", msg, "-m", body)
             print(msg, file=sys.stderr)
             if args.push:
+                # Someone may have pushed since checkout. Raw files are per source and
+                # append-only, so only generated files can conflict: take ours, then
+                # regenerate them from the merged raw data.
+                git("pull", "--rebase", "-q", "-X", "theirs")
+                build()
+                git("add", "data")
+                if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode:
+                    git("commit", "-q", "--amend", "--no-edit")
                 git("push")
+            if os.environ.get("GITHUB_OUTPUT"):
+                with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
+                    fh.write("committed=true\n")
     return 0
 
 

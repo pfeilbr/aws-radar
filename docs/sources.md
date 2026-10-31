@@ -40,9 +40,14 @@ uv run scripts/validate_sources.py --all    # include disabled ones
 - **Reddit:** `.json` endpoints return 403 to scripts; `.rss` works. Unauthenticated requests
   hit 429 after two or three quick calls, so all subreddits go in one multireddit URL
   (`r/a+b+c/new/.rss`) and the fetcher backs off on 429 using `Retry-After`.
-  **Reddit returns `403 Blocked` to GitHub Actions runners** (confirmed 2026-10-31), so the
-  scheduled job records an error for `reddit-aws` and carries on. Reddit items currently come
-  only from runs on a home machine (`uv run scripts/update.py --only reddit-aws --commit --push`).
+  **Reddit blocks some GitHub Actions runner IPs and not others.** On 2026-10-31 one runner
+  got `403 Blocked`, another got `200` with the same User-Agent, so the block is by IP and
+  changing the User-Agent does not help (disguising as a browser would also break Reddit's
+  terms). Each workflow run gets a fresh runner, so `.github/workflows/reddit.yml` polls
+  Reddit hourly; a blocked hour is recorded in `data/state/reddit-aws.json` and the next one
+  retries. The feed holds the last 100 posts (over a day of these subreddits), so nothing is
+  lost. If that ever stops being enough, the reliable fix is Reddit's OAuth API (a "script"
+  app; its token endpoint is reachable from runners).
 - **botocore CHANGELOG.rst** is ~1.6 MB. Use `If-None-Match` and parse only versions above the
   stored cursor.
 - **AWS Podcast** feed is still the one AWS links to, but the newest episode is 2026-04-07.

@@ -109,7 +109,10 @@ and whatever each feed still holds. After that each run only fetches what change
 
 - [`.github/workflows/update.yml`](.github/workflows/update.yml) runs every 6 hours:
   collect, build, and commit `data/` back to `main` when new items arrived
-  (message `data: update <time> (+N items)`), then redeploys the site.
+  (message `data: update <time> (+N items)`), then redeploys the site if anything changed.
+- [`.github/workflows/reddit.yml`](.github/workflows/reddit.yml) polls Reddit hourly.
+  Reddit blocks some GitHub runner IPs, and each run gets a new runner, so hourly retries
+  get through. Both jobs share a concurrency group and rebase before pushing.
 - [`.github/workflows/pages.yml`](.github/workflows/pages.yml) builds `site/data/` from
   `data/raw/` and publishes `site/` to GitHub Pages on every push to `main`.
 

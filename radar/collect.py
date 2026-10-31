@@ -49,6 +49,8 @@ def run(only: list[str] | None = None, force: bool = False, backfill: bool = Fal
         row = {"id": src["id"]}
         try:
             items = collectors[src["type"]](src, ctx)
+            for it in items:
+                it["fetched"] = iso(now)  # one timestamp per run
             added = store.add(items)
             added_all += added
             state["last_success"] = iso(now)

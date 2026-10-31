@@ -31,12 +31,14 @@ jobs:
         run: |
           git config user.name "aws-radar-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Collect, build, commit
+      - id: update
+        name: Collect, build, commit
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: uv run scripts/update.py --commit --push ${{ inputs.force && '--force' || '' }}
       - name: Deploy site
         # A push made with GITHUB_TOKEN does not trigger other workflows, so call Pages here.
+        if: steps.update.outputs.committed == 'true'
         run: gh workflow run pages.yml --ref main
         env:
           GH_TOKEN: ${{ github.token }}
