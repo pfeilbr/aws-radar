@@ -7,12 +7,11 @@ import sys
 import traceback
 from datetime import datetime, timedelta
 
-import httpx
 import yaml
 
 from radar import CONFIG_DIR
 from radar.collectors import Context, Skip, registry
-from radar.http import Fetcher
+from radar.http import Fetcher, HTTPError
 from radar.store import RawStore, iso, load_state, save_state, utcnow
 
 
@@ -61,7 +60,7 @@ def run(only: list[str] | None = None, force: bool = False, backfill: bool = Fal
         except Exception as e:  # noqa: BLE001 - one broken source must not stop the run
             state["last_error"] = {"at": iso(now), "error": f"{type(e).__name__}: {e}"[:300]}
             row |= {"status": "error", "note": f"{type(e).__name__}: {e}"[:160]}
-            if not isinstance(e, httpx.HTTPError):
+            if not isinstance(e, HTTPError):
                 traceback.print_exc(file=sys.stderr)
         state["last_run"] = iso(now)
         save_state(src["id"], state)

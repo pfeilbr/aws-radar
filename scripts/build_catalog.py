@@ -19,11 +19,11 @@ import sys
 import zipfile
 from pathlib import Path
 
-import httpx
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from radar import CONFIG_DIR, SITE_DIR  # noqa: E402
+from radar import http  # noqa: E402
 from radar.catalog import Catalog, Service, norm  # noqa: E402
 
 ICONS_PAGE = "https://aws.amazon.com/architecture/icons/"
@@ -65,12 +65,14 @@ def slug(text: str) -> str:
 
 def download_package() -> bytes:
     ua = {"User-Agent": "Mozilla/5.0 (aws-radar catalog builder)"}
-    page = httpx.get(ICONS_PAGE, headers=ua, follow_redirects=True, timeout=60).text
+    page = http.get(ICONS_PAGE, headers=ua, timeout=60).text
     links = sorted(set(re.findall(r"https://[^\"']+/Icon-package_[^\"']+\.zip", page)))
     if not links:
         sys.exit("no Icon-package zip link found on " + ICONS_PAGE)
     print("downloading", links[-1])
-    return httpx.get(links[-1], headers=ua, follow_redirects=True, timeout=300).content
+    r = http.get(links[-1], headers=ua, timeout=300)
+    r.raise_for_status()
+    return r.content
 
 
 def main() -> int:

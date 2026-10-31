@@ -42,7 +42,8 @@ The audience is Brian, an AWS expert who knows every service. Write accordingly.
 ## Conventions
 
 - Python 3.12+, managed with `uv`. Dependencies in `pyproject.toml`. Prefer the standard
-  library; current deps are `httpx`, `feedparser`, `pyyaml`.
+  library; current deps are `feedparser` and `pyyaml`. HTTP goes through `radar/http.py`
+  (stdlib urllib): do not switch it to httpx/requests, Reddit blocks httpx from CI runners.
 - Item schema (one JSON object per line in `data/raw/<source_id>/<YYYY-MM>.jsonl`):
   `id` (`<source>:<sha1 of guid>`), `source`, `url`, `title`, `summary` (plain text),
   `published` and `fetched` (ISO 8601 UTC), `authors`, `tags_raw` (whatever the source
