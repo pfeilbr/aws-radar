@@ -278,7 +278,7 @@
     const kids = children[id] || [];
     const parent = s.parent && svcById[s.parent];
     app.innerHTML = `<a class="back" href="#/">← All services</a>
-      <div class="svc-head">${icon(s)}<div><h1>${esc(s.name)} ${starBtn(id)}</h1>
+      <div class="svc-head">${icon(s, "", false)}<div><h1>${esc(s.name)} ${starBtn(id)}</h1>
         <div class="sub">${esc(cat?.name || s.cat)}${parent ? ` · part of <a href="#/s/${esc(parent.id)}">${esc(parent.short)}</a>` : ""} · last update ${ago(s.last)}
         ${s.total ? ` · <a class="feedlink" href="feeds/s/${esc(id)}.xml" title="Atom feed for ${esc(s.short)}">feed</a>` : ""}</div></div>
         <div id="activity" class="activity-slot"></div>
