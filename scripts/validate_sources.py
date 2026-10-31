@@ -88,6 +88,14 @@ def check_github_changelog(f: Fetcher, src: dict) -> tuple[int, int, datetime | 
     return r.status_code, len(versions), None
 
 
+def check_github_issues(f: Fetcher, src: dict) -> tuple[int, int, datetime | None]:
+    r = f.get(src["url"].format(page=1), headers={"Accept": "application/vnd.github+json"})
+    issues = r.json() if r.status_code == 200 else []
+    key = "closed_at" if src.get("state") == "closed" else "updated_at"
+    dates = [parse_date(i.get(key)) for i in issues]
+    return r.status_code, len(issues), max(filter(None, dates), default=None)
+
+
 def check_x(f: Fetcher, src: dict) -> tuple[int, int, datetime | None]:
     if not os.environ.get(src.get("auth_env", "")):
         raise RuntimeError(f"skipped: set {src['auth_env']} to check")
@@ -100,6 +108,7 @@ CHECKS = {
     "hn-algolia": check_hn,
     "bluesky-author": check_bluesky,
     "github-changelog": check_github_changelog,
+    "github-issues": check_github_issues,
     "x-following": check_x,
 }
 

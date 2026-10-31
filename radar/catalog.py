@@ -45,9 +45,11 @@ class Service:
 
 
 class Catalog:
-    def __init__(self, services: list[Service], categories: dict[str, dict]):
+    def __init__(self, services: list[Service], categories: dict[str, dict],
+                 ignore_tags: list[str] | None = None):
         self.services = {s.id: s for s in services}
         self.categories = categories
+        self.ignore_tags = set(ignore_tags or [])
         self.botocore_names: dict[str, str] = json.loads(
             (CONFIG_DIR / "vocab" / "botocore-services.json").read_text()
         )
@@ -55,7 +57,7 @@ class Catalog:
     @classmethod
     def load(cls) -> "Catalog":
         raw = yaml.safe_load((CONFIG_DIR / "services.yaml").read_text())
-        return cls([Service(**s) for s in raw["services"]], raw["categories"])
+        return cls([Service(**s) for s in raw["services"]], raw["categories"], raw.get("ignore_tags"))
 
     # ── name matching ─────────────────────────────────────────────────────
 

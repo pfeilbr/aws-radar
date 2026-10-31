@@ -3,9 +3,9 @@
 # Fields
 #   id           stable slug; also the folder name under data/raw/
 #   name         display name
-#   group        aws-official | aws-code | aws-media | community | social
+#   group        aws-official | aws-code | aws-roadmap | aws-media | community | social
 #   type         collector to use: rss | aws-blog-api | hn-algolia | bluesky-author |
-#                github-changelog | x-following
+#                github-changelog | github-issues | x-following
 #   url          endpoint (type-specific; may contain {page} / {size})
 #   cadence      how often it is worth polling (the scheduler runs on the shortest)
 #   services     default service ids for every item (empty = classifier decides)
@@ -141,6 +141,44 @@ sources:
     services: [mcp]
     enabled: true
 
+  # ── AWS public roadmaps ────────────────────────────────────────────────────
+
+  - id: containers-roadmap-shipped
+    name: Containers roadmap · Shipped
+    group: aws-roadmap
+    type: github-issues
+    url: https://api.github.com/repos/aws/containers-roadmap/issues?state=closed&labels=Shipped&sort=updated&direction=desc&per_page=100&page={page}
+    label: Shipped
+    state: closed
+    cadence: 24h
+    stale_after_days: 120
+    enabled: true
+    notes: ECS, EKS, ECR, Fargate, Bottlerocket feature requests AWS marked shipped.
+
+  - id: containers-roadmap-coming-soon
+    name: Containers roadmap · Coming Soon
+    group: aws-roadmap
+    type: github-issues
+    url: https://api.github.com/repos/aws/containers-roadmap/issues?state=open&labels=Coming%20Soon&sort=updated&direction=desc&per_page=100&page={page}
+    label: Coming Soon
+    state: open
+    cadence: 24h
+    stale_after_days: 120
+    enabled: true
+
+  - id: cloudformation-roadmap-shipped
+    name: CloudFormation coverage roadmap · Shipped
+    group: aws-roadmap
+    type: github-issues
+    url: https://api.github.com/repos/aws-cloudformation/cloudformation-coverage-roadmap/issues?state=closed&labels=shipped&sort=updated&direction=desc&per_page=100&page={page}
+    label: shipped
+    state: closed
+    services: [cloudformation]
+    cadence: 24h
+    stale_after_days: 60
+    enabled: true
+    notes: Resource types and properties CloudFormation added support for.
+
   # ── AWS media ──────────────────────────────────────────────────────────────
 
   - id: aws-podcast
@@ -229,15 +267,22 @@ sources:
     group: social
     type: bluesky-author
     url: https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor={actor}&limit=50&filter=posts_no_replies
-    actors:
-      - jeffbarr.bsky.social        # Jeff Barr, AWS
+    actors:                         # checked 2026-10-31: active, mostly AWS content
+      - jeffbarr.bsky.social        # Jeff Barr, AWS (quiet since 2025-04)
       - edjgeek.bsky.social         # Eric Johnson, AWS serverless
+      - elizabethfue12.bsky.social  # Elizabeth Fuentes, AWS developer advocate
       - quinnypig.com               # Corey Quinn
       - lastweekinaws.com
-      - jeremydaly.bsky.social      # Jeremy Daly
-      - theburningmonk.com          # Yan Cui
-      - donkersgoed.bsky.social     # Luc van Donkersgoed
-      - mhausenblas.info            # Michael Hausenblas
+      - jeremydaly.com              # Jeremy Daly, Serverless Hero
+      - theburningmonk.com          # Yan Cui, Serverless Hero (quiet since 2025-07)
+      - lucvandonkersgoed.com       # Luc van Donkersgoed, Serverless Hero
+      - esh.dev                     # Eric Hammond, AWS Hero
+      - loige.co                    # Luciano Mammino, Serverless Hero
+      - darryl-ruggles.cloud        # Darryl Ruggles, AWS Hero
+      - antonbabenko.com            # Anton Babenko, AWS Hero (Terraform)
+      - gunnargrosch.com            # Gunnar Grosch, Serverless Hero
+      - ajs.bsky.social             # AJ Stuyvenberg, AWS Hero
+      - awsheroesblogposts.bsky.social  # bot: AWS Heroes' dev.to posts
     cadence: 6h
     enabled: true
     notes: Public AppView API, no auth. Add handles here; resolve-check them with the validator.
@@ -258,8 +303,6 @@ sources:
       Bluesky handles and add them to bluesky-aws-people instead. See docs/sources.md.
 
   # ── Candidates (not yet verified or not yet worth it) ──────────────────────
-  #   - aws/containers-roadmap shipped issues (GitHub API, label filter)
-  #   - aws-cloudformation/cloudformation-coverage-roadmap shipped issues
   #   - AWS re:Post (no public feed found)
   #   - re:Invent / Summit session catalogs (seasonal)
   #   - AWS documentation "Document history" pages per service

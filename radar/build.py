@@ -14,14 +14,14 @@ from __future__ import annotations
 import json
 import re
 import shutil
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 
 import yaml
 
 from radar import CONFIG_DIR, DATA_DIR, SITE_DIR
 from radar.catalog import Catalog
-from radar.classify import services_for, tags_for
+from radar.classify import regions_for, services_for, tags_for
 from radar.store import RawStore, iso, utcnow
 from radar.text import first_sentences
 
@@ -31,6 +31,7 @@ LATEST_CAP = 800
 MD_CAP = 150
 CHANGES_LIST_CAP = 300
 RUN_GAP = timedelta(minutes=15)
+_AWS_WORD = re.compile(r"\b(?:AWS|Amazon|re:Invent)\b", re.I)
 SKIP_SDK_SERVICES = {"endpoint-rules"}  # botocore housekeeping, not a service change
 
 
@@ -71,6 +72,9 @@ def digest_item(item: dict, src: dict, cat: Catalog) -> dict:
     }
     if mentioned:
         d["m"] = mentioned
+    regions = regions_for(item, src)
+    if regions:
+        d["rg"] = regions
     if api:
         d["api"] = api
     if summary:
@@ -97,6 +101,9 @@ def collect_digests(cat: Catalog, sources: dict[str, dict]) -> list[dict]:
         if (item.get("extra") or {}).get("sdk_service") in SKIP_SDK_SERVICES:
             continue
         d = digest_item(item, src, cat)
+        if src["group"] == "social" and not (d["svc"] or d.get("m")) and not _AWS_WORD.search(
+                f"{item['title']} {item['summary']}"):
+            continue  # off-topic post from an AWS person; stays in data/raw
         d["_f"] = item["fetched"]
         key = _url_key(d["u"]) if src["type"] != "github-changelog" else d["id"]
         prev = by_url.get(key)
@@ -119,6 +126,46 @@ def _md_line(d: dict, sources: dict) -> str:
     tags = " ".join(f"`{t}`" for t in d["tags"])
     text = (f"`{d['api']}` " if d.get("api") else "") + d["t"] + (f" — {d['s']}" if d.get("s") else "")
     return f"- {d['d'][:10]} {tags} [{text}]({d['u']}) · {sources[d['src']]['name']}"
+
+
+def write_catalog_gaps(cat: Catalog, sources: dict) -> int:
+    """data/reports/catalog-gaps.md: source service tags that map to no service.
+
+    The to-do list for config/service_overrides.yaml (add an alias, or add to ignore_tags).
+    """
+    gaps: dict[str, Counter] = defaultdict(Counter)
+    for item in RawStore().all_items():
+        src = sources.get(item["source"])
+        if not src:
+            continue
+        for t in item["tags_raw"]:
+            if src["type"] == "github-changelog":
+                if t not in SKIP_SDK_SERVICES and not cat.match_botocore(t):
+                    gaps["botocore service names"][t] += 1
+            elif src["id"] == "aws-whats-new":
+                if t.startswith("general:products/"):
+                    slug = t.split("/")[-1]
+                    if slug not in cat.ignore_tags and not cat.match_name(slug):
+                        gaps["What's New product slugs"][slug] += 1
+            elif src["type"] == "aws-blog-api":
+                if t not in cat.ignore_tags and not cat.match_name(t):
+                    gaps["AWS Blogs tags"][t] += 1
+    out = DATA_DIR / "reports" / "catalog-gaps.md"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    lines = ["# Catalog gaps", "",
+             "Service tags from sources that map to no service in the catalog. Fix by adding an",
+             "alias in `config/service_overrides.yaml` (or listing the tag under `ignore_tags`),",
+             "then `uv run scripts/build_catalog.py`. Generated; do not edit.", ""]
+    total = 0
+    for kind in sorted(gaps):
+        lines += [f"## {kind}", "", "| tag | items |", "| --- | ---: |"]
+        lines += [f"| `{t}` | {n} |" for t, n in gaps[kind].most_common()]
+        lines.append("")
+        total += len(gaps[kind])
+    if not total:
+        lines.append("None. Every service tag maps to a service.")
+    out.write_text("\n".join(lines) + "\n")
+    return total
 
 
 def build(now: datetime | None = None) -> dict:
@@ -181,7 +228,8 @@ def build(now: datetime | None = None) -> dict:
     }
     (data_dir / "index.js").write_text(
         "window.RADAR_INDEX=" + json.dumps(index, ensure_ascii=False, separators=(",", ":")) + ";\n")
-    return index["counts"] | {"services_with_items": len(per_service)}
+    gaps = write_catalog_gaps(cat, sources)
+    return index["counts"] | {"services_with_items": len(per_service), "catalog_gaps": gaps}
 
 
 def write_changes(digests: list[dict], cat: Catalog, sources: dict) -> None:

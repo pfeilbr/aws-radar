@@ -11,6 +11,22 @@
 #   parent    roll this service up under another in the UI
 # drop: icon ids to skip.  extra: services with no icon in the package.
 
+# Blog/feed taxonomy tags that are not services; kept out of data/reports/catalog-gaps.md.
+ignore_tags: [post-types, learning-levels, artificial-intelligence, technical-how-to, advanced-300, compute,
+              announcements, intermediate-200, security-identity-compliance, database, customer-solutions,
+              storage, analytics, industries, best-practices, management-tools, uncategorized, public-sector,
+              generative-ai, generative-ai-2, messaging, networking-content-delivery, thought-leadership,
+              foundational-100, expert-400, news, partner-solutions, launch, aws-partner-network,
+              application-integration, application-services, devops, programing-language, enterprise-strategy,
+              entertainment, migration-enterprise-strategy, management-and-governance, financial-services,
+              software, healthcare, migration-solutions, dot-net, government, security, internet-of-things,
+              business-intelligence, open-source, migration, games, compliance, end-user-computing, how-to,
+              aws-training-and-certification, sap, monitoring-and-observability, architecture, automotive,
+              aws-global-infrastructure, robotics, experience-based-acceleration, ibm-redhat, serverless,
+              quantum-technologies, manufacturing, retail, regions, mobile-services, aws-for-vmware,
+              telecommunications, education, media-services, cloud-cost-optimization, game-development,
+              security-governance, aiml]
+
 drop: [marketplace-dark, express-workflows, workdocs-sdk, pinpoint-apis, elemental-appliances-and-software,
        thinkbox-frost, thinkbox-krakatoa, thinkbox-stoke, thinkbox-xmesh, elemental-delta,
        elemental-server, elemental-conductor, apache-mxnet-on-aws, backint-agent]
@@ -50,7 +66,7 @@ services:
     id: eks
     short: EKS
     keywords: ['EKS']
-    aliases: [amazon-eks, eks-auth]
+    aliases: [amazon-eks, eks-auth, amazon-kubernetes-service]
   eks-anywhere: {parent: eks, keywords: ['EKS Anywhere']}
   eks-distro: {parent: eks}
   elastic-container-registry: {id: ecr, short: ECR, keywords: ['ECR'], aliases: [amazon-ecr, ecr-public]}
@@ -63,12 +79,12 @@ services:
     id: s3
     short: S3
     keywords: ['S3']
-    aliases: [amazon-s3, s3control, s3tables, s3vectors, s3files, s3outposts, S3 Tables, S3 Vectors,
+    aliases: [amazon-s3, amazon-simple-storage-services-s3, s3control, s3tables, s3vectors, s3files, s3outposts, S3 Tables, S3 Vectors,
               S3 Express One Zone]
   simple-storage-service-glacier: {id: glacier, short: Glacier, keywords: ['Glacier'], aliases: [amazon-glacier, glacier]}
   s3-on-outposts: {parent: s3}
-  elastic-block-store: {id: ebs, short: EBS, keywords: ['EBS'], aliases: [ebs]}
-  efs: {keywords: ['EFS']}
+  elastic-block-store: {id: ebs, short: EBS, keywords: ['EBS'], aliases: [ebs, amazon-elastic-block-storage-ebs]}
+  efs: {keywords: ['EFS'], aliases: [amazon-elastic-file-system-efs]}
   fsx: {keywords: ['FSx']}
   fsx-for-netapp-ontap: {parent: fsx, aliases: [amazon-fsx-netapp-ontap]}
   fsx-for-lustre: {parent: fsx}
@@ -88,7 +104,7 @@ services:
     aliases: [amazon-rds, pi, Performance Insights]
   aurora:
     keywords: ['Aurora']
-    aliases: [dsql, Aurora DSQL]
+    aliases: [dsql, Aurora DSQL, postgresql-compatible, mysql-compatible]
   dynamodb: {keywords: ['DynamoDB', 'DAX'], aliases: [dynamodbstreams, dax]}
   elasticache: {keywords: ['ElastiCache', 'Valkey']}
   memorydb: {keywords: ['MemoryDB']}
@@ -139,7 +155,7 @@ services:
   # ── AI ──
   bedrock:
     keywords: ['Bedrock(?! AgentCore)']
-    aliases: [amazon-bedrock, bedrock-agent, bedrock-agent-runtime, bedrock-runtime, bedrock-data-automation,
+    aliases: [amazon-bedrock, bda, bedrock-agent, bedrock-agent-runtime, bedrock-runtime, bedrock-data-automation,
               bedrock-data-automation-runtime, Agents for Amazon Bedrock, Knowledge Bases for Amazon Bedrock,
               Guardrails for Amazon Bedrock]
   bedrock-agentcore: {short: AgentCore, keywords: ['AgentCore'], aliases: [bedrock-agentcore-control, agent-registry, agent-registry-control]}
@@ -196,7 +212,7 @@ services:
     id: elb
     short: ELB
     keywords: ['ELB', 'Application Load Balancer', 'Network Load Balancer', 'Gateway Load Balancer', 'ALB', 'NLB']
-    aliases: [elb, elbv2]
+    aliases: [elb, elbv2, ElasticLoadBalancingV2, ElasticLoadBalancing]
   api-gateway: {keywords: ['API Gateway'], aliases: [apigateway, apigatewayv2, apigatewaymanagementapi]}
   direct-connect: {keywords: ['Direct Connect'], aliases: [directconnect]}
   transit-gateway: {keywords: ['Transit Gateway']}
@@ -319,7 +335,7 @@ services:
   simple-email-service: {id: ses, short: SES, keywords: ['SES'], aliases: [ses, sesv2, amazon-ses, mailmanager]}
   end-user-messaging: {aliases: [pinpoint-sms-voice, pinpoint-sms-voice-v2, pinpoint-email, endusermessaging]}
   connect: {keywords: ['Amazon Connect'], aliases: [connect-contact-lens, connectcampaigns, connectcampaignsv2, connectcases, connectparticipant, customer-profiles, appintegrations, voice-id, wisdom, connecthealth]}
-  workspaces: {keywords: ['WorkSpaces'], aliases: [workspaces-web, workspaces-thin-client, appstream, amazon-appstream-2-0, AppStream 2.0]}
+  workspaces: {keywords: ['WorkSpaces'], aliases: [workspaces-web, workspaces-thin-client, appstream, amazon-appstream-2-0, AppStream 2.0, desktop-app-streaming]}
   dcv: {aliases: [nice-dcv]}
   chime-sdk: {aliases: [chime-sdk-identity, chime-sdk-media-pipelines, chime-sdk-meetings, chime-sdk-messaging, chime-sdk-voice]}
   supply-chain: {aliases: [supplychain]}
@@ -346,6 +362,7 @@ services:
     aliases: [aws-marketplace, marketplace-agreement, marketplace-catalog, marketplace-deployment, marketplace-discovery,
               marketplace-entitlement, marketplace-reporting, marketplacecommerceanalytics, meteringmarketplace]
   support: {aliases: [support, support-app, supportauthz, service-quotas]}
+  telco-network-builder: {aliases: [tnb]}
   braket: {keywords: ['Braket']}
   managed-blockchain: {aliases: [aws-blockchain, managedblockchain, managedblockchain-query]}
 
@@ -379,3 +396,9 @@ extra:
     category: security
     aliases: [continuum]
     keywords: ['AWS Continuum']
+  - id: strands
+    name: Strands Agents
+    short: Strands Agents
+    category: ai
+    aliases: [strands-agents]
+    keywords: ['Strands(?: Agents?)?']

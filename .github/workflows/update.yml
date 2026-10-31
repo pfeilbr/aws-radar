@@ -35,6 +35,7 @@ jobs:
         name: Collect, build, commit
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}   # higher GitHub API rate limit
         run: uv run scripts/update.py --commit --push ${{ inputs.force && '--force' || '' }}
       - name: Deploy site
         # A push made with GITHUB_TOKEN does not trigger other workflows, so call Pages here.

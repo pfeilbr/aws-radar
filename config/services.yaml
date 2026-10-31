@@ -72,6 +72,82 @@ categories:
   storage:
     name: Storage
     icon: assets/icons/categories/storage.svg
+ignore_tags:
+- advanced-300
+- aiml
+- analytics
+- announcements
+- application-integration
+- application-services
+- architecture
+- artificial-intelligence
+- automotive
+- aws-for-vmware
+- aws-global-infrastructure
+- aws-partner-network
+- aws-training-and-certification
+- best-practices
+- business-intelligence
+- cloud-cost-optimization
+- compliance
+- compute
+- customer-solutions
+- database
+- devops
+- dot-net
+- education
+- end-user-computing
+- enterprise-strategy
+- entertainment
+- experience-based-acceleration
+- expert-400
+- financial-services
+- foundational-100
+- game-development
+- games
+- generative-ai
+- generative-ai-2
+- government
+- healthcare
+- how-to
+- ibm-redhat
+- industries
+- intermediate-200
+- internet-of-things
+- launch
+- learning-levels
+- management-and-governance
+- management-tools
+- manufacturing
+- media-services
+- messaging
+- migration
+- migration-enterprise-strategy
+- migration-solutions
+- mobile-services
+- monitoring-and-observability
+- networking-content-delivery
+- news
+- open-source
+- partner-solutions
+- post-types
+- programing-language
+- public-sector
+- quantum-technologies
+- regions
+- retail
+- robotics
+- sap
+- security
+- security-governance
+- security-identity-compliance
+- serverless
+- software
+- storage
+- technical-how-to
+- telecommunications
+- thought-leadership
+- uncategorized
 services:
 - id: a2i
   name: Amazon Augmented AI A2I
@@ -286,6 +362,8 @@ services:
   aliases:
   - dsql
   - Aurora DSQL
+  - postgresql-compatible
+  - mysql-compatible
   keywords:
   - Aurora
   parent: null
@@ -333,6 +411,7 @@ services:
   icon: assets/icons/services/bedrock.svg
   aliases:
   - amazon-bedrock
+  - bda
   - bedrock-agent
   - bedrock-agent-runtime
   - bedrock-runtime
@@ -986,6 +1065,7 @@ services:
   icon: assets/icons/services/ebs.svg
   aliases:
   - ebs
+  - amazon-elastic-block-storage-ebs
   keywords:
   - EBS
   parent: null
@@ -1066,7 +1146,8 @@ services:
   short: EFS
   category: storage
   icon: assets/icons/services/efs.svg
-  aliases: []
+  aliases:
+  - amazon-elastic-file-system-efs
   keywords:
   - EFS
   parent: null
@@ -1078,6 +1159,7 @@ services:
   aliases:
   - amazon-eks
   - eks-auth
+  - amazon-kubernetes-service
   keywords:
   - EKS
   parent: null
@@ -1142,6 +1224,8 @@ services:
   aliases:
   - elb
   - elbv2
+  - ElasticLoadBalancingV2
+  - ElasticLoadBalancing
   keywords:
   - ELB
   - Application Load Balancer
@@ -2438,6 +2522,7 @@ services:
   icon: assets/icons/services/s3.svg
   aliases:
   - amazon-s3
+  - amazon-simple-storage-services-s3
   - s3control
   - s3tables
   - s3vectors
@@ -2725,6 +2810,16 @@ services:
   keywords:
   - Storage Gateway
   parent: null
+- aliases:
+  - strands-agents
+  keywords:
+  - 'Strands(?: Agents?)?'
+  parent: null
+  short: Strands Agents
+  icon: null
+  id: strands
+  name: Strands Agents
+  category: ai
 - id: supply-chain
   name: AWS Supply Chain
   short: Supply Chain
@@ -2776,7 +2871,8 @@ services:
   short: Telco Network Builder
   category: management-governance
   icon: assets/icons/services/telco-network-builder.svg
-  aliases: []
+  aliases:
+  - tnb
   keywords: []
   parent: null
 - id: tensorflow-on-aws
@@ -2996,6 +3092,7 @@ services:
   - appstream
   - amazon-appstream-2-0
   - AppStream 2.0
+  - desktop-app-streaming
   keywords:
   - WorkSpaces
   parent: null

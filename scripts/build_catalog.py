@@ -152,6 +152,7 @@ def main() -> int:
     out = {
         "generated_by": "scripts/build_catalog.py (edit config/service_overrides.yaml instead)",
         "categories": dict(sorted(categories.items())),
+        "ignore_tags": sorted(overrides.get("ignore_tags") or []),
         "services": sorted(services.values(), key=lambda s: s["id"]),
     }
     (CONFIG_DIR / "services.yaml").write_text(yaml.safe_dump(out, sort_keys=False, width=100))

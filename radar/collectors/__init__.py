@@ -24,7 +24,7 @@ class Skip(Exception):
 
 
 def registry():
-    from radar.collectors import aws_blog_api, bluesky, botocore, hn, rss, x
+    from radar.collectors import aws_blog_api, bluesky, botocore, github_issues, hn, rss, x
 
     return {
         "rss": rss.collect,
@@ -32,5 +32,6 @@ def registry():
         "hn-algolia": hn.collect,
         "bluesky-author": bluesky.collect,
         "github-changelog": botocore.collect,
+        "github-issues": github_issues.collect,
         "x-following": x.collect,
     }
