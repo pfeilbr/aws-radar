@@ -191,6 +191,7 @@ sources:
     notes: >
       One multireddit request instead of one per subreddit: Reddit returns 429 after a couple
       of quick unauthenticated requests. The .json endpoints return 403; RSS works.
+      Blocked (403) from GitHub Actions runners: collect it from a home machine.
 
   - id: hacker-news
     name: Hacker News (AWS stories, 20+ points)
