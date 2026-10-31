@@ -14,7 +14,7 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import feedparser
@@ -40,7 +40,7 @@ def check_rss(f: Fetcher, src: dict) -> tuple[int, int, datetime | None]:
     r = f.get(src["url"])
     feed = feedparser.parse(r.content)
     dates = [
-        datetime(*e[k][:6], tzinfo=timezone.utc)
+        datetime(*e[k][:6], tzinfo=UTC)
         for e in feed.entries
         for k in ("published_parsed", "updated_parsed")
         if e.get(k)
@@ -122,7 +122,7 @@ def main() -> int:
 
     cfg = yaml.safe_load(CONFIG.read_text())
     fetcher = Fetcher(cfg["defaults"])
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     results, failed = [], 0
 
     for src in cfg["sources"]:

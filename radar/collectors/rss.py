@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import feedparser
 
@@ -17,7 +17,7 @@ _REDDIT_FOOTER = re.compile(r"\s*submitted by\s+/u/\S+.*$", re.S)
 def _date(entry) -> datetime:
     for k in ("published_parsed", "updated_parsed"):
         if entry.get(k):
-            return datetime(*entry[k][:6], tzinfo=timezone.utc)
+            return datetime(*entry[k][:6], tzinfo=UTC)
     return utcnow()
 
 

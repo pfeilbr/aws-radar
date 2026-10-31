@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>What's New</title>
+<item>
+  <guid isPermaLink="false">abc123</guid>
+  <title>Amazon DynamoDB Accelerator (DAX) is now available in additional Regions</title>
+  <description>&lt;p&gt;Today, we are excited to announce that DAX is now available in Africa (Cape Town) and Canada (Central).&lt;/p&gt;</description>
+  <pubDate>Wed, 28 Oct 2026 17:00:00 GMT</pubDate>
+  <category>general:products/amazon-dynamodb,marketing:marchitecture/databases</category>
+  <link>https://aws.amazon.com/about-aws/whats-new/2026/10/dax-additional-regions/</link>
+</item>
+<item>
+  <guid isPermaLink="false">def456</guid>
+  <title>Amazon EKS Auto Mode now supports Kubernetes Gateway API</title>
+  <description>&lt;p&gt;Amazon EKS Auto Mode now supports the Gateway API.&lt;/p&gt;</description>
+  <pubDate>Thu, 29 Oct 2026 17:00:00 GMT</pubDate>
+  <category>general:products/amazon-eks</category>
+  <link>https://aws.amazon.com/about-aws/whats-new/2026/10/eks-auto-gateway-api/</link>
+</item>
+</channel></rss>

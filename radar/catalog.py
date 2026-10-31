@@ -55,7 +55,7 @@ class Catalog:
         )
 
     @classmethod
-    def load(cls) -> "Catalog":
+    def load(cls) -> Catalog:
         raw = yaml.safe_load((CONFIG_DIR / "services.yaml").read_text())
         return cls([Service(**s) for s in raw["services"]], raw["categories"], raw.get("ignore_tags"))
 

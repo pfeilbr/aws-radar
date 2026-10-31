@@ -14,10 +14,10 @@ from __future__ import annotations
 import json
 import re
 import shutil
-from xml.sax.saxutils import escape
 from collections import Counter, defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 import yaml
 
@@ -179,6 +179,67 @@ def write_feeds(digests: list[dict], per_service: dict, cat: Catalog, sources: d
                   f"#/s/{sid}", main, sources, cat)
 
 
+WEEKLY_WEEKS = 26
+ROADMAP_SOURCES = {"containers-roadmap-shipped", "cloudformation-roadmap-shipped"}
+
+
+def write_weekly(digests: list[dict], cat: Catalog, sources: dict, now: datetime) -> None:
+    """data/weekly/<YYYY>-W<ww>.md: one page per ISO week, launches first. Rebuilt every run."""
+    out_dir = DATA_DIR / "weekly"
+    if out_dir.exists():
+        shutil.rmtree(out_dir)
+    out_dir.mkdir(parents=True)
+    weeks: dict[tuple[int, int], list[dict]] = defaultdict(list)
+    cutoff = iso(now - timedelta(weeks=WEEKLY_WEEKS))
+    for d in digests:
+        if d["d"] >= cutoff:
+            y, w, _ = datetime.fromisoformat(d["d"].replace("Z", "+00:00")).isocalendar()
+            weeks[(y, w)].append(d)
+
+    def svc_name(d: dict) -> str:
+        return cat.services[d["svc"][0]].name if d["svc"] and d["svc"][0] in cat.services else "Other"
+
+    index = ["# AWS Radar · weekly", "", "Generated from data/raw; do not edit.", ""]
+    for (y, w) in sorted(weeks, reverse=True):
+        items = weeks[(y, w)]
+        start = datetime.fromisocalendar(y, w, 1).date()
+        launches = [d for d in items if d["src"] in ("aws-whats-new", "aws-news-blog")]
+        api = [d for d in items if d["src"] == "botocore-changelog"]
+        shipped = [d for d in items if d["src"] in ROADMAP_SOURCES]
+        community = sorted((d for d in items if d.get("pts")), key=lambda d: -d["pts"])[:10]
+        name = f"{y}-W{w:02d}"
+        lines = [f"# AWS Radar · week {w}, {y} (from {start})", "",
+                 f"{len(launches)} launches · {len(api)} API changes · {len(shipped)} roadmap items shipped · "
+                 f"{len(items)} items in all. Generated from data/raw; do not edit.", ""]
+        if launches:
+            lines += ["## Launches", ""]
+            by_svc: dict[str, list[dict]] = defaultdict(list)
+            for d in launches:
+                by_svc[svc_name(d)].append(d)
+            for sname in sorted(by_svc, key=lambda k: (-len(by_svc[k]), k)):
+                lines.append(f"### {sname}")
+                lines += [_md_line(d, sources) for d in by_svc[sname]]
+                lines.append("")
+        if api:
+            lines += ["## API changes (botocore)", ""]
+            by_api: dict[str, list[dict]] = defaultdict(list)
+            for d in api:
+                by_api[d.get("api", "?")].append(d)
+            for name_ in sorted(by_api, key=lambda k: (-len(by_api[k]), k)):
+                first = by_api[name_][0]
+                more = f" (+{len(by_api[name_]) - 1} more)" if len(by_api[name_]) > 1 else ""
+                lines.append(f"- `{name_}` {first['t']}{more}")
+            lines.append("")
+        if shipped:
+            lines += ["## Shipped from public roadmaps", ""] + [_md_line(d, sources) for d in shipped] + [""]
+        if community:
+            lines += ["## Most discussed (Hacker News)", ""]
+            lines += [f"- {d['pts']} pts · [{d['t']}]({d.get('hn') or d['u']})" for d in community] + [""]
+        (out_dir / f"{name}.md").write_text("\n".join(lines) + "\n")
+        index.append(f"- [{name}]({name}.md) · from {start} · {len(launches)} launches, {len(api)} API changes")
+    (out_dir / "README.md").write_text("\n".join(index) + "\n")
+
+
 def write_catalog_gaps(cat: Catalog, sources: dict) -> int:
     """data/reports/catalog-gaps.md: source service tags that map to no service.
 
@@ -305,6 +366,7 @@ def build(now: datetime | None = None) -> dict:
     (data_dir / "index.js").write_text(
         "window.RADAR_INDEX=" + json.dumps(index, ensure_ascii=False, separators=(",", ":")) + ";\n")
     write_feeds(digests, per_service, cat, sources)
+    write_weekly(digests, cat, sources, now)
     gaps = write_catalog_gaps(cat, sources)
     return index["counts"] | {"services_with_items": len(per_service), "catalog_gaps": gaps}
 

@@ -22,8 +22,11 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from radar import CONFIG_DIR, SITE_DIR  # noqa: E402
-from radar import http  # noqa: E402
+from radar import (  # noqa: E402
+    CONFIG_DIR,
+    SITE_DIR,
+    http,  # noqa: E402
+)
 from radar.catalog import Catalog, Service, norm  # noqa: E402
 
 ICONS_PAGE = "https://aws.amazon.com/architecture/icons/"

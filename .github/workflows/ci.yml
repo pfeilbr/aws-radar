@@ -1,0 +1,28 @@
+# Lint, test and smoke-build on every code change. Data-only commits from the
+# scheduled job skip this.
+name: ci
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["data/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Lint
+        run: uv run ruff check .
+      - name: Test
+        run: uv run pytest -q
+      - name: Build site data from data/raw
+        run: uv run scripts/update.py --build-only
+      - name: JavaScript syntax
+        run: node --check site/app.js

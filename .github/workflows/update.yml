@@ -15,6 +15,7 @@ on:
 permissions:
   contents: write
   actions: write    # to start the pages workflow
+  issues: write     # health_issues.py opens/closes source-failing issues
 
 concurrency:
   group: update     # never two data pushes at once
@@ -41,5 +42,10 @@ jobs:
         # A push made with GITHUB_TOKEN does not trigger other workflows, so call Pages here.
         if: steps.update.outputs.committed == 'true'
         run: gh workflow run pages.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Open or close source-failing issues
+        if: always()
+        run: uv run scripts/health_issues.py
         env:
           GH_TOKEN: ${{ github.token }}

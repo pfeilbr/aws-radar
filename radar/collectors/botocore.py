@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from radar.collectors import Context
 from radar.store import make_item, utcnow
@@ -54,7 +54,7 @@ def collect(src: dict, ctx: Context) -> list[dict]:
                 source=src["id"], key=f"{version}:{service}:{desc}",
                 url=f"https://github.com/boto/botocore/blob/develop/CHANGELOG.rst#{anchor}",
                 title=f"{service}: {desc}", summary=desc,
-                published=published.astimezone(timezone.utc), tags_raw=[service],
+                published=published.astimezone(UTC), tags_raw=[service],
                 extra={"version": version, "sdk_service": service},
             ))
     ctx.state["last_version"] = max((v for v, _ in sections), key=_vkey)
