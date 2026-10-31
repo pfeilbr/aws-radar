@@ -2,10 +2,6 @@
   "http": {
     "https://www.reddit.com/r/aws+aws_cdk+serverless+amazonbedrock/new/.rss?limit=100": {}
   },
-  "last_error": {
-    "at": "2026-10-31T14:32:18Z",
-    "error": "HTTPStatusError: Client error '429 Too Many Requests' for url 'https://www.reddit.com/r/aws+aws_cdk+serverless+amazonbedrock/new/.rss?limit=100'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
-  },
-  "last_run": "2026-10-31T14:32:18Z",
-  "last_success": "2026-10-31T14:26:53Z"
+  "last_run": "2026-10-31T15:52:39Z",
+  "last_success": "2026-10-31T15:52:39Z"
 }

@@ -163,7 +163,7 @@ loige.co/writing-midd... Writing middlewares for Rust Lambda functions](https://
 Not as clear-cut as I expected.
 
 edjgeek.com/blog/lambda-managed-instances/ Lambda Managed Instances: A Working Demo and the Math Behind It — edjgeek](https://bsky.app/profile/edjgeek.bsky.social/post/3mjwwlyiknk25) · Bluesky · AWS people
-- 2026-04-16 `shipped` `roadmap` [AWS::ElasticLoadBalancingV2::TargetGroup - Lambda target update without healthcheck — ### Name of the resource AWS::ElasticLoadBalancingV2::TargetGroup ### Resource Name _No response_ ### Issue Description When creating a AWS::ElasticLoadBalancingV2::TargetGroup resource with TargetType set to Lambda the HealthCheckEnabled defaults to false.](https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/1488) · CloudFormation coverage roadmap · Shipped
+- 2026-04-16 `shipped` `roadmap` [AWS::ElasticLoadBalancingV2::TargetGroup - Lambda target update without healthcheck](https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/1488) · CloudFormation coverage roadmap · Shipped
 - 2026-04-10 `social` [S3 Files just launched. Lambda functions can mount S3 buckets as a file system now. I built AI code review agents on it with a full SAM template. Durable function orchestrator, two Strands agents, shared S3 Files workspace. Every IaC gotcha documented.
 
 edjgeek.com/blog/s3-file...](https://bsky.app/profile/edjgeek.bsky.social/post/3mj5vupvc6s2f) · Bluesky · AWS people
