@@ -288,6 +288,7 @@
           <div class="stat"><b>${s.l30}</b><span>launch + API, 30d</span></div>
         </div></div>
       ${kids.length ? `<div class="related">Includes: ${kids.map(k => `<a class="chip" href="#/s/${esc(k.id)}">${esc(k.short)}</a>`).join("")}</div>` : ""}
+      ${s.samples ? `<div class="related">Samples: ${s.samples.map(x => `<a class="chip" href="https://github.com/pfeilbr/aws-radar/tree/main/${esc(x.path)}" target="_blank" rel="noopener">${esc(x.lang)} · ${esc(x.name)}</a>`).join("")}</div>` : ""}
       <section class="panel" id="svc-feed"><p class="empty" style="padding:16px">Loading…</p></section>`;
     const items = await loadService(id);
     if (parseHash().path !== `/s/${id}`) return;

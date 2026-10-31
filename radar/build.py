@@ -21,7 +21,7 @@ from xml.sax.saxutils import escape
 
 import yaml
 
-from radar import CONFIG_DIR, DATA_DIR, SITE_DIR, SITE_URL
+from radar import CONFIG_DIR, DATA_DIR, ROOT, SITE_DIR, SITE_URL
 from radar.catalog import Catalog
 from radar.classify import regions_for, services_for, tags_for
 from radar.store import RawStore, iso, load_state, utcnow
@@ -306,6 +306,11 @@ def build(now: datetime | None = None) -> dict:
     def since(days: int) -> str:
         return iso(now - timedelta(days=days))
 
+    samples: dict[str, list[dict]] = defaultdict(list)
+    for readme in sorted((ROOT / "samples").glob("*/*/*/README.md")):
+        sid, lang, name = readme.parent.relative_to(ROOT / "samples").parts
+        samples[sid].append({"lang": lang, "name": name, "path": f"samples/{sid}/{lang}/{name}"})
+
     services_out = []
     for s in sorted(cat.services.values(), key=lambda s: s.short.lower()):
         items = per_service.get(s.id, [])
@@ -318,6 +323,7 @@ def build(now: datetime | None = None) -> dict:
             "n30": sum(d["d"] >= since(30) for d in main),
             "l30": sum(d["d"] >= since(30) for d in launches),
             "last": main[0]["d"] if main else None,
+            **({"samples": samples[s.id]} if samples.get(s.id) else {}),
         })
         if items:
             payload = json.dumps(items[:SERVICE_ITEM_CAP], ensure_ascii=False, separators=(",", ":"))

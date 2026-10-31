@@ -58,8 +58,12 @@ The audience is Brian, an AWS expert who knows every service. Write accordingly.
   error in `data/state/<source>.json` and moves on.
 - Be polite to sources: send a descriptive User-Agent, honour ETag/Last-Modified, keep request
   rates low, and never scrape anything that needs a login.
-- Samples go in `samples/<service-id>/<language>/<short-name>/`, each with its own README
-  stating what it shows, how to run it, and what AWS resources (and cost) it creates.
+- Samples go in `samples/<service-id>/<language>/<short-name>/`, each with a README copied
+  from `samples/_template/README.md` (what it shows, how to run, resources, cost, cleanup,
+  last run date). Add new samples to the table in `samples/README.md`; the build links them
+  from the service page automatically. Do not run samples that create billable resources
+  without asking Brian.
+- New collector types need a fixture-based test in `tests/test_collectors.py`.
 
 ## Commands
 
@@ -70,8 +74,15 @@ uv run scripts/update.py --build-only         # after changing rules, catalog or
 uv run scripts/update.py --commit --push      # what the scheduled workflow runs
 uv run scripts/validate_sources.py            # hit every source, report status
 uv run scripts/build_catalog.py --report      # icons + catalog, list unmatched names
+uv run pytest -q && uv run ruff check .       # must pass before pushing code (CI runs both)
+uv run scripts/health_issues.py --dry-run     # what the failing-source issue step would do
 python3 -m http.server -d site 8765           # preview the site
 ```
+
+Generated outputs (never hand-edit; rebuilt by `build.py` from `data/raw`): `site/data/`,
+`site/feeds/`, `data/services/`, `data/weekly/`, `data/changes/`,
+`data/reports/catalog-gaps.md`. When the gaps report lists a real service, add an alias in
+`config/service_overrides.yaml`; when it lists a topic, add it to `ignore_tags`.
 
 Reddit rate-limits hard (429). When testing, use `--only` and avoid re-polling Reddit.
 
