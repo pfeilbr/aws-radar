@@ -28,4 +28,3 @@ Generated from data/raw; do not edit.
 - [2026-W21](2026-W21.md) · from 2026-05-18 · 0 launches, 0 API changes
 - [2026-W20](2026-W20.md) · from 2026-05-11 · 0 launches, 0 API changes
 - [2026-W19](2026-W19.md) · from 2026-05-04 · 0 launches, 0 API changes
-- [2026-W18](2026-W18.md) · from 2026-04-27 · 0 launches, 0 API changes
