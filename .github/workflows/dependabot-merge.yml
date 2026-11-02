@@ -22,7 +22,8 @@ jobs:
     if: >
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.actor.login == 'dependabot[bot]'
+      github.event.workflow_run.actor.login == 'dependabot[bot]' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -33,4 +34,7 @@ jobs:
         run: |
           pr=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --author app/dependabot --state open --json number --jq '.[0].number')
           if [ -z "$pr" ]; then echo "no open Dependabot PR for $BRANCH"; exit 0; fi
+          # Merge only if Dependabot authored every commit on the branch (nobody pushed extra code).
+          others=$(gh pr view "$pr" --repo "$GITHUB_REPOSITORY" --json commits --jq '[.commits[].authors[].login | select(. != "dependabot[bot]")] | length')
+          if [ "$others" != "0" ]; then echo "PR #$pr has commits from others; leaving it for review"; exit 0; fi
           gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
