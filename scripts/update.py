@@ -15,6 +15,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -26,6 +27,44 @@ from radar.store import utcnow  # noqa: E402
 
 def git(*args: str) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], cwd=ROOT, check=True, text=True, capture_output=True)
+
+
+def push_with_rebase(attempts: int = 3) -> None:
+    """Push, rebasing onto whatever landed meanwhile. Raw files are per source and
+    append-only, so only generated files can conflict: take ours, then regenerate them
+    from the merged raw data. Retries when another push wins the race in between."""
+    for attempt in range(1, attempts + 1):
+        git("pull", "--rebase", "-q", "-X", "theirs")
+        build()
+        git("add", "data")
+        if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode:
+            git("commit", "-q", "--amend", "--no-edit")
+        try:
+            git("push")
+            return
+        except subprocess.CalledProcessError as e:
+            if attempt == attempts:
+                raise
+            print(f"push rejected ({e.stderr.strip()[:120]}), retrying", file=sys.stderr)
+            time.sleep(5 * attempt)
+
+
+def write_step_summary(report: list[dict], added: int, stats: dict) -> None:
+    """Per-source table on the GitHub Actions run page (no-op elsewhere)."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    lines = [f"### +{added} items · {stats.get('items', 0):,} total", "",
+             "| source | status | fetched | added | note |", "| --- | --- | ---: | ---: | --- |"]
+    for r in report:
+        if r.get("status") == "not due":
+            continue
+        note = str(r.get("note", "")).replace("|", "\\|")
+        lines.append(f"| {r['id']} | {r['status']} | {r.get('fetched', '')} | {r.get('added', '')} | {note} |")
+    skipped = sum(1 for r in report if r.get("status") == "not due")
+    lines += ["", f"{skipped} sources not due this run."]
+    with open(path, "a") as fh:
+        fh.write("\n".join(lines) + "\n")
 
 
 def failing_sources() -> set[str]:
@@ -57,6 +96,7 @@ def main() -> int:
     stats = build()
     errors = [r for r in report if r.get("status") == "error"]
     print(f"added {len(added)} items; {stats}; {len(errors)} source errors", file=sys.stderr)
+    write_step_summary(report, len(added), stats)
 
     if args.commit:
         git("add", "data")
@@ -83,15 +123,7 @@ def main() -> int:
             git("commit", "-m", msg, "-m", body)
             print(msg, file=sys.stderr)
             if args.push:
-                # Someone may have pushed since checkout. Raw files are per source and
-                # append-only, so only generated files can conflict: take ours, then
-                # regenerate them from the merged raw data.
-                git("pull", "--rebase", "-q", "-X", "theirs")
-                build()
-                git("add", "data")
-                if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode:
-                    git("commit", "-q", "--amend", "--no-edit")
-                git("push")
+                push_with_rebase()
             if os.environ.get("GITHUB_OUTPUT"):
                 with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
                     fh.write("committed=true\n")
