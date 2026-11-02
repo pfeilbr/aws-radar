@@ -93,3 +93,9 @@ When adding commands, list them here and in the README.
 - The scheduled update job commits with a message like `data: update 2026-10-31 (+42 items)`.
 - Hand-made changes use normal descriptive commits. Do not mix pipeline data and code changes
   in one commit.
+- Work in small commits straight on `main` and push each one; no long-lived branches or PRs
+  (Brian, 2026-11-02).
+- **Always merge Dependabot PRs** (Brian's standing rule). `.github/workflows/dependabot-merge.yml`
+  merges them when CI passes. If one is still open (e.g. an Actions update without the
+  `DEPENDABOT_MERGE_TOKEN` secret), merge it with `gh pr merge <n> --squash --delete-branch`
+  once its CI is green, then pull.

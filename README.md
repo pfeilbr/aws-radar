@@ -137,6 +137,9 @@ GETs, cursors) and appends new items.
   `data/raw` and publishes `site/` to GitHub Pages.
 - [`ci.yml`](.github/workflows/ci.yml): ruff, pytest, a build smoke test, and a JS syntax
   check on every code change.
+- [`dependabot-merge.yml`](.github/workflows/dependabot-merge.yml): merges Dependabot PRs
+  once CI passes. Actions updates need the `DEPENDABOT_MERGE_TOKEN` secret to merge on
+  their own (GitHub's built-in token cannot change workflow files).
 
 ## Status and next steps
 
