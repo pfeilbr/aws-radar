@@ -186,7 +186,7 @@ sources:
     group: aws-media
     type: rss
     url: https://d3gih7jbfe3jlq.cloudfront.net/aws-podcast.rss
-    cadence: 24h
+    cadence: 7d                    # no new episode since 2026-04-07; weekly is enough to notice a restart
     stale_after_days: 365
     enabled: true
     notes: >
