@@ -1,9 +1,9 @@
 {
   "http": {
     "https://aws.amazon.com/security/security-bulletins/rss/feed/": {
-      "last_modified": "Mon, 02 Nov 2026 05:25:04 GMT"
+      "last_modified": "Mon, 02 Nov 2026 07:25:04 GMT"
     }
   },
-  "last_run": "2026-11-02T06:11:08Z",
-  "last_success": "2026-11-02T06:11:08Z"
+  "last_run": "2026-11-02T08:22:34Z",
+  "last_success": "2026-11-02T08:22:34Z"
 }
