@@ -44,6 +44,42 @@ class Service:
     parent: str | None = None
 
 
+_QUANTIFIERS = "?*{"
+
+
+def _literal_prefix(pattern: str) -> str:
+    """The text every match of `pattern` must contain, from its fixed start ("" if unsure).
+
+    "Graviton\\d?" -> "Graviton", "Outposts?" -> "Outpost", "Amazon\\ Bedrock" -> "Amazon Bedrock".
+    Patterns with a top-level "|" have no single required prefix.
+    """
+    depth = 0
+    for i, c in enumerate(pattern):
+        if c == "\\":
+            continue
+        if c in "([":
+            depth += 1
+        elif c in ")]":
+            depth -= 1
+        elif c == "|" and depth == 0 and (i == 0 or pattern[i - 1] != "\\"):
+            return ""
+    out = []
+    i = 0
+    while i < len(pattern):
+        c = pattern[i]
+        if c == "\\" and i + 1 < len(pattern) and not pattern[i + 1].isalnum():
+            c, step = pattern[i + 1], 2      # escaped literal: "\\ ", "\\.", "\\@"
+        elif c.isalnum() or c in " @:'-&/,":
+            step = 1
+        else:
+            break
+        if pattern[i + step:i + step + 1] in tuple(_QUANTIFIERS) and pattern[i + step:i + step + 1]:
+            break                            # this char is optional (or repeated): stop before it
+        out.append(c)
+        i += step
+    return "".join(out)
+
+
 class Catalog:
     def __init__(self, services: list[Service], categories: dict[str, dict],
                  ignore_tags: list[str] | None = None):
@@ -119,13 +155,18 @@ class Catalog:
         out = []
         for pat, sid, case in pats:
             flags = 0 if case else re.I
-            out.append((re.compile(rf"(?<![\w-])(?:{pat})(?![\w-])", flags), sid))
+            out.append((re.compile(rf"(?<![\w-])(?:{pat})(?![\w-])", flags), sid,
+                        _literal_prefix(pat) if case else _literal_prefix(pat).lower(), case))
         return out
 
     def match_text(self, text: str) -> list[str]:
         found: list[str] = []
         spans: list[tuple[int, int]] = []
-        for rx, sid in self._text_patterns:
+        lower = text.lower()
+        for rx, sid, hint, case in self._text_patterns:
+            # Cheap substring test first: a pattern whose fixed prefix is absent cannot match.
+            if hint and hint not in (text if case else lower):
+                continue
             for m in rx.finditer(text):
                 a, b = m.span()
                 if any(a < y and x < b for x, y in spans):
