@@ -131,8 +131,10 @@ GETs, cursors) and appends new items.
 
 - [`update.yml`](.github/workflows/update.yml), every 6 hours: collect, build, commit `data/`
   when items arrived or a source started/stopped failing, redeploy the site, then open or
-  close `source-failing` issues. Rebases before pushing, so a local
-  `update.py --commit --push` can run alongside it.
+  close `source-failing` issues. Rebases before pushing (retrying if it loses a race), so a
+  local `update.py --commit --push` can run alongside it. Each run's page shows a
+  per-source summary table. Transient fetch failures (timeouts, resets, 502/504) are
+  retried with backoff before a source counts as failing.
 - [`pages.yml`](.github/workflows/pages.yml): builds `site/data` and `site/feeds` from
   `data/raw` and publishes `site/` to GitHub Pages.
 - [`ci.yml`](.github/workflows/ci.yml): ruff, pytest, a build smoke test, and a JS syntax
@@ -152,6 +154,8 @@ GETs, cursors) and appends new items.
 - [ ] More samples (one so far: [Bedrock Converse streaming](samples/bedrock/python/converse-stream/))
 
 ## License
+
+Security posture and how to report a problem: [SECURITY.md](SECURITY.md).
 
 Code is MIT. Digests link to and briefly quote public sources; the original content belongs to
 its authors. AWS service icons are © Amazon Web Services and used under AWS's icon terms.

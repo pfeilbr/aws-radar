@@ -64,6 +64,19 @@ The audience is Brian, an AWS expert who knows every service. Write accordingly.
   from the service page automatically. Do not run samples that create billable resources
   without asking Brian.
 - New collector types need a fixture-based test in `tests/test_collectors.py`.
+- Workflows: pin every action to a full commit SHA with a `# vX.Y.Z` comment, give each job a
+  `timeout-minutes`, keep `permissions` minimal, and check out with
+  `persist-credentials: false` unless the job pushes. `UV_LOCKED=1` is set, so update
+  `uv.lock` (`uv lock`) whenever `pyproject.toml` changes.
+- Site security: build links from feed data with `safeUrl()` (http(s) only) and text with
+  `esc()`. `site/index.html` has a Content-Security-Policy; if you edit its inline script,
+  update the `sha256-` hash (`tests/test_site.py` fails until you do). No inline `on*=`
+  handlers.
+- Writes that must not be half-done (state files) go to a temp file and `os.replace`.
+  Raw JSONL is only ever appended to.
+- `Catalog.match_text` skips a regex when its literal prefix is absent from the text. Keyword
+  regexes still work as before; one starting with a group or a top-level `|` just isn't
+  prefiltered.
 
 ## Commands
 
