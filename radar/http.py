@@ -61,13 +61,26 @@ class Fetcher:
         self.last_hit: dict[str, float] = {}
 
     def get(self, url: str, retries: int = 3, headers: dict | None = None) -> Response:
+        """GET with politeness spacing. Rate limits (429/503) and transient failures (502/504,
+        timeouts, resets) are retried with backoff; the last response or error is returned/raised."""
         host = urlparse(url).hostname or ""
         for attempt in range(1, retries + 1):
             wait = self.intervals.get(host, 0) - (time.monotonic() - self.last_hit.get(host, 0))
             if wait > 0:
                 time.sleep(wait)
             self.last_hit[host] = time.monotonic()
-            r = get(url, {**self.headers, **(headers or {})}, self.timeout)
+            try:
+                r = get(url, {**self.headers, **(headers or {})}, self.timeout)
+            except HTTPError as e:  # network-level: DNS, reset, timeout
+                if attempt == retries:
+                    raise
+                print(f"    {host}: {e}, retrying in {5 * attempt}s", file=sys.stderr)
+                time.sleep(5 * attempt)
+                continue
+            if r.status_code in (502, 504) and attempt < retries:
+                print(f"    {host}: HTTP {r.status_code}, retrying in {5 * attempt}s", file=sys.stderr)
+                time.sleep(5 * attempt)
+                continue
             if r.status_code not in (429, 503) or attempt == retries:
                 return r
             retry_after = r.headers.get("retry-after", "") or ""
