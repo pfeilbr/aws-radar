@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- CSP: only this site's own scripts run (plus the theme snippet below, by hash; edit it
+       and the hash must change: see tests/test_site.py). Feed text can never inject script. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mXnkhBK5PkFJS+SYt7poTwFKUsSYPAPBkSx89oTrtKA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AWS Radar</title>
   <meta name="description" content="Per-service digest of everything new in AWS: launches, blog posts, API changes, community and social, updated automatically.">
@@ -13,6 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pfeilbr.github.io/aws-radar/">
   <meta name="theme-color" content="#232F3E">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <script>
     try { const t = localStorage.getItem("radar-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
