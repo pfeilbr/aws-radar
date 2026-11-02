@@ -236,10 +236,14 @@ sources:
     name: Hacker News (AWS stories, 20+ points)
     group: community
     type: hn-algolia
-    url: https://hn.algolia.com/api/v1/search_by_date?query=aws&tags=story&numericFilters=points%3E20&hitsPerPage=100
+    url: https://hn.algolia.com/api/v1/search_by_date?query=aws&tags=story&numericFilters=points%3E20&hitsPerPage=100&typoTolerance=false&restrictSearchableAttributes=title
     cadence: 6h
     backfill_pages: 5
     enabled: true
+    notes: >
+      Title-only, no typo tolerance: without both, Algolia matched "aws" anywhere (URL, text,
+      typos) and 99% of hits were off-topic. The build also hides HN stories whose title names
+      neither AWS nor a service, which keeps the older noisy items out of the site.
 
   - id: last-week-in-aws
     name: Last Week in AWS (Corey Quinn)

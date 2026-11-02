@@ -176,7 +176,7 @@ services:
   comprehend-medical: {parent: comprehend, aliases: [comprehendmedical]}
   rekognition: {keywords: ['Rekognition']}
   textract: {keywords: ['Textract']}
-  transcribe: {keywords: ['Transcribe']}
+  transcribe: {keywords: ['Transcribe (?:Call Analytics|Medical)']}  # bare "Transcribe" is an English verb
   translate: {keywords: ['Amazon Translate']}
   polly: {keywords: ['Amazon Polly']}
   lex: {keywords: ['Amazon Lex'], aliases: [lex-models, lex-runtime, lexv2-models, lexv2-runtime]}

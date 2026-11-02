@@ -34,6 +34,7 @@ MD_CAP = 150
 CHANGES_LIST_CAP = 300
 RUN_GAP = timedelta(minutes=15)
 _AWS_WORD = re.compile(r"\b(?:AWS|Amazon|re:Invent)\b", re.I)
+_AWS_TITLE = re.compile(r"\bAWS\b|\bre:Invent\b|\bAmazon [A-Z]")  # "Amazon S3", not "Amazon scammer"
 SKIP_SDK_SERVICES = {"endpoint-rules"}  # botocore housekeeping, not a service change
 
 
@@ -108,6 +109,8 @@ def collect_digests(cat: Catalog, sources: dict[str, dict]) -> list[dict]:
         if src["group"] == "social" and not (d["svc"] or d.get("m")) and not _AWS_WORD.search(
                 f"{item['title']} {item['summary']}"):
             continue  # off-topic post from an AWS person; stays in data/raw
+        if src["type"] == "hn-algolia" and not d["svc"] and not _AWS_TITLE.search(item["title"]):
+            continue  # search hit that only names AWS in passing (or not at all); stays in data/raw
         d["_f"] = item["fetched"]
         key = _url_key(d["u"]) if src["type"] != "github-changelog" else d["id"]
         prev = by_url.get(key)

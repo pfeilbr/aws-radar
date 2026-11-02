@@ -2924,7 +2924,7 @@ services:
   icon: assets/icons/services/transcribe.svg
   aliases: []
   keywords:
-  - Transcribe
+  - Transcribe (?:Call Analytics|Medical)
   parent: null
 - id: transfer-family
   name: AWS Transfer Family
