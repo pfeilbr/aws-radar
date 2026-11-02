@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import sys
 from collections.abc import Iterable, Iterator
 from datetime import UTC, datetime
 from pathlib import Path
@@ -18,6 +20,25 @@ from radar import DATA_DIR
 
 RAW_DIR = DATA_DIR / "raw"
 STATE_DIR = DATA_DIR / "state"
+
+
+def _ends_with_newline(path: Path) -> bool:
+    with path.open("rb") as fh:
+        fh.seek(-1, os.SEEK_END)
+        return fh.read(1) == b"\n"
+
+
+def _read_jsonl(path: Path) -> Iterator[dict]:
+    """Yield each item; skip (and report) a line that does not parse, such as a write cut
+    short by a killed run, so one bad line cannot stop every build. The line stays on disk."""
+    with path.open() as fh:
+        for n, line in enumerate(fh, 1):
+            if not line.strip():
+                continue
+            try:
+                yield json.loads(line)
+            except json.JSONDecodeError as e:
+                print(f"warning: {path}:{n}: unreadable line skipped ({e})", file=sys.stderr)
 
 
 def utcnow() -> datetime:
@@ -58,8 +79,7 @@ class RawStore:
         if source not in self._seen:
             ids = set()
             for f in (self.root / source).glob("*.jsonl"):
-                with f.open() as fh:
-                    ids.update(json.loads(line)["id"] for line in fh if line.strip())
+                ids.update(it["id"] for it in _read_jsonl(f))
             self._seen[source] = ids
         return self._seen[source]
 
@@ -79,16 +99,15 @@ class RawStore:
             path.parent.mkdir(parents=True, exist_ok=True)
             rows.sort(key=lambda r: (r["published"], r["id"]))
             with path.open("a") as fh:
+                if path.stat().st_size and not _ends_with_newline(path):
+                    fh.write("\n")  # never glue a new item onto a line a killed run cut short
                 for r in rows:
                     fh.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
         return added
 
     def all_items(self) -> Iterator[dict]:
         for f in sorted(self.root.glob("*/*.jsonl")):
-            with f.open() as fh:
-                for line in fh:
-                    if line.strip():
-                        yield json.loads(line)
+            yield from _read_jsonl(f)
 
 
 def load_state(source: str) -> dict:
@@ -98,4 +117,8 @@ def load_state(source: str) -> dict:
 
 def save_state(source: str, state: dict) -> None:
     STATE_DIR.mkdir(parents=True, exist_ok=True)
-    (STATE_DIR / f"{source}.json").write_text(json.dumps(state, indent=2, sort_keys=True) + "\n")
+    # Write then rename: a run killed mid-write leaves the old state, never half a JSON file.
+    path = STATE_DIR / f"{source}.json"
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n")
+    os.replace(tmp, path)
