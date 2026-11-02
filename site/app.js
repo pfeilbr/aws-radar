@@ -44,6 +44,8 @@
 
   // ── helpers ───────────────────────────────────────────────────────────────
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // Item URLs come from third-party feeds: only http(s) may become a link (no javascript:, data:).
+  const safeUrl = (u) => /^https?:\/\//i.test(String(u ?? "")) ? esc(u) : "#";
   const store = {
     get(k, d) { try { const v = localStorage.getItem("radar-" + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem("radar-" + k, JSON.stringify(v)); } catch (e) {} },
@@ -110,13 +112,13 @@
     const extra = [
       d.by && `<span>${esc(d.by)}</span>`,
       d.pts != null && `<span>${d.pts} pts</span>`,
-      d.hn && d.hn !== d.u && `<a href="${esc(d.hn)}" target="_blank" rel="noopener">discussion</a>`,
-      d.link && `<a href="${esc(d.link)}" target="_blank" rel="noopener">link</a>`,
+      d.hn && d.hn !== d.u && `<a href="${safeUrl(d.hn)}" target="_blank" rel="noopener">discussion</a>`,
+      d.link && `<a href="${safeUrl(d.link)}" target="_blank" rel="noopener">link</a>`,
     ].filter(Boolean).join(" · ");
     return `<li class="item ${showSvc ? "" : "bare"}">
       ${showSvc ? icon(lead, "svc-ico") : ""}
       <div>
-        <a class="t" href="${esc(d.u)}" target="_blank" rel="noopener">${d.api ? `<span class="api">${esc(d.api)}</span>` : ""}${esc(d.t)}</a>
+        <a class="t" href="${safeUrl(d.u)}" target="_blank" rel="noopener">${d.api ? `<span class="api">${esc(d.api)}</span>` : ""}${esc(d.t)}</a>
         ${d.s ? `<div class="s">${esc(d.s)}</div>` : ""}
         <div class="row">${tags}${regionsHTML(d.rg)}${svcLinks ? `<span>${svcLinks}</span>` : ""}<span>${esc(srcLabel(d.src))}</span>${extra ? `<span>${extra}</span>` : ""}</div>
       </div>
@@ -366,7 +368,7 @@
       <div class="table-wrap"><table class="sources">
         <thead><tr><th>Source</th><th>Group</th><th>Status</th><th>Last success</th><th>Newest item</th><th class="num">Items</th><th>Every</th></tr></thead>
         <tbody>${rows.map(([id, s]) => { const [cls, label] = status(s); return `<tr>
-          <td>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}<div class="sub">${esc(id)} · ${esc(s.type)}</div></td>
+          <td>${s.url ? `<a href="${safeUrl(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}<div class="sub">${esc(id)} · ${esc(s.type)}</div></td>
           <td>${esc(s.group)}</td>
           <td><span class="pill ${cls}" ${s.error ? `title="${esc(s.error)}"` : ""}>${label}</span></td>
           <td>${ago(s.last_success)}</td><td>${s.newest ? ago(s.newest) : "–"}</td>

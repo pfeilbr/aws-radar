@@ -136,6 +136,12 @@ def _md_line(d: dict, sources: dict) -> str:
 
 
 FEED_CAP = 60
+_ATTR = {'"': "&quot;"}  # saxutils.escape leaves quotes alone; attributes need them escaped
+
+
+def _safe_url(url: str, page: str) -> str:
+    """Feed links come from third parties: only http(s) passes, anything else points at the site."""
+    return url if re.match(r"https?://", url or "", re.I) else SITE_URL + page
 LAUNCH_KINDS = {"aws-whats-new", "aws-news-blog", "botocore-changelog", "containers-roadmap-shipped",
                 "cloudformation-roadmap-shipped"}
 
@@ -158,7 +164,7 @@ def _atom(path: Path, title: str, page: str, items: list[dict], sources: dict, c
         title_text = (f"{d['api']}: " if d.get("api") else "") + d["t"]
         out += ["<entry>",
                 f"<title>{escape(title_text)}</title>",
-                f'<link href="{escape(d["u"])}"/>',
+                f'<link href="{escape(_safe_url(d["u"], page), _ATTR)}"/>',
                 f"<id>urn:aws-radar:{escape(d['id'])}</id>",
                 f"<updated>{d['d']}</updated>",
                 f"<summary>{escape(body)}</summary>",
