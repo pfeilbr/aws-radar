@@ -1,0 +1,35 @@
+# Brian's standing rule: always merge Dependabot PRs. This merges one as soon as its CI
+# run passes. CI failing leaves the PR open.
+#
+# GitHub does not let the built-in GITHUB_TOKEN merge PRs that change files under
+# .github/workflows (the github-actions ecosystem updates). For those, add a fine-grained
+# token as the repo secret DEPENDABOT_MERGE_TOKEN (this repo only; Contents, Pull requests
+# and Workflows: read and write). Without it, Python dependency PRs still merge here and
+# Actions PRs wait for a manual merge.
+name: dependabot-merge
+
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.actor.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge the Dependabot PR
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDABOT_MERGE_TOKEN || github.token }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+        run: |
+          pr=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --author app/dependabot --state open --json number --jq '.[0].number')
+          if [ -z "$pr" ]; then echo "no open Dependabot PR for $BRANCH"; exit 0; fi
+          gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --squash --delete-branch
