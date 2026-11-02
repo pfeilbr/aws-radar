@@ -26,12 +26,12 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `marketing-and-advertising` | 5 |
 | `mainframe-and-legacy` | 5 |
 | `map` | 5 |
+| `europe` | 5 |
 | `reinvent` | 5 |
 | `mainframe-migration` | 5 |
 | `public-sector-partners` | 4 |
 | `saas` | 4 |
 | `hybrid-cloud-management` | 4 |
-| `europe` | 4 |
 | `featured` | 4 |
 | `multicloud` | 4 |
 | `sports` | 4 |
