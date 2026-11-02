@@ -17,6 +17,9 @@ permissions:
   actions: write    # to start the pages workflow
   issues: write     # health_issues.py opens/closes source-failing issues
 
+env:
+  UV_LOCKED: "1"
+
 concurrency:
   group: update     # never two data pushes at once
   cancel-in-progress: false
