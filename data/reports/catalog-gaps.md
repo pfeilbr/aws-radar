@@ -15,12 +15,12 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `customer-enablement` | 8 |
 | `foundation-models` | 7 |
 | `centralized-operations-management` | 7 |
+| `high-performance-computing` | 7 |
 | `apn-launches` | 7 |
+| `configuration-compliance-and-auditing` | 7 |
 | `contact-center` | 7 |
 | `energy` | 6 |
 | `infrastructure-automation` | 6 |
-| `high-performance-computing` | 6 |
-| `configuration-compliance-and-auditing` | 6 |
 | `reinvent` | 6 |
 | `case-study` | 5 |
 | `startup` | 5 |
