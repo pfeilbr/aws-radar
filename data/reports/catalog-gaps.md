@@ -20,9 +20,9 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `configuration-compliance-and-auditing` | 7 |
 | `contact-center` | 7 |
 | `energy` | 6 |
+| `case-study` | 6 |
 | `infrastructure-automation` | 6 |
 | `reinvent` | 6 |
-| `case-study` | 5 |
 | `startup` | 5 |
 | `marketing-and-advertising` | 5 |
 | `mainframe-and-legacy` | 5 |
