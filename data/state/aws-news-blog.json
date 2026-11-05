@@ -1,9 +1,9 @@
 {
   "http": {
     "https://aws.amazon.com/blogs/aws/feed/": {
-      "last_modified": "Wed, 04 Nov 2026 00:20:27 GMT"
+      "last_modified": "Thu, 05 Nov 2026 00:22:44 GMT"
     }
   },
-  "last_run": "2026-11-04T19:48:24Z",
-  "last_success": "2026-11-04T19:48:24Z"
+  "last_run": "2026-11-05T06:52:04Z",
+  "last_success": "2026-11-05T06:52:04Z"
 }
