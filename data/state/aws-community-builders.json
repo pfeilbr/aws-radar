@@ -1,9 +1,9 @@
 {
   "http": {
     "https://dev.to/feed/aws-builders": {
-      "etag": "W/\"8912f8f8d28976b1748df34927f9ad4b\""
+      "etag": "W/\"996c9a6cafb5889f25418be74c3e0329\""
     }
   },
-  "last_run": "2026-11-04T19:48:24Z",
-  "last_success": "2026-11-04T19:48:24Z"
+  "last_run": "2026-11-05T19:59:09Z",
+  "last_success": "2026-11-05T19:59:09Z"
 }

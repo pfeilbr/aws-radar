@@ -1,9 +1,9 @@
 {
   "http": {
     "https://github.com/aws/aws-sam-cli/releases.atom": {
-      "etag": "W/\"77ca0097cea5f75a02517f8e940d5e7b\""
+      "etag": "W/\"e656bdbd88ef1f1a25fc5cee4af0497a\""
     }
   },
-  "last_run": "2026-11-04T19:48:24Z",
-  "last_success": "2026-11-04T19:48:24Z"
+  "last_run": "2026-11-05T19:59:09Z",
+  "last_success": "2026-11-05T19:59:09Z"
 }
