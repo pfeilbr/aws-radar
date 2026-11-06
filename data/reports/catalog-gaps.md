@@ -45,6 +45,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `semiconductor-and-electronics` | 3 |
 | `aws-security-token-service` | 3 |
 | `life-sciences` | 3 |
+| `java` | 3 |
 | `python` | 2 |
 | `responsible-ai` | 2 |
 | `amazon-quantum-solutions-lab` | 2 |
@@ -60,7 +61,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `healthcare-public-sector` | 2 |
 | `higher-education` | 2 |
 | `developer` | 2 |
-| `java` | 2 |
 | `babelfish-for-aurora-postgresql` | 2 |
 | `edge` | 1 |
 | `agriculture` | 1 |
