@@ -91,3 +91,9 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `ar-vr` | 1 |
 | `migration-portfolio` | 1 |
 
+## What's New product slugs
+
+| tag | items |
+| --- | ---: |
+| `aws-security-token-service` | 1 |
+
