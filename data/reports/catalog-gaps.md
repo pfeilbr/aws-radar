@@ -24,11 +24,11 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `infrastructure-automation` | 6 |
 | `europe` | 6 |
 | `reinvent` | 6 |
+| `mainframe-migration` | 6 |
 | `startup` | 5 |
 | `marketing-and-advertising` | 5 |
 | `mainframe-and-legacy` | 5 |
 | `map` | 5 |
-| `mainframe-migration` | 5 |
 | `enterprise-governance-and-control` | 4 |
 | `public-sector-partners` | 4 |
 | `saas` | 4 |
