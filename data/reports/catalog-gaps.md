@@ -49,6 +49,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-security-token-service` | 3 |
 | `life-sciences` | 3 |
 | `java` | 3 |
+| `americas` | 3 |
 | `python` | 2 |
 | `amazon-quantum-solutions-lab` | 2 |
 | `satellite` | 2 |
@@ -63,7 +64,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `higher-education` | 2 |
 | `innovation-and-reinvention` | 2 |
 | `babelfish-for-aurora-postgresql` | 2 |
-| `americas` | 2 |
 | `edge` | 1 |
 | `agriculture` | 1 |
 | `hi-tech` | 1 |
@@ -91,6 +91,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `ar-vr` | 1 |
 | `migration-portfolio` | 1 |
 | `provisioning-and-orchestration` | 1 |
+| `alexa` | 1 |
 
 ## What's New product slugs
 
