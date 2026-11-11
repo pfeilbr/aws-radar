@@ -12,11 +12,11 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-on-windows` | 9 |
 | `resilience` | 9 |
 | `self-serve-migration` | 8 |
+| `centralized-operations-management` | 8 |
 | `configuration-compliance-and-auditing` | 8 |
 | `customer-enablement` | 8 |
 | `case-study` | 7 |
 | `foundation-models` | 7 |
-| `centralized-operations-management` | 7 |
 | `high-performance-computing` | 7 |
 | `apn-launches` | 7 |
 | `reinvent` | 7 |
@@ -30,6 +30,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `saas` | 5 |
 | `mainframe-and-legacy` | 5 |
 | `map` | 5 |
+| `sports` | 5 |
 | `enterprise-governance-and-control` | 4 |
 | `public-sector-partners` | 4 |
 | `responsible-ai` | 4 |
@@ -37,7 +38,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `featured` | 4 |
 | `nonprofit` | 4 |
 | `multicloud` | 4 |
-| `sports` | 4 |
 | `oil-and-gas` | 3 |
 | `aws-for-startups` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
@@ -90,6 +90,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `travel-and-hospitality` | 1 |
 | `ar-vr` | 1 |
 | `migration-portfolio` | 1 |
+| `provisioning-and-orchestration` | 1 |
 
 ## What's New product slugs
 
