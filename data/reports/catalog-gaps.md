@@ -11,6 +11,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-summit-new-york` | 12 |
 | `aws-on-windows` | 9 |
 | `resilience` | 9 |
+| `reinvent` | 9 |
 | `self-serve-migration` | 8 |
 | `centralized-operations-management` | 8 |
 | `configuration-compliance-and-auditing` | 8 |
@@ -19,18 +20,17 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `foundation-models` | 7 |
 | `high-performance-computing` | 7 |
 | `apn-launches` | 7 |
-| `reinvent` | 7 |
 | `contact-center` | 7 |
+| `mainframe-migration` | 7 |
 | `energy` | 6 |
 | `marketing-and-advertising` | 6 |
 | `infrastructure-automation` | 6 |
+| `mainframe-and-legacy` | 6 |
 | `europe` | 6 |
-| `mainframe-migration` | 6 |
+| `sports` | 6 |
 | `startup` | 5 |
 | `saas` | 5 |
-| `mainframe-and-legacy` | 5 |
 | `map` | 5 |
-| `sports` | 5 |
 | `enterprise-governance-and-control` | 4 |
 | `public-sector-partners` | 4 |
 | `responsible-ai` | 4 |
@@ -56,6 +56,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aerospace-and-satellite` | 2 |
 | `power-and-utilities` | 2 |
 | `amazon-titan` | 2 |
+| `amazon-workppaces-web` | 2 |
 | `content-production` | 2 |
 | `lambdaedge` | 2 |
 | `cpg` | 2 |
@@ -69,7 +70,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `hi-tech` | 1 |
 | `price-reduction` | 1 |
 | `firecracker` | 1 |
-| `amazon-workppaces-web` | 1 |
 | `identity` | 1 |
 | `aws-dedicated-local-zones` | 1 |
 | `containers` | 1 |
