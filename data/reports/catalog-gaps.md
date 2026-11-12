@@ -38,10 +38,10 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `featured` | 4 |
 | `nonprofit` | 4 |
 | `multicloud` | 4 |
+| `aws-net-development` | 4 |
 | `oil-and-gas` | 3 |
 | `aws-for-startups` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
-| `aws-net-development` | 3 |
 | `powershell` | 3 |
 | `healthcare-public-sector` | 3 |
 | `semiconductor-and-electronics` | 3 |
