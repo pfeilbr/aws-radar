@@ -12,17 +12,17 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `resilience` | 10 |
 | `aws-on-windows` | 9 |
 | `reinvent` | 9 |
+| `customer-enablement` | 9 |
 | `self-serve-migration` | 8 |
 | `centralized-operations-management` | 8 |
 | `configuration-compliance-and-auditing` | 8 |
-| `customer-enablement` | 8 |
+| `mainframe-migration` | 8 |
 | `energy` | 7 |
 | `case-study` | 7 |
 | `foundation-models` | 7 |
 | `high-performance-computing` | 7 |
 | `apn-launches` | 7 |
 | `contact-center` | 7 |
-| `mainframe-migration` | 7 |
 | `marketing-and-advertising` | 6 |
 | `infrastructure-automation` | 6 |
 | `mainframe-and-legacy` | 6 |
@@ -65,6 +65,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `higher-education` | 2 |
 | `innovation-and-reinvention` | 2 |
 | `babelfish-for-aurora-postgresql` | 2 |
+| `travel-and-hospitality` | 2 |
 | `edge` | 1 |
 | `agriculture` | 1 |
 | `hi-tech` | 1 |
@@ -87,7 +88,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `cloudendure-migration` | 1 |
 | `amazon-database-migration-accelerator` | 1 |
 | `reinvent-2` | 1 |
-| `travel-and-hospitality` | 1 |
 | `ar-vr` | 1 |
 | `migration-portfolio` | 1 |
 | `provisioning-and-orchestration` | 1 |
