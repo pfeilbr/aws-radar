@@ -2,6 +2,10 @@
   "http": {
     "https://www.youtube.com/feeds/videos.xml?channel_id=UCT-nPlVzJI-ccQXlxjSvJmw": {}
   },
-  "last_run": "2026-11-12T19:57:03Z",
+  "last_error": {
+    "at": "2026-11-14T06:28:29Z",
+    "error": "HTTPError: HTTP 404 for https://www.youtube.com/feeds/videos.xml?channel_id=UCT-nPlVzJI-ccQXlxjSvJmw <!DOCTYPE html> <html lang=en>   <meta charset=utf-8>   <met"
+  },
+  "last_run": "2026-11-14T06:28:29Z",
   "last_success": "2026-11-12T19:57:03Z"
 }
