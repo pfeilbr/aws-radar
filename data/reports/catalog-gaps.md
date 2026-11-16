@@ -10,9 +10,9 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | --- | ---: |
 | `aws-summit-new-york` | 12 |
 | `resilience` | 11 |
+| `reinvent` | 10 |
 | `customer-enablement` | 10 |
 | `aws-on-windows` | 9 |
-| `reinvent` | 9 |
 | `self-serve-migration` | 8 |
 | `centralized-operations-management` | 8 |
 | `configuration-compliance-and-auditing` | 8 |
@@ -29,11 +29,11 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `europe` | 6 |
 | `sports` | 6 |
 | `startup` | 5 |
+| `public-sector-partners` | 5 |
 | `saas` | 5 |
 | `map` | 5 |
 | `oil-and-gas` | 4 |
 | `enterprise-governance-and-control` | 4 |
-| `public-sector-partners` | 4 |
 | `responsible-ai` | 4 |
 | `hybrid-cloud-management` | 4 |
 | `featured` | 4 |
