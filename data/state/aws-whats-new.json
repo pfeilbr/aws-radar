@@ -1,9 +1,9 @@
 {
   "http": {
     "https://aws.amazon.com/about-aws/whats-new/recent/feed/": {
-      "last_modified": "Tue, 17 Nov 2026 07:03:02 GMT"
+      "last_modified": "Tue, 17 Nov 2026 20:03:02 GMT"
     }
   },
-  "last_run": "2026-11-17T07:58:05Z",
-  "last_success": "2026-11-17T07:58:05Z"
+  "last_run": "2026-11-17T20:58:13Z",
+  "last_success": "2026-11-17T20:58:13Z"
 }

@@ -2,7 +2,7 @@
 
 Generated from data/raw; do not edit.
 
-- [2026-W47](2026-W47.md) · from 2026-11-16 · 18 launches, 26 API changes
+- [2026-W47](2026-W47.md) · from 2026-11-16 · 38 launches, 26 API changes
 - [2026-W46](2026-W46.md) · from 2026-11-09 · 77 launches, 99 API changes
 - [2026-W45](2026-W45.md) · from 2026-11-02 · 64 launches, 46 API changes
 - [2026-W44](2026-W44.md) · from 2026-10-26 · 65 launches, 50 API changes
