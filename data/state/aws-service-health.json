@@ -1,10 +1,10 @@
 {
   "http": {
     "https://status.aws.amazon.com/rss/all.rss": {
-      "etag": "\"299edf27b259d9afe292c07a5e2ab6d7\"",
-      "last_modified": "Mon, 16 Nov 2026 22:07:16 GMT"
+      "etag": "\"d7b95918473421c7c76a2476e836f4fd\"",
+      "last_modified": "Tue, 17 Nov 2026 07:57:17 GMT"
     }
   },
-  "last_run": "2026-11-16T22:08:05Z",
-  "last_success": "2026-11-16T22:08:05Z"
+  "last_run": "2026-11-17T07:58:05Z",
+  "last_success": "2026-11-17T07:58:05Z"
 }

@@ -1,10 +1,10 @@
 {
   "http": {
     "https://raw.githubusercontent.com/boto/botocore/develop/CHANGELOG.rst": {
-      "etag": "\"7677edd97f25cd2a99663dbb28d4ca8eb594cebc35271caa594f156e8eb0f20f\""
+      "etag": "\"42bffcb8f053e70ab3df68a3bf0104980e00eba2055eb72a0e7f35bce04cd033\""
     }
   },
-  "last_run": "2026-11-16T06:34:41Z",
-  "last_success": "2026-11-16T06:34:41Z",
-  "last_version": "1.44.3"
+  "last_run": "2026-11-17T07:58:05Z",
+  "last_success": "2026-11-17T07:58:05Z",
+  "last_version": "1.44.4"
 }

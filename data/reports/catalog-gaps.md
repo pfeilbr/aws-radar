@@ -40,13 +40,13 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `nonprofit` | 4 |
 | `multicloud` | 4 |
 | `aws-net-development` | 4 |
+| `aws-security-token-service` | 4 |
 | `aws-for-startups` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
 | `powershell` | 3 |
 | `healthcare-public-sector` | 3 |
 | `semiconductor-and-electronics` | 3 |
 | `developer` | 3 |
-| `aws-security-token-service` | 3 |
 | `life-sciences` | 3 |
 | `java` | 3 |
 | `americas` | 3 |
@@ -98,4 +98,11 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | tag | items |
 | --- | ---: |
 | `aws-security-token-service` | 1 |
+
+## botocore service names
+
+| tag | items |
+| --- | ---: |
+| `opensearchmemory` | 1 |
+| `connectscheduling` | 1 |
 
