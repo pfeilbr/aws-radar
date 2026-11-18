@@ -13,11 +13,12 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-on-windows` | 10 |
 | `reinvent` | 10 |
 | `customer-enablement` | 10 |
+| `configuration-compliance-and-auditing` | 9 |
 | `self-serve-migration` | 8 |
 | `centralized-operations-management` | 8 |
-| `configuration-compliance-and-auditing` | 8 |
 | `mainframe-migration` | 8 |
 | `energy` | 7 |
+| `enterprise-governance-and-control` | 7 |
 | `case-study` | 7 |
 | `foundation-models` | 7 |
 | `high-performance-computing` | 7 |
@@ -28,7 +29,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `mainframe-and-legacy` | 6 |
 | `europe` | 6 |
 | `sports` | 6 |
-| `enterprise-governance-and-control` | 5 |
 | `startup` | 5 |
 | `public-sector-partners` | 5 |
 | `saas` | 5 |
@@ -64,6 +64,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-tools-for-powershell` | 2 |
 | `higher-education` | 2 |
 | `innovation-and-reinvention` | 2 |
+| `solutions` | 2 |
 | `aws-community-heroes` | 2 |
 | `babelfish-for-aurora-postgresql` | 2 |
 | `travel-and-hospitality` | 2 |
@@ -84,7 +85,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `field-notes` | 1 |
 | `javascript` | 1 |
 | `aws-java-development` | 1 |
-| `solutions` | 1 |
 | `cloudendure-migration` | 1 |
 | `amazon-database-migration-accelerator` | 1 |
 | `reinvent-2` | 1 |
@@ -92,6 +92,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `migration-portfolio` | 1 |
 | `provisioning-and-orchestration` | 1 |
 | `alexa` | 1 |
+| `cloud-adoption` | 1 |
 
 ## What's New product slugs
 

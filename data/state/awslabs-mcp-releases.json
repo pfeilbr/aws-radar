@@ -1,9 +1,9 @@
 {
   "http": {
     "https://github.com/awslabs/mcp/releases.atom": {
-      "etag": "W/\"b62f55f3aa80032f4ebf9e279a51dcd1\""
+      "etag": "W/\"16439ce64065e278f17b2835bd5c2ab2\""
     }
   },
-  "last_run": "2026-11-17T07:58:05Z",
-  "last_success": "2026-11-17T07:58:05Z"
+  "last_run": "2026-11-18T20:35:35Z",
+  "last_success": "2026-11-18T20:35:35Z"
 }
