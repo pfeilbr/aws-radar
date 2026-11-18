@@ -9,10 +9,10 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | tag | items |
 | --- | ---: |
 | `aws-summit-new-york` | 12 |
-| `resilience` | 11 |
+| `resilience` | 12 |
+| `aws-on-windows` | 10 |
 | `reinvent` | 10 |
 | `customer-enablement` | 10 |
-| `aws-on-windows` | 9 |
 | `self-serve-migration` | 8 |
 | `centralized-operations-management` | 8 |
 | `configuration-compliance-and-auditing` | 8 |
