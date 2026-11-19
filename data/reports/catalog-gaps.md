@@ -107,4 +107,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | --- | ---: |
 | `opensearchmemory` | 1 |
 | `connectscheduling` | 1 |
+| `abuse-signal` | 1 |
+| `partnercentral-marketing` | 1 |
 
