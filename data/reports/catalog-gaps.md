@@ -10,8 +10,8 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | --- | ---: |
 | `aws-summit-new-york` | 12 |
 | `resilience` | 12 |
+| `reinvent` | 11 |
 | `aws-on-windows` | 10 |
-| `reinvent` | 10 |
 | `customer-enablement` | 10 |
 | `configuration-compliance-and-auditing` | 9 |
 | `self-serve-migration` | 8 |
@@ -44,13 +44,13 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-security-token-service` | 4 |
 | `life-sciences` | 4 |
 | `aws-for-startups` | 3 |
+| `python` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
 | `powershell` | 3 |
 | `healthcare-public-sector` | 3 |
 | `developer` | 3 |
 | `java` | 3 |
 | `americas` | 3 |
-| `python` | 2 |
 | `amazon-quantum-solutions-lab` | 2 |
 | `satellite` | 2 |
 | `aerospace-and-satellite` | 2 |
@@ -93,6 +93,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `provisioning-and-orchestration` | 1 |
 | `alexa` | 1 |
 | `cloud-adoption` | 1 |
+| `rust` | 1 |
 
 ## What's New product slugs
 
