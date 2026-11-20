@@ -8,11 +8,12 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 
 | tag | items |
 | --- | ---: |
+| `reinvent` | 13 |
 | `aws-summit-new-york` | 12 |
 | `resilience` | 12 |
-| `reinvent` | 11 |
 | `aws-on-windows` | 10 |
 | `customer-enablement` | 10 |
+| `contact-center` | 10 |
 | `configuration-compliance-and-auditing` | 9 |
 | `self-serve-migration` | 8 |
 | `centralized-operations-management` | 8 |
@@ -20,22 +21,21 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `energy` | 7 |
 | `enterprise-governance-and-control` | 7 |
 | `case-study` | 7 |
+| `marketing-and-advertising` | 7 |
 | `foundation-models` | 7 |
 | `high-performance-computing` | 7 |
 | `apn-launches` | 7 |
-| `contact-center` | 7 |
-| `marketing-and-advertising` | 6 |
 | `infrastructure-automation` | 6 |
 | `mainframe-and-legacy` | 6 |
 | `europe` | 6 |
 | `sports` | 6 |
 | `startup` | 5 |
 | `public-sector-partners` | 5 |
+| `responsible-ai` | 5 |
 | `saas` | 5 |
+| `hybrid-cloud-management` | 5 |
 | `map` | 5 |
 | `oil-and-gas` | 4 |
-| `responsible-ai` | 4 |
-| `hybrid-cloud-management` | 4 |
 | `featured` | 4 |
 | `nonprofit` | 4 |
 | `multicloud` | 4 |
@@ -99,7 +99,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 
 | tag | items |
 | --- | ---: |
-| `aws-security-token-service` | 1 |
+| `aws-security-token-service` | 2 |
 
 ## botocore service names
 
