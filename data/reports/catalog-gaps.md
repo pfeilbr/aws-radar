@@ -8,7 +8,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 
 | tag | items |
 | --- | ---: |
-| `reinvent` | 13 |
+| `reinvent` | 14 |
 | `aws-summit-new-york` | 12 |
 | `resilience` | 12 |
 | `aws-on-windows` | 10 |
@@ -16,12 +16,12 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `contact-center` | 10 |
 | `configuration-compliance-and-auditing` | 9 |
 | `self-serve-migration` | 8 |
+| `marketing-and-advertising` | 8 |
 | `centralized-operations-management` | 8 |
 | `mainframe-migration` | 8 |
 | `energy` | 7 |
 | `enterprise-governance-and-control` | 7 |
 | `case-study` | 7 |
-| `marketing-and-advertising` | 7 |
 | `foundation-models` | 7 |
 | `high-performance-computing` | 7 |
 | `apn-launches` | 7 |
@@ -35,6 +35,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `saas` | 5 |
 | `hybrid-cloud-management` | 5 |
 | `map` | 5 |
+| `life-sciences` | 5 |
 | `oil-and-gas` | 4 |
 | `featured` | 4 |
 | `nonprofit` | 4 |
@@ -42,7 +43,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-net-development` | 4 |
 | `semiconductor-and-electronics` | 4 |
 | `aws-security-token-service` | 4 |
-| `life-sciences` | 4 |
 | `aws-for-startups` | 3 |
 | `python` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
@@ -94,6 +94,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `alexa` | 1 |
 | `cloud-adoption` | 1 |
 | `rust` | 1 |
+| `publishers` | 1 |
 
 ## What's New product slugs
 
