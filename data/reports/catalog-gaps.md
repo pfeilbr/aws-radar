@@ -14,9 +14,9 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-on-windows` | 10 |
 | `customer-enablement` | 10 |
 | `contact-center` | 10 |
+| `marketing-and-advertising` | 9 |
 | `configuration-compliance-and-auditing` | 9 |
 | `self-serve-migration` | 8 |
-| `marketing-and-advertising` | 8 |
 | `centralized-operations-management` | 8 |
 | `mainframe-migration` | 8 |
 | `energy` | 7 |
@@ -42,13 +42,13 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `multicloud` | 4 |
 | `aws-net-development` | 4 |
 | `semiconductor-and-electronics` | 4 |
+| `developer` | 4 |
 | `aws-security-token-service` | 4 |
 | `aws-for-startups` | 3 |
 | `python` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
 | `powershell` | 3 |
 | `healthcare-public-sector` | 3 |
-| `developer` | 3 |
 | `java` | 3 |
 | `americas` | 3 |
 | `amazon-quantum-solutions-lab` | 2 |
@@ -110,4 +110,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `connectscheduling` | 1 |
 | `abuse-signal` | 1 |
 | `partnercentral-marketing` | 1 |
+| `agent-discovery` | 1 |
+| `apiportal` | 1 |
+| `payments` | 1 |
 
