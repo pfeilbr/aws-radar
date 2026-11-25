@@ -35,6 +35,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `saas` | 5 |
 | `hybrid-cloud-management` | 5 |
 | `map` | 5 |
+| `aws-security-token-service` | 5 |
 | `life-sciences` | 5 |
 | `oil-and-gas` | 4 |
 | `featured` | 4 |
@@ -43,7 +44,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-net-development` | 4 |
 | `semiconductor-and-electronics` | 4 |
 | `developer` | 4 |
-| `aws-security-token-service` | 4 |
 | `aws-for-startups` | 3 |
 | `python` | 3 |
 | `amazon-managed-apache-cassandra-service` | 3 |
@@ -51,6 +51,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `healthcare-public-sector` | 3 |
 | `java` | 3 |
 | `americas` | 3 |
+| `edge` | 2 |
 | `amazon-quantum-solutions-lab` | 2 |
 | `satellite` | 2 |
 | `aerospace-and-satellite` | 2 |
@@ -68,7 +69,6 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `aws-community-heroes` | 2 |
 | `babelfish-for-aurora-postgresql` | 2 |
 | `travel-and-hospitality` | 2 |
-| `edge` | 1 |
 | `agriculture` | 1 |
 | `hi-tech` | 1 |
 | `price-reduction` | 1 |
@@ -95,6 +95,7 @@ then `uv run scripts/build_catalog.py`. Generated; do not edit.
 | `cloud-adoption` | 1 |
 | `rust` | 1 |
 | `publishers` | 1 |
+| `aws-spain` | 1 |
 
 ## What's New product slugs
 
