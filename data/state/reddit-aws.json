@@ -3,9 +3,9 @@
     "https://www.reddit.com/r/aws+aws_cdk+serverless+amazonbedrock/new/.rss?limit=100": {}
   },
   "last_error": {
-    "at": "2026-11-25T21:44:19Z",
+    "at": "2026-11-26T08:24:48Z",
     "error": "HTTPError: HTTP 404 for https://www.reddit.com/r/aws+aws_cdk+serverless+amazonbedrock/new/.rss?limit=100 <?xml version=\"1.0\" encoding=\"UTF-8\"?> <feed xmlns=\"http://w"
   },
-  "last_run": "2026-11-25T21:44:19Z",
+  "last_run": "2026-11-26T08:24:48Z",
   "last_success": "2026-11-17T07:58:05Z"
 }
